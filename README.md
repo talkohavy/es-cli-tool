@@ -1,13 +1,11 @@
 # es-cli-tool
 
-Put your password in your .zshrc file:
+Create and run an unsecure version of elasticsearch on your local machine, on the default port of 9200.
+
+Create and Environment variable called **ELASTIC_PASSWORD**, and store your elasticsearch password inside.
+
+For example, in MacOS, inside .zshrc:
 
 ```bash
 export ELASTIC_PASSWORD="your_password"
-```
-
-Put your cert file in your home directory:
-
-```
-~/http_ca.crt
 ```
