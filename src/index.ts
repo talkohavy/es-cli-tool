@@ -46,6 +46,7 @@ const yargsInstance = yargs(hideBin(process.argv))
    */
   .command('create-index', 'Create a new index')
   .command('delete-index', 'Delete an existing index')
+  .command('import', 'Import data from a file into an index')
   .command('add', 'Insert a new document to index', (yargs) => {
     yargs
       .option('editor', {
