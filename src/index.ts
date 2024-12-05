@@ -4,7 +4,7 @@ import os from 'os';
 import { hideBin } from 'yargs/helpers';
 import yargs from 'yargs/yargs';
 import { commandMapper } from './commandMapper.js';
-import { bigTextLvlUp } from './constants/bigTextLvlUp.js';
+import { bigTextEsTool } from './constants/bigTextLvlUp.js';
 import { COLORS } from './constants/colors.js';
 import { EditorTypes } from './constants/types.js';
 import { showVersion } from './flags/version.js';
@@ -129,7 +129,7 @@ async function run() {
 
   if (flags.help || !commands.length) {
     const helpMenuAsText = await yargsInstance.getHelp();
-    const helpTextBig = `${bigTextLvlUp}${os.EOL}${os.EOL}${helpMenuAsText}`;
+    const helpTextBig = `${bigTextEsTool}${os.EOL}${os.EOL}${helpMenuAsText}`;
     console.log(helpTextBig);
     process.exit(0);
   }
