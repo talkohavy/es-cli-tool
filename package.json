@@ -1,0 +1,67 @@
+{
+  "name": "es-query",
+  "version": "0.0.0",
+  "description": "A way to query your elasticsearch using CLI",
+  "private": "true",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "keywords": ["elasticsearch", "CLI"],
+  "bin": {
+    "es-query": "index.js"
+  },
+  "exports": {
+    ".": {
+      "default": "./dist/index.js",
+      "types": "./dist/index.d.js"
+    }
+  },
+  "scripts": {
+    "clean": "rm -rf dist",
+    "lint": "eslint -c ./.eslintrc.json \"./src/**/*.ts\"",
+    "format-check": "prettier . --check",
+    "format-fix": "prettier . --write",
+    "test": "node --test",
+    "typecheck": "tsc -p tsconfig.json",
+    "build": "node ./build.config.js",
+    "dev": "npm run build && node dist/index.js",
+    "dev-init": "npm run build && node dist/index.js init",
+    "dev-add": "npm run build && node dist/index.js add",
+    "dev-status": "npm run build && node dist/index.js status",
+    "dev-bump": "npm run build && node dist/index.js bump",
+    "dev-publish": "npm run build && cd dist && node index.js publish",
+    "dev-pub": "npm run build && cd dist && npm publish"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/",
+    "access": "restricted"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/talkohavy/es-query.git"
+  },
+  "bugs": {
+    "url": "https://github.com/talkohavy/es-query/issues",
+    "email": "talkohavy@gmail.com"
+  },
+  "author": "Tal Kohavy <talkohavy@gmail.com> (https://github.com/talkohavy)",
+  "license": "MIT",
+  "dependencies": {
+    "@inquirer/prompts": "^5.3.8",
+    "console-table-printer": "^2.12.1",
+    "external-editor": "^3.1.0",
+    "glob": "^11.0.0",
+    "gray-matter": "^4.0.3",
+    "human-id": "^4.1.1",
+    "yargs": "^17.7.2"
+  },
+  "devDependencies": {
+    "@types/node": "^22.3.0",
+    "@types/yargs": "^17.0.33",
+    "eslint": "^8.57.0",
+    "eslint-plugin-ezlint": "^1.2.0",
+    "husky": "^9.0.11",
+    "prettier": "^3.2.5",
+    "typescript": "^5.4.5"
+  }
+}

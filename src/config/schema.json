@@ -1,0 +1,24 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "commit": {
+      "type": "object",
+      "properties": {
+        "afterAdd": {
+          "type": "boolean",
+          "default": false
+        },
+        "afterBump": {
+          "type": "boolean",
+          "default": false
+        }
+      },
+      "description": "Determines whether to commit the results after the add/bump commands.",
+      "default": {
+        "afterAdd": false,
+        "afterBump": false
+      }
+    }
+  }
+}
