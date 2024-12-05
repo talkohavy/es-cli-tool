@@ -1,4 +1,3 @@
-import os from 'os';
 import { COLORS } from '../../constants/colors.js';
 import { beautifyJson } from '../../utils/beautifyJson.js';
 import { getAllIndexesNames } from '../../utils/getAllIndexesNames.js';
@@ -35,6 +34,6 @@ export async function add() {
 
     console.log(COLORS.blue, beautifulResponse, COLORS.stop);
   } catch (_error: any) {
-    console.log(`${os.EOL}${COLORS.red}Bye.${COLORS.stop}${os.EOL}`);
+    _error;
   }
 }
