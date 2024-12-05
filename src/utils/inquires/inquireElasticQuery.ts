@@ -1,9 +1,9 @@
 import { CreateFileError, ExternalEditor, LaunchEditorError, ReadFileError, RemoveFileError } from 'external-editor';
-import { COLORS } from '../../../constants/colors.js';
-import { ES_QUERY_TOOL_NAME } from '../../../constants/globals.js';
-import { EditorTypes } from '../../../constants/types.js';
-import { logger } from '../../../utils/logger/logger.js';
-import { useVsCodeAsEditor } from './useVsCodeAsEditor.js';
+import { COLORS } from '../../constants/colors';
+import { ES_QUERY_TOOL_NAME } from '../../constants/globals';
+import { EditorTypes } from '../../constants/types';
+import { logger } from '../logger';
+import { useVsCodeAsEditor } from '../useVsCodeAsEditor';
 
 const externalEditorTemplate = '';
 

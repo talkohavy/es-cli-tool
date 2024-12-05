@@ -25,10 +25,10 @@
     "typecheck": "tsc -p tsconfig.json",
     "build": "node ./build.config.js",
     "dev": "npm run build && node dist/index.js",
-    "dev-init": "npm run build && node dist/index.js init",
     "dev-add": "npm run build && node dist/index.js add",
+    "dev-get": "npm run build && node dist/index.js get",
+    "dev-init": "npm run build && node dist/index.js init",
     "dev-status": "npm run build && node dist/index.js status",
-    "dev-bump": "npm run build && node dist/index.js bump",
     "dev-publish": "npm run build && cd dist && node index.js publish",
     "dev-pub": "npm run build && cd dist && npm publish"
   },

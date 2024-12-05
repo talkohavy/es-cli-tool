@@ -1,4 +1,4 @@
-import { logger } from '../../../utils/logger/logger.js';
+import { logger } from './logger/logger.js';
 
 export async function validateAndTransformQuery(queryStr: string): Promise<Record<string, any>> {
   try {

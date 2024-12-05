@@ -1,10 +1,10 @@
 import os from 'os';
 import { COLORS } from '../../constants/colors.js';
+import { getAllIndexesNames } from '../../utils/getAllIndexesNames';
+import { inquireElasticQuery } from '../../utils/inquires/inquireElasticQuery';
+import { inquireIndexName } from '../../utils/inquires/inquireIndexName';
+import { validateAndTransformQuery } from '../../utils/validateAndTransformQuery.js';
 import { executeAddQuery } from './helpers/executeAddQuery.js';
-import { getAllIndexesNames } from './helpers/getAllIndexesNames.js';
-import { inquireElasticQuery } from './helpers/inquireElasticQuery.js';
-import { inquireIndexName } from './helpers/inquireIndexName.js';
-import { validateAndTransformQuery } from './helpers/validateAndTransformQuery.js';
 
 // If you're gonna use emojis, use one of these:
 // 🎩👑🌺⭐️✨❄️🥗🏆🎗️🥇🚀💎💊🔑🎁🎀✏️🔍🔓🛑❌✅💯❌🟢🟡🟠🔴🔵
