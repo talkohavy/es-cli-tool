@@ -1,6 +1,8 @@
 import path from 'path';
 import { COLORS } from './colors.js';
 
+export const ES_QUERY_TOOL_NAME = 'es-query';
+
 const LVLUP_TOOL_NAME = 'lvlup';
 
 const LVLUP_TOOL_NAME_COLORED = `${COLORS.green}lvlup${COLORS.stop}`;

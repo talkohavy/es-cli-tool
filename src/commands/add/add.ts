@@ -1,78 +1,30 @@
 import os from 'os';
 import { COLORS } from '../../constants/colors.js';
-import { SemverLevels } from '../../constants/enums.js';
-import { EditorTypes } from '../../constants/types.js';
-import { logger } from '../../utils/logger/logger.js';
-import { readConfigJson } from '../../utils/readConfigJson.js';
-import { readPackageJson } from '../../utils/readPackageJson.js';
-import { validateRootLvlupExists } from '../../utils/validateRootLvlupExists.js';
-import { commitTheNewMdFile } from './helpers/commitTheNewMdFile.js';
-import { createNewMdFile } from './helpers/createNewMdFile.js';
-import { displayChangesSummary } from './helpers/displayChangesSummary.js';
-import { inquireCommitMessage } from './helpers/inquireCommitMessage.js';
-import { inquireConfirm } from './helpers/inquireConfirm.js';
-import { inquireSemver } from './helpers/inquireSemver.js';
+import { executeAddQuery } from './helpers/executeAddQuery.js';
+import { getAllIndexesNames } from './helpers/getAllIndexesNames.js';
+import { inquireElasticQuery } from './helpers/inquireElasticQuery.js';
+import { inquireIndexName } from './helpers/inquireIndexName.js';
+import { validateAndTransformQuery } from './helpers/validateAndTransformQuery.js';
 
 // If you're gonna use emojis, use one of these:
 // 🎩👑🌺⭐️✨❄️🥗🏆🎗️🥇🚀💎💊🔑🎁🎀✏️🔍🔓🛑❌✅💯❌🟢🟡🟠🔴🔵
 
-type AddProps = {
-  skip: boolean;
-  editor: EditorTypes;
-};
-
-async function add(props: AddProps) {
+export async function add() {
   try {
-    const { skip: shouldSkipConfirmation, editor } = props;
+    const indexNamesArr = await getAllIndexesNames();
 
-    const { packageJsonAsObject } = await readPackageJson(); // <--- for `add` command, there's no need to run `validatePackageJsonVersion` after `readPackageJson`.
-    const { version: currentVersion, name: packageName } = packageJsonAsObject;
+    const selectedIndex = await inquireIndexName(indexNamesArr);
 
-    validateRootLvlupExists();
+    const elasticQueryStr = await inquireElasticQuery();
 
-    const semverLevel = await inquireSemver({ packageName, currentVersion });
-    const commitMessage = await inquireCommitMessage({ editor });
+    if (!elasticQueryStr) return;
 
-    if (!commitMessage) {
-      logger.error('commit message cannot be empty... exiting...', { newLineBefore: true });
-      throw new Error();
-    }
+    const elasticQuery = await validateAndTransformQuery(elasticQueryStr);
 
-    displayChangesSummary({ packageName, semverLevel });
+    const response = await executeAddQuery({ index: selectedIndex, query: elasticQuery });
 
-    const shouldMoveForward = shouldSkipConfirmation || (await inquireConfirm());
-
-    if (!shouldMoveForward) return;
-
-    executeAddByAnswers({ packageName, semverLevel, commitMessage });
+    console.log('response is:', response);
   } catch (_error: any) {
-    console.log(`${os.EOL}${COLORS.red}Bye.${os.EOL}`);
+    console.log(`${os.EOL}${COLORS.red}Bye.${COLORS.stop}${os.EOL}`);
   }
 }
-
-type ExecuteAddProps = {
-  packageName: string;
-  semverLevel: SemverLevels;
-  commitMessage: string;
-};
-
-async function executeAddByAnswers(props: ExecuteAddProps) {
-  const { packageName, semverLevel, commitMessage } = props;
-
-  const { configJsonAsObject } = await readConfigJson();
-  const { afterAdd: shouldCommitAfterAdd } = configJsonAsObject.commit ?? {};
-
-  const filenameFullPath = await createNewMdFile({ packageName, semverLevel, commitMessage });
-
-  if (shouldCommitAfterAdd) {
-    await commitTheNewMdFile({ filenameFullPath, commitMessage });
-    logger.info('✅  LVLUP added an experience file and committed it', { newLineBefore: true });
-  } else {
-    logger.info('✅  LVLUP added an experience file. Please go over it and then commit it', { newLineBefore: true });
-  }
-
-  logger.info('✅  If you want to modify the experience, or expand its summary, you can find it here:');
-  logger.info(`✅  ${COLORS.yellow}${filenameFullPath}${COLORS.stop}`, { newLineAfter: true });
-}
-
-export { add };
