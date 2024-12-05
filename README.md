@@ -1,4 +1,4 @@
-# es-tool
+# es-cli-tool
 
 Put your password in your .zshrc file:
 

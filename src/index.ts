@@ -21,7 +21,7 @@ const yargsInstance = yargs(hideBin(process.argv))
    *
    * The name will appear at to the of the hemp menu
    */
-  .scriptName(`${COLORS.green}es-tool${COLORS.stop}`)
+  .scriptName(`${COLORS.green}es-cli-tool${COLORS.stop}`)
   /**
    * @description
    * I put version to `false`, because yargs do not support -v, only --version, and I would like to have both.
@@ -52,7 +52,7 @@ const yargsInstance = yargs(hideBin(process.argv))
         description: 'Choose the external editor for editing your query.',
       })
       .example(
-        'es-tool add --editor vim',
+        'es-cli-tool add --editor vim',
         'Would open up Vim as editor when you hit enter on the insert message prompt.',
       );
   })
@@ -64,11 +64,11 @@ const yargsInstance = yargs(hideBin(process.argv))
         description: 'Choose the external editor for editing your query.',
       })
       .example(
-        'es-tool get --editor vim',
+        'es-cli-tool get --editor vim',
         'Would open up vim as editor when you hit enter on the insert message prompt.',
       );
   })
-  // .command('init', 'To start using es-tool, you first need to run the init command.')
+  // .command('init', 'To start using es-cli-tool, you first need to run the init command.')
   // .command('status', "Show the status before bumping the package's version")
   // .command('bump', "Uses all md version files added by the `add` command to calculate and bump the package's version")
   .command('publish', 'publishes the package to your designated registry using the rules you specified.')
@@ -79,7 +79,7 @@ const yargsInstance = yargs(hideBin(process.argv))
     v: {
       alias: 'version',
       type: 'boolean',
-      description: 'Show es-tool version',
+      description: 'Show es-cli-tool version',
       default: false,
       global: false,
     },

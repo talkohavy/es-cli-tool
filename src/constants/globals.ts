@@ -1,7 +1,7 @@
 import path from 'path';
 import { COLORS } from './colors.js';
 
-export const ES_TOOL_NAME = 'es-tool';
+export const ES_TOOL_NAME = 'es-cli-tool';
 
 const LVLUP_TOOL_NAME = 'lvlup';
 
