@@ -1,5 +1,5 @@
 {
-  "name": "es-query",
+  "name": "es-tool",
   "version": "0.0.1",
   "description": "A way to query your elasticsearch using CLI",
   "private": "true",
@@ -8,7 +8,7 @@
   "types": "dist/index.d.ts",
   "keywords": ["elasticsearch", "CLI"],
   "bin": {
-    "es-query": "index.js"
+    "es-tool": "index.js"
   },
   "exports": {
     ".": {
@@ -38,10 +38,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/talkohavy/es-query.git"
+    "url": "git+https://github.com/talkohavy/es-tool.git"
   },
   "bugs": {
-    "url": "https://github.com/talkohavy/es-query/issues",
+    "url": "https://github.com/talkohavy/es-tool/issues",
     "email": "talkohavy@gmail.com"
   },
   "author": "Tal Kohavy <talkohavy@gmail.com> (https://github.com/talkohavy)",
