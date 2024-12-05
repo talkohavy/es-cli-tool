@@ -1,15 +1,13 @@
 import os from 'os';
 import { COLORS } from '../../constants/colors.js';
+import { beautifyJson } from '../../utils/beautifyJson.js';
 import { getAllIndexesNames } from '../../utils/getAllIndexesNames.js';
 import { inquireElasticQuery } from '../../utils/inquires/inquireElasticQuery.js';
 import { inquireIndexName } from '../../utils/inquires/inquireIndexName.js';
 import { validateAndTransformQuery } from '../../utils/validateAndTransformQuery.js';
-import { executeAddQuery } from './helpers/executeAddQuery.js';
+import { executeGetQuery } from './helpers/executeGetQuery.js';
 
-// If you're gonna use emojis, use one of these:
-// 🎩👑🌺⭐️✨❄️🥗🏆🎗️🥇🚀💎💊🔑🎁🎀✏️🔍🔓🛑❌✅💯❌🟢🟡🟠🔴🔵
-
-export async function add() {
+export async function get() {
   try {
     const indexNamesArr = await getAllIndexesNames();
 
@@ -21,9 +19,11 @@ export async function add() {
 
     const elasticQuery = await validateAndTransformQuery(elasticQueryStr);
 
-    const response = await executeAddQuery({ index: selectedIndex, query: elasticQuery });
+    const response = await executeGetQuery({ index: selectedIndex, query: elasticQuery });
 
-    console.log('response is:', response);
+    const beautifulResponse = beautifyJson(response);
+
+    console.log(COLORS.blue, beautifulResponse, COLORS.stop);
   } catch (_error: any) {
     console.log(`${os.EOL}${COLORS.red}Bye.${COLORS.stop}${os.EOL}`);
   }

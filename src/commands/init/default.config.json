@@ -1,7 +1,0 @@
-{
-  "$schema": "https://unpkg.com/lvlup@{{version}}/schema.json",
-  "commit": {
-    "afterAdd": true,
-    "afterBump": true
-  }
-}

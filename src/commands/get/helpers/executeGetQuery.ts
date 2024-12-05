@@ -6,19 +6,19 @@ type ExecuteAddQueryProps = {
   query: Record<string, any>;
 };
 
-export async function executeAddQuery(props: ExecuteAddQueryProps) {
+export async function executeGetQuery(props: ExecuteAddQueryProps) {
   try {
     const { index, query } = props;
 
     const result = execSync(
-      `curl --cacert ~/http_ca.crt -u elastic:$ELASTIC_PASSWORD -X POST "https://localhost:9200/${index}/_doc/" -H 'Content-Type: application/json' -d'
+      `curl --silent --cacert ~/http_ca.crt -u elastic:$ELASTIC_PASSWORD -X GET "https://localhost:9200/${index}/_search" -H 'Content-Type: application/json' -d'
 ${JSON.stringify(query)}'`,
     ).toString();
 
     return result;
   } catch (error) {
     console.error(error);
-    logger.error('[ES Error] Failed to execute POST query...');
+    logger.error('[ES Error] Failed to execute GET query...');
 
     throw error;
   }

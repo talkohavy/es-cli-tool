@@ -1,5 +1,5 @@
 import { confirm } from '@inquirer/prompts';
-import { COLORS } from '../../constants/colors';
+import { COLORS } from '../../constants/colors.js';
 
 async function inquireConfirm() {
   const shouldMoveForward = await confirm({

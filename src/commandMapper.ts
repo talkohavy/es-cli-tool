@@ -1,13 +1,11 @@
 import { add } from './commands/add/index.js';
-import { init } from './commands/init/index.js';
+import { get } from './commands/get/index.js';
 import { publish } from './commands/publish/publish.js';
-import { status } from './commands/status/status.js';
 import { Commands } from './constants/types.js';
 
 const COMMAND_MAPPER = {
-  [Commands.Init]: init,
   [Commands.Add]: add,
-  [Commands.Status]: status,
+  [Commands.Get]: get,
   [Commands.Publish]: publish,
 };
 
@@ -16,12 +14,10 @@ type commandMapperProps = {
   flags: any;
 };
 
-function commandMapper(props: commandMapperProps) {
+export function commandMapper(props: commandMapperProps) {
   const { commands, flags } = props;
 
   const [command] = commands as [Commands];
 
   COMMAND_MAPPER[command](flags);
 }
-
-export { commandMapper };

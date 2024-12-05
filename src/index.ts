@@ -14,14 +14,14 @@ type ArgsV = {
   _: Array<string>;
 } & Record<string, string | number | boolean>;
 
-const yargInstance = yargs(hideBin(process.argv))
+const yargsInstance = yargs(hideBin(process.argv))
   /**
    * @description
    * Set the name of your script ($0). Default is the base filename executed by node (process.argv[1] or process.argv[0] for built electron apps)
    *
    * The name will appear at to the of the hemp menu
    */
-  .scriptName(`${COLORS.green}lvlup${COLORS.stop}`)
+  .scriptName(`${COLORS.green}es-query${COLORS.stop}`)
   /**
    * @description
    * I put version to `false`, because yargs do not support -v, only --version, and I would like to have both.
@@ -44,28 +44,33 @@ const yargInstance = yargs(hideBin(process.argv))
    *
    * Optionally, you can provide a builder object to give hints about the options that your command accepts:
    */
-  .command('init', 'To start using lvlup, you first need to run the init command.')
-  .command('add [FLAGS]', 'Add new change', (yargs) => {
-    yargs
-      .option('skip', {
-        description: 'Adding the skip option will not prompt the confirmation step, and basically skip it.',
-        type: 'boolean',
-        default: false,
-      })
-      .example('lvlup add --skip', 'Would skip the confirmation step.');
+  .command('add', 'Insert a new document to index', (yargs) => {
     yargs
       .option('editor', {
         type: 'string',
         choices: [EditorTypes.Vi, EditorTypes.Vim, EditorTypes.Nano, EditorTypes.Code] as Array<EditorTypes>,
-        description: 'Choose the external editor for editing your message.',
+        description: 'Choose the external editor for editing your query.',
       })
       .example(
-        'lvlup add --editor code',
-        'Would open up VsCode as editor when you hit enter on the insert message prompt.',
+        'es-query add --editor vim',
+        'Would open up Vim as editor when you hit enter on the insert message prompt.',
       );
   })
-  .command('status', "Show the status before bumping the package's version")
-  .command('bump', "Uses all md version files added by the `add` command to calculate and bump the package's version")
+  .command('get', 'Get document/s by query', (yargs) => {
+    yargs
+      .option('editor', {
+        type: 'string',
+        choices: [EditorTypes.Vi, EditorTypes.Vim, EditorTypes.Nano, EditorTypes.Code] as Array<EditorTypes>,
+        description: 'Choose the external editor for editing your query.',
+      })
+      .example(
+        'es-query get --editor vim',
+        'Would open up vim as editor when you hit enter on the insert message prompt.',
+      );
+  })
+  // .command('init', 'To start using es-query, you first need to run the init command.')
+  // .command('status', "Show the status before bumping the package's version")
+  // .command('bump', "Uses all md version files added by the `add` command to calculate and bump the package's version")
   .command('publish', 'publishes the package to your designated registry using the rules you specified.')
   .options({
     // ---------
@@ -74,7 +79,7 @@ const yargInstance = yargs(hideBin(process.argv))
     v: {
       alias: 'version',
       type: 'boolean',
-      description: 'Show lvlup version',
+      description: 'Show es-query version',
       default: false,
       global: false,
     },
@@ -112,7 +117,7 @@ const yargInstance = yargs(hideBin(process.argv))
   .help(false); // <--- help('help') & help() result in the same behavior.
 
 async function run() {
-  const argv = yargInstance.parse();
+  const argv = yargsInstance.parse();
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { $0: cliToolName, _: commands, ...flags } = argv as ArgsV;
@@ -123,7 +128,7 @@ async function run() {
   }
 
   if (flags.help || !commands.length) {
-    const helpMenuAsText = await yargInstance.getHelp();
+    const helpMenuAsText = await yargsInstance.getHelp();
     const helpTextBig = `${bigTextLvlUp}${os.EOL}${os.EOL}${helpMenuAsText}`;
     console.log(helpTextBig);
     process.exit(0);

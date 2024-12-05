@@ -86,17 +86,6 @@ function copyStaticFiles() {
     { filename: '.npmignore', sourceDirPath: [], destinationDirPath: [] },
     { filename: '.npmrc', sourceDirPath: [], destinationDirPath: [], isAllowedToFail: true },
     { filename: 'README.md', sourceDirPath: [], destinationDirPath: [] },
-    {
-      filename: 'default.README.md',
-      sourceDirPath: ['src', 'commands', 'init'],
-      destinationDirPath: [],
-    },
-    {
-      filename: 'default.config.json',
-      sourceDirPath: ['src', 'commands', 'init'],
-      destinationDirPath: [],
-    },
-    { filename: 'schema.json', sourceDirPath: ['src', 'config'], destinationDirPath: [] },
   ];
 
   filesToCopyArr.forEach(({ filename, sourceDirPath, destinationDirPath, isAllowedToFail }) => {
@@ -126,9 +115,4 @@ function updateVersionTemplates() {
   const showVersionFuncContent = fs.readFileSync(showVersionFuncPath, 'utf-8');
   const updatedShowVersionFuncContent = showVersionFuncContent.replace('{{version}}', version);
   fs.writeFileSync(showVersionFuncPath, updatedShowVersionFuncContent);
-
-  const defaultConfigJsonPath = path.resolve(process.cwd(), 'dist', 'default.config.json');
-  const defaultConfigJsonContent = fs.readFileSync(defaultConfigJsonPath, 'utf-8');
-  const updatedDefaultConfigJsonContent = defaultConfigJsonContent.replace('{{version}}', version);
-  fs.writeFileSync(defaultConfigJsonPath, updatedDefaultConfigJsonContent);
 }

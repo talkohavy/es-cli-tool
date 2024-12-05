@@ -26,9 +26,8 @@ export type VersionObject = {
 };
 
 export enum Commands {
-  Init = 'init',
   Add = 'add',
-  Status = 'status',
+  Get = 'get',
   Publish = 'publish',
 }
 
