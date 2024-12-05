@@ -44,6 +44,7 @@ const yargsInstance = yargs(hideBin(process.argv))
    *
    * Optionally, you can provide a builder object to give hints about the options that your command accepts:
    */
+  .command('create-index', 'Create a new index')
   .command('add', 'Insert a new document to index', (yargs) => {
     yargs
       .option('editor', {

@@ -5,7 +5,7 @@ import { logger } from './logger/logger.js';
 export async function getAllIndexesNames() {
   try {
     const indexesNamesStr = execSync(
-      'curl --silent --cacert ~/http_ca.crt -u elastic:$ELASTIC_PASSWORD -X GET "https://localhost:9200/_cat/indices?h=index"',
+      'curl --insecure --silent -u elastic:$ELASTIC_PASSWORD -X GET "https://localhost:9200/_cat/indices?h=index"',
     ).toString();
 
     const indexesNames = indexesNamesStr.split(os.EOL);

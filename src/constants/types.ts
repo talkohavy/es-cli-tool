@@ -26,6 +26,7 @@ export type VersionObject = {
 };
 
 export enum Commands {
+  CreateIndex = 'create-index',
   Add = 'add',
   Get = 'get',
   Publish = 'publish',
