@@ -3,7 +3,6 @@ export enum Commands {
   Add = 'add',
   Delete = 'delete',
   Get = 'get',
-  Publish = 'publish',
 }
 
 export enum EditorTypes {
