@@ -1,6 +1,6 @@
 {
   "name": "es-cli-tool",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "A way to query your elasticsearch using CLI",
   "private": "true",
   "type": "module",
@@ -29,11 +29,7 @@
     "dev-delete-index": "npm run build && node dist/index.js delete-index",
     "dev-import": "npm run build && node dist/index.js import",
     "dev-add": "npm run build && node dist/index.js add",
-    "dev-get": "npm run build && node dist/index.js get",
-    "dev-init": "npm run build && node dist/index.js init",
-    "dev-status": "npm run build && node dist/index.js status",
-    "dev-publish": "npm run build && cd dist && node index.js publish",
-    "dev-pub": "npm run build && cd dist && npm publish"
+    "dev-get": "npm run build && node dist/index.js get"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",
