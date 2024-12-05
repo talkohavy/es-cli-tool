@@ -1,33 +1,7 @@
-export type PackageJson = {
-  name: string;
-  version: string;
-  description?: string;
-  private?: boolean;
-  main?: string;
-  types?: string;
-  type?: 'module' | 'commonjs';
-  publishConfig: {
-    registry: string;
-    access: 'public' | 'restricted';
-  };
-};
-
-export type ConfigJson = {
-  commit?: {
-    afterAdd?: boolean;
-    afterBump?: boolean;
-  };
-};
-
-export type VersionObject = {
-  major: number;
-  minor: number;
-  patch: number;
-};
-
 export enum Commands {
   CreateIndex = 'create-index',
   Add = 'add',
+  Delete = 'delete',
   Get = 'get',
   Publish = 'publish',
 }

@@ -2,16 +2,12 @@ import os from 'os';
 import { COLORS } from '../../constants/colors.js';
 import { beautifyJson } from '../../utils/beautifyJson.js';
 import { getAllIndexesNames } from '../../utils/getAllIndexesNames.js';
-import { inquireElasticQuery } from '../../utils/inquires/inquireElasticQuery.js';
 import { inquireIndexName } from '../../utils/inquires/inquireIndexName.js';
 import { logger } from '../../utils/logger/logger.js';
-import { validateAndTransformQuery } from '../../utils/validateAndTransformQuery.js';
-import { executeAddQuery } from './helpers/executeAddQuery.js';
+import { executeDeleteQuery } from './helpers/executeDeleteQuery.js';
+import { inquireDocumentId } from './helpers/inquireDocumentId.js';
 
-// If you're gonna use emojis, use one of these:
-// 🎩👑🌺⭐️✨❄️🥗🏆🎗️🥇🚀💎💊🔑🎁🎀✏️🔍🔓🛑❌✅💯❌🟢🟡🟠🔴🔵
-
-export async function add() {
+export async function deleteDocument() {
   try {
     const indexNamesArr = await getAllIndexesNames();
 
@@ -23,13 +19,11 @@ export async function add() {
 
     const selectedIndex = await inquireIndexName(indexNamesArr);
 
-    const elasticQueryStr = await inquireElasticQuery();
+    const documentId = await inquireDocumentId();
 
-    if (!elasticQueryStr) return;
+    if (!documentId) return;
 
-    const elasticQuery = await validateAndTransformQuery(elasticQueryStr);
-
-    const response = await executeAddQuery({ index: selectedIndex, query: elasticQuery });
+    const response = await executeDeleteQuery({ index: selectedIndex, documentId });
 
     const beautifulResponse = beautifyJson(response);
 

@@ -4,7 +4,7 @@ import os from 'os';
 import { hideBin } from 'yargs/helpers';
 import yargs from 'yargs/yargs';
 import { commandMapper } from './commandMapper.js';
-import { bigTextEsTool } from './constants/bigTextLvlUp.js';
+import { bigTextEsTool } from './constants/bigTextEsTool.js';
 import { COLORS } from './constants/colors.js';
 import { EditorTypes } from './constants/types.js';
 import { showVersion } from './flags/version.js';
@@ -57,6 +57,7 @@ const yargsInstance = yargs(hideBin(process.argv))
         'Would open up Vim as editor when you hit enter on the insert message prompt.',
       );
   })
+  .command('delete', 'Delete a document by id')
   .command('get', 'Get document/s by query', (yargs) => {
     yargs
       .option('editor', {
