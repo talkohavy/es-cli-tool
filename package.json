@@ -28,6 +28,7 @@
     "dev": "npm run build && node dist/index.js",
     "dev-create-index": "npm run build:dev && node dist/index.js create-index",
     "dev-delete-index": "npm run build:dev && node dist/index.js delete-index",
+    "dev-clear-all": "npm run build:dev && node dist/index.js clear-all",
     "dev-import": "npm run build:dev && node dist/index.js import",
     "dev-add": "npm run build:dev --hello world && node dist/index.js add",
     "dev-get": "npm run build:dev && node dist/index.js get"

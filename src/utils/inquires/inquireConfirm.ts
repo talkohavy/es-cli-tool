@@ -1,9 +1,9 @@
 import { confirm } from '@inquirer/prompts';
 import { COLORS } from '../../constants/colors.js';
 
-async function inquireConfirm() {
+async function inquireConfirm(alternativeMessage?: string) {
   const shouldMoveForward = await confirm({
-    message: '✨ Is this your desired change?',
+    message: `✨ ${alternativeMessage ?? 'Are you sure?'}`,
     default: true,
     theme: { style: { defaultAnswer: () => `${COLORS.black}(Y/n) › ${COLORS.blue}true` } },
   });
