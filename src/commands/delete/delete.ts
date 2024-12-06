@@ -7,27 +7,23 @@ import { executeDeleteQuery } from './helpers/executeDeleteQuery.js';
 import { inquireDocumentId } from './helpers/inquireDocumentId.js';
 
 export async function deleteDocument() {
-  try {
-    const indexNamesArr = await getAllIndexesNames();
+  const indexNamesArr = await getAllIndexesNames();
 
-    if (!indexNamesArr.length) {
-      logger.info(`${COLORS.green}No indexes found. Create one first?${COLORS.stop}`);
+  if (!indexNamesArr.length) {
+    logger.info(`${COLORS.green}No indexes found. Create one first?${COLORS.stop}`);
 
-      return;
-    }
-
-    const selectedIndex = await inquireIndexName(indexNamesArr);
-
-    const documentId = await inquireDocumentId();
-
-    if (!documentId) return;
-
-    const response = await executeDeleteQuery({ index: selectedIndex, documentId });
-
-    const colorizedResponse = colorizeJson(response);
-
-    console.log(colorizedResponse);
-  } catch (_error: any) {
-    _error;
+    return;
   }
+
+  const selectedIndex = await inquireIndexName(indexNamesArr);
+
+  const documentId = await inquireDocumentId();
+
+  if (!documentId) return;
+
+  const response = await executeDeleteQuery({ index: selectedIndex, documentId });
+
+  const colorizedResponse = colorizeJson(response);
+
+  console.log(colorizedResponse);
 }

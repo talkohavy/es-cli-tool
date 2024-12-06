@@ -6,23 +6,19 @@ import { logger } from '../../utils/logger/logger.js';
 import { executeDeleteIndexQuery } from './helpers/executeDeleteIndexQuery.js';
 
 export async function deleteIndex() {
-  try {
-    const indexNamesArr = await getAllIndexesNames();
+  const indexNamesArr = await getAllIndexesNames();
 
-    if (!indexNamesArr.length) {
-      logger.info(`${COLORS.green}No indexes found. Create one first?${COLORS.stop}`);
+  if (!indexNamesArr.length) {
+    logger.info(`${COLORS.green}No indexes found. Create one first?${COLORS.stop}`);
 
-      return;
-    }
-
-    const selectedIndex = await inquireIndexName(indexNamesArr);
-
-    const response = await executeDeleteIndexQuery(selectedIndex);
-
-    const colorizedResponse = colorizeJson(response);
-
-    console.log(colorizedResponse);
-  } catch (_error: any) {
-    _error;
+    return;
   }
+
+  const selectedIndex = await inquireIndexName(indexNamesArr);
+
+  const response = await executeDeleteIndexQuery(selectedIndex);
+
+  const colorizedResponse = colorizeJson(response);
+
+  console.log(colorizedResponse);
 }

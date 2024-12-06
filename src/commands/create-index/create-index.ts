@@ -5,22 +5,18 @@ import { inquireNewIndexName } from './helpers/inquireNewIndexName.js';
 import { validateElasticsearchIndexName } from './helpers/vallidateIndexName.js';
 
 export async function createIndex() {
-  try {
-    const selectedIndex = await inquireNewIndexName();
+  const selectedIndex = await inquireNewIndexName();
 
-    const { isValid, reason } = validateElasticsearchIndexName(selectedIndex);
-    if (!isValid) {
-      logger.error(`Invalid index name: ${reason!}`);
+  const { isValid, reason } = validateElasticsearchIndexName(selectedIndex);
+  if (!isValid) {
+    logger.error(`Invalid index name: ${reason!}`);
 
-      return;
-    }
-
-    const response = await executeCreateIndexQuery(selectedIndex);
-
-    const colorizedResponse = colorizeJson(response);
-
-    console.log(colorizedResponse);
-  } catch (_error: any) {
-    _error;
+    return;
   }
+
+  const response = await executeCreateIndexQuery(selectedIndex);
+
+  const colorizedResponse = colorizeJson(response);
+
+  console.log(colorizedResponse);
 }

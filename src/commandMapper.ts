@@ -27,9 +27,13 @@ type commandMapperProps = {
 };
 
 export function commandMapper(props: commandMapperProps) {
-  const { commands } = props;
+  try {
+    const { commands } = props;
 
-  const [command] = commands as [Commands];
+    const [command] = commands as [Commands];
 
-  COMMAND_MAPPER[command]();
+    COMMAND_MAPPER[command]();
+  } catch (_error: any) {
+    _error;
+  }
 }

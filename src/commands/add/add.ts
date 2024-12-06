@@ -11,29 +11,25 @@ import { executeAddQuery } from './helpers/executeAddQuery.js';
 // 🎩👑🌺⭐️✨❄️🥗🏆🎗️🥇🚀💎💊🔑🎁🎀✏️🔍🔓🛑❌✅💯❌🟢🟡🟠🔴🔵
 
 export async function add() {
-  try {
-    const indexNamesArr = await getAllIndexesNames();
+  const indexNamesArr = await getAllIndexesNames();
 
-    if (!indexNamesArr.length) {
-      logger.info(`${COLORS.green}No indexes found. Create one first?${COLORS.stop}`);
+  if (!indexNamesArr.length) {
+    logger.info(`${COLORS.green}No indexes found. Create one first?${COLORS.stop}`);
 
-      return;
-    }
-
-    const selectedIndex = await inquireIndexName(indexNamesArr);
-
-    const elasticQueryStr = await inquireElasticQuery();
-
-    if (!elasticQueryStr) return;
-
-    const elasticQuery = await validateAndTransformQuery(elasticQueryStr);
-
-    const response = await executeAddQuery({ index: selectedIndex, query: elasticQuery });
-
-    const colorizedResponse = colorizeJson(response);
-
-    console.log(colorizedResponse);
-  } catch (_error: any) {
-    _error;
+    return;
   }
+
+  const selectedIndex = await inquireIndexName(indexNamesArr);
+
+  const elasticQueryStr = await inquireElasticQuery();
+
+  if (!elasticQueryStr) return;
+
+  const elasticQuery = await validateAndTransformQuery(elasticQueryStr);
+
+  const response = await executeAddQuery({ index: selectedIndex, query: elasticQuery });
+
+  const colorizedResponse = colorizeJson(response);
+
+  console.log(colorizedResponse);
 }
