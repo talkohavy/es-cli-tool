@@ -11,7 +11,7 @@ export async function executeGetQuery(props: ExecuteAddQueryProps) {
     const { index, query } = props;
 
     const result = execSync(
-      `curl --insecure --silent -u elastic:$ELASTIC_PASSWORD -X GET "https://localhost:9200/${index}/_search" -H 'Content-Type: application/json' -d'
+      `curl --insecure --silent -u elastic:$ELASTIC_PASSWORD -X GET "https://localhost:9200/${index}/_search?pretty" -H 'Content-Type: application/json' -d'
 ${JSON.stringify(query)}'`,
     ).toString();
 
