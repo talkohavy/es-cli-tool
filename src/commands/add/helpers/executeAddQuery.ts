@@ -11,7 +11,7 @@ export async function executeAddQuery(props: ExecuteAddQueryProps) {
     const { index, query } = props;
 
     const result = execSync(
-      `curl --insecure --silent -u elastic:$ELASTIC_PASSWORD -X POST "https://localhost:9200/${index}/_doc/" -H 'Content-Type: application/json' -d'
+      `curl --insecure --silent -u elastic:$ELASTIC_PASSWORD -X POST "https://localhost:9200/${index}/_doc?pretty" -H 'Content-Type: application/json' -d'
 ${JSON.stringify(query)}'`,
     ).toString();
 
