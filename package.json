@@ -31,7 +31,8 @@
     "dev-clear-all": "npm run build:dev && node dist/index.js clear-all",
     "dev-import": "npm run build:dev && node dist/index.js import",
     "dev-add": "npm run build:dev --hello world && node dist/index.js add",
-    "dev-get": "npm run build:dev && node dist/index.js get"
+    "dev-get": "npm run build:dev && node dist/index.js get",
+    "dev-get-mapping": "npm run build:dev && node dist/index.js get-mapping"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",

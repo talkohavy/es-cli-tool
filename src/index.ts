@@ -73,6 +73,7 @@ const yargsInstance = yargs(hideBin(process.argv))
         'Would open up vim as editor when you hit enter on the insert message prompt.',
       );
   })
+  .command('get-mapping', "Get an index's mapping")
   .options({
     // ---------
     // Option 1:

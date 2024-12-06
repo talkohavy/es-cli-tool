@@ -4,6 +4,7 @@ import { createIndex } from './commands/create-index/create-index.js';
 import { deleteDocument } from './commands/delete/delete.js';
 import { deleteIndex } from './commands/delete-index/delete-index.js';
 import { get } from './commands/get/get.js';
+import { getMapping } from './commands/get-mapping/get-mapping.js';
 import { importToIndex } from './commands/import-to-index/import-to-index.js';
 import { Commands } from './constants/types.js';
 
@@ -15,6 +16,7 @@ const COMMAND_MAPPER = {
   [Commands.Add]: add,
   [Commands.Delete]: deleteDocument,
   [Commands.Get]: get,
+  [Commands.GetMapping]: getMapping,
 };
 
 type commandMapperProps = {
