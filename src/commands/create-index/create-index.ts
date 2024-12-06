@@ -1,5 +1,4 @@
-import { COLORS } from '../../constants/colors.js';
-import { beautifyJson } from '../../utils/beautifyJson.js';
+import { colorizeJson } from '../../utils/colorize-json/colorize-json.js';
 import { logger } from '../../utils/logger/logger.js';
 import { executeCreateIndexQuery } from './helpers/executeCreateIndexQuery.js';
 import { inquireNewIndexName } from './helpers/inquireNewIndexName.js';
@@ -18,9 +17,9 @@ export async function createIndex() {
 
     const response = await executeCreateIndexQuery(selectedIndex);
 
-    const beautifulResponse = beautifyJson(response);
+    const colorizedResponse = colorizeJson(response);
 
-    console.log(COLORS.blue, beautifulResponse, COLORS.stop);
+    console.log(colorizedResponse);
   } catch (_error: any) {
     _error;
   }
