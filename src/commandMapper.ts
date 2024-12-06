@@ -26,13 +26,13 @@ type commandMapperProps = {
   flags: any;
 };
 
-export function commandMapper(props: commandMapperProps) {
+export async function commandMapper(props: commandMapperProps) {
   try {
     const { commands } = props;
 
     const [command] = commands as [Commands];
 
-    COMMAND_MAPPER[command]();
+    await COMMAND_MAPPER[command]();
   } catch (_error: any) {
     _error;
   }
