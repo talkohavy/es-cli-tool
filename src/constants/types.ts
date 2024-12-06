@@ -8,6 +8,7 @@ export enum Commands {
   Delete = 'delete',
   Get = 'get',
   GetMapping = 'get-mapping',
+  GetSettings = 'get-settings',
 }
 
 export enum EditorTypes {
