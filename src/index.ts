@@ -73,10 +73,6 @@ const yargsInstance = yargs(hideBin(process.argv))
         'Would open up vim as editor when you hit enter on the insert message prompt.',
       );
   })
-  // .command('init', 'To start using es-cli-tool, you first need to run the init command.')
-  // .command('status', "Show the status before bumping the package's version")
-  // .command('bump', "Uses all md version files added by the `add` command to calculate and bump the package's version")
-  .command('publish', 'publishes the package to your designated registry using the rules you specified.')
   .options({
     // ---------
     // Option 1:
