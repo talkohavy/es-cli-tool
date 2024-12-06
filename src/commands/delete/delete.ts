@@ -1,5 +1,5 @@
 import { COLORS } from '../../constants/colors.js';
-import { beautifyJson } from '../../utils/beautifyJson.js';
+import { colorizeJson } from '../../utils/colorize-json/colorize-json.js';
 import { getAllIndexesNames } from '../../utils/getAllIndexesNames.js';
 import { inquireIndexName } from '../../utils/inquires/inquireIndexName.js';
 import { logger } from '../../utils/logger/logger.js';
@@ -24,9 +24,9 @@ export async function deleteDocument() {
 
     const response = await executeDeleteQuery({ index: selectedIndex, documentId });
 
-    const beautifulResponse = beautifyJson(response);
+    const colorizedResponse = colorizeJson(response);
 
-    console.log(COLORS.blue, beautifulResponse, COLORS.stop);
+    console.log(colorizedResponse);
   } catch (_error: any) {
     _error;
   }

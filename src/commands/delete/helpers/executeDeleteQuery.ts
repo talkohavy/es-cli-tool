@@ -11,7 +11,7 @@ export async function executeDeleteQuery(props: ExecuteAddQueryProps) {
     const { index, documentId } = props;
 
     const result = execSync(
-      `curl --insecure -u elastic:$ELASTIC_PASSWORD -X DELETE "https://localhost:9200/${index}/_doc/${documentId}"`,
+      `curl --insecure -u elastic:$ELASTIC_PASSWORD -X DELETE "https://localhost:9200/${index}/_doc/${documentId}?pretty"`,
     ).toString();
 
     return result;
