@@ -4,7 +4,7 @@ import { logger } from '../../../utils/logger/logger.js';
 export async function executeDeleteIndexQuery(index: string) {
   try {
     const result = execSync(
-      `curl --insecure --silent -u elastic:$ELASTIC_PASSWORD -X DELETE 'https://localhost:9200/${index}'`,
+      `curl --insecure --silent -u elastic:$ELASTIC_PASSWORD -X DELETE 'https://localhost:9200/${index}?pretty'`,
     ).toString();
 
     return result;
