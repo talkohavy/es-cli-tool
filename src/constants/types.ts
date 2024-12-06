@@ -1,7 +1,8 @@
+// NOTE! The values on the right need to be an exact match to the command names a user types.
 export enum Commands {
   CreateIndex = 'create-index',
   DeleteIndex = 'delete-index',
-  ImportToIndex = 'import-to-index',
+  ImportToIndex = 'import',
   Add = 'add',
   Delete = 'delete',
   Get = 'get',
