@@ -4,7 +4,7 @@ import { logger } from '../../../utils/logger/logger.js';
 export async function executeImportToIndexQuery(index: string) {
   try {
     const result = execSync(
-      `curl --insecure --silent -u elastic:$ELASTIC_PASSWORD -X POST "https://localhost:9200/${index}/_bulk" -H "Content-Type: application/json" --data-binary "@data.json"`,
+      `curl --insecure --silent -u elastic:$ELASTIC_PASSWORD -X POST "https://localhost:9200/${index}/_bulk?pretty" -H "Content-Type: application/json" --data-binary "@data.json"`,
     ).toString();
 
     return result;
