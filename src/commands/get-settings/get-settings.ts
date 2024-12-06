@@ -1,4 +1,5 @@
 import { COLORS } from '../../constants/colors.js';
+import { colorizeJson } from '../../utils/colorize-json/colorize-json.js';
 import { getAllIndexesNames } from '../../utils/getAllIndexesNames.js';
 import { inquireIndexName } from '../../utils/inquires/inquireIndexName.js';
 import { logger } from '../../utils/logger/logger.js';
@@ -18,7 +19,9 @@ export async function getSettings() {
 
     const response = await executeGetSettings(selectedIndex);
 
-    console.log(COLORS.blue, response, COLORS.stop);
+    const colorizedResponse = colorizeJson(response);
+
+    console.log(colorizedResponse);
   } catch (_error: any) {
     _error;
   }
