@@ -1,0 +1,10 @@
+{
+  "size": 0,
+  "aggs": {
+    "names": {
+      "terms": {
+        "field": "firstName.keyword"
+      }
+    }
+  }
+}

@@ -1,0 +1,70 @@
+{
+  "properties": {
+    "_created": {
+      "type": "date"
+    },
+    "_created_local": {
+      "type": "date"
+    },
+    "_data_source": {
+      "type": "long"
+    },
+    "_device_id": {
+      "type": "text"
+    },
+    "_device_name": {
+      "type": "text"
+    },
+    "console_user_upn": {
+      "type": "text"
+    },
+    "created_local": {
+      "type": "date"
+    },
+    "device_name": {
+      "type": "text"
+    },
+    "error_code": {
+      "type": "text"
+    },
+    "event_description": {
+      "type": "text"
+    },
+    "event_id": {
+      "type": "long"
+    },
+    "event_level": {
+      "type": "long"
+    },
+    "event_level_name": {
+      "type": "text"
+    },
+    "event_log": {
+      "type": "text"
+    },
+    "event_source": {
+      "type": "text"
+    },
+    "event_time_created": {
+      "type": "date"
+    },
+    "fault_module": {
+      "type": "text"
+    },
+    "fault_module_version": {
+      "type": "text"
+    },
+    "process_id": {
+      "type": "text"
+    },
+    "process_id_int": {
+      "type": "long"
+    },
+    "process_name": {
+      "type": "text"
+    },
+    "process_version": {
+      "type": "text"
+    }
+  }
+}

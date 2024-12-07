@@ -1,0 +1,25 @@
+{
+  "size": 0,
+  "aggs": {
+    "sum_dob": {
+      "sum": {
+        "field": "dob"
+      }
+    },
+    "max_dob": {
+      "max": {
+        "field": "dob"
+      }
+    },
+    "min_dob": {
+      "min": {
+        "field": "dob"
+      }
+    },
+    "avg_dob": {
+      "avg": {
+        "field": "dob"
+      }
+    }
+  }
+}
