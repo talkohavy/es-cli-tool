@@ -29,6 +29,12 @@ export async function importToIndex(props: ImportToIndexProps) {
     return;
   }
 
+  if (!file) {
+    logger.info(`${COLORS.green}You MUST enter a correct path to file...${COLORS.stop}`);
+
+    return;
+  }
+
   const response = await executeImportToIndexQuery({ index: selectedIndex, file });
 
   const colorizedResponse = colorizeJson(response);
