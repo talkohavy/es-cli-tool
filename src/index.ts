@@ -75,6 +75,7 @@ const yargsInstance = yargs(hideBin(process.argv))
   })
   .command('get-mapping', "Get an index's mapping")
   .command('get-settings', "Get an index's settings")
+  .command('update-mapping', "Update an index's mapping")
   .options({
     // ---------
     // Option 1:

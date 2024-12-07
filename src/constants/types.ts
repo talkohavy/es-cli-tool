@@ -9,6 +9,7 @@ export enum Commands {
   Get = 'get',
   GetMapping = 'get-mapping',
   GetSettings = 'get-settings',
+  UpdateMapping = 'update-mapping',
 }
 
 export enum EditorTypes {

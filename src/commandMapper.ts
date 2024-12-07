@@ -7,6 +7,7 @@ import { get } from './commands/get/get.js';
 import { getMapping } from './commands/get-mapping/get-mapping.js';
 import { getSettings } from './commands/get-settings/get-settings.js';
 import { importToIndex } from './commands/import-to-index/import-to-index.js';
+import { updateMapping } from './commands/update-mapping/update-mapping.js';
 import { Commands } from './constants/types.js';
 
 const COMMAND_MAPPER = {
@@ -19,6 +20,7 @@ const COMMAND_MAPPER = {
   [Commands.Get]: get,
   [Commands.GetMapping]: getMapping,
   [Commands.GetSettings]: getSettings,
+  [Commands.UpdateMapping]: updateMapping,
 };
 
 type commandMapperProps = {

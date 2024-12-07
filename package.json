@@ -33,7 +33,8 @@
     "dev-add": "npm run build:dev --hello world && node dist/index.js add",
     "dev-get": "npm run build:dev && node dist/index.js get",
     "dev-get-mapping": "npm run build:dev && node dist/index.js get-mapping",
-    "dev-get-settings": "npm run build:dev && node dist/index.js get-settings"
+    "dev-get-settings": "npm run build:dev && node dist/index.js get-settings",
+    "dev-update-mapping": "npm run build:dev && node dist/index.js update-mapping"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",
