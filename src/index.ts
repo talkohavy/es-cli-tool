@@ -101,7 +101,21 @@ const yargsInstance = yargs(hideBin(process.argv))
   })
   .command('get-mapping', "Get an index's mapping")
   .command('get-settings', "Get an index's settings")
-  .command('update-mapping', "Update an index's mapping")
+  .command('update-mapping', "Update an index's mapping", (yargs) => {
+    yargs
+      .option('index', {
+        type: 'string',
+        description: 'Specify the target index.',
+      })
+      .example('es-cli-tool update-mapping --index users', 'Executes a GET query on the users index.');
+    yargs
+      .option('file', {
+        type: 'string',
+        alias: 'f',
+        description: 'Use a file as the query to execute.',
+      })
+      .example('es-cli-tool update-mapping --file mapping.json', 'Executes the query in that file.');
+  })
   .options({
     // ---------
     // Option 1:
