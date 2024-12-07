@@ -25,7 +25,7 @@ export async function get(props: GetProps) {
 
   const selectedIndex = index ?? (await inquireIndexName(indexNamesArr));
 
-  if (!indexNamesArr.includes(index)) {
+  if (!indexNamesArr.includes(selectedIndex)) {
     logger.info(`${COLORS.green}index ${index} doesn't exist...${COLORS.stop}`);
 
     return;
