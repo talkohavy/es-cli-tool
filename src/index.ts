@@ -50,6 +50,19 @@ const yargsInstance = yargs(hideBin(process.argv))
   .command('import', 'Import data from a file into an index')
   .command('add', 'Insert a new document to index', (yargs) => {
     yargs
+      .option('index', {
+        type: 'string',
+        description: 'Specify the target index.',
+      })
+      .example('es-cli-tool add --index users', 'Executes an INSERT query on the users index.');
+    yargs
+      .option('file', {
+        type: 'string',
+        alias: 'f',
+        description: 'Use a file as the query to execute.',
+      })
+      .example('es-cli-tool add --file query.json', 'Executes the query in that file.');
+    yargs
       .option('editor', {
         type: 'string',
         choices: [EditorTypes.Vi, EditorTypes.Vim, EditorTypes.Nano, EditorTypes.Code] as Array<EditorTypes>,

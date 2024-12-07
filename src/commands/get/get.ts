@@ -1,10 +1,9 @@
 import { COLORS } from '../../constants/colors.js';
 import { colorizeJson } from '../../utils/colorize-json/colorize-json.js';
 import { getAllIndexesNames } from '../../utils/getAllIndexesNames.js';
-import { inquireElasticQuery } from '../../utils/inquires/inquireElasticQuery.js';
+import { getElasticQuery } from '../../utils/getElasticQuery.js';
 import { inquireIndexName } from '../../utils/inquires/inquireIndexName.js';
 import { logger } from '../../utils/logger/logger.js';
-import { readQueryFromFile } from '../../utils/readQueryFromFile.js';
 import { validateAndTransformQuery } from '../../utils/validateAndTransformQuery.js';
 import { executeGetQuery } from './helpers/executeGetQuery.js';
 
@@ -43,12 +42,4 @@ export async function get(props: GetProps) {
   const colorizedResponse = colorizeJson(response);
 
   console.log(colorizedResponse);
-}
-
-async function getElasticQuery(file?: string) {
-  if (file) return readQueryFromFile(file);
-
-  const elasticQueryFromEditor = await inquireElasticQuery();
-
-  return elasticQueryFromEditor;
 }
