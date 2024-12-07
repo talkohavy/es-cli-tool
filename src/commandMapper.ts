@@ -30,11 +30,11 @@ type commandMapperProps = {
 
 export async function commandMapper(props: commandMapperProps) {
   try {
-    const { commands } = props;
+    const { commands, flags } = props;
 
     const [command] = commands as [Commands];
 
-    await COMMAND_MAPPER[command]();
+    await COMMAND_MAPPER[command](flags);
   } catch (_error: any) {
     _error;
   }

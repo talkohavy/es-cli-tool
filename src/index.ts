@@ -63,6 +63,19 @@ const yargsInstance = yargs(hideBin(process.argv))
   .command('delete', 'Delete a document by id')
   .command('get', 'Get document/s by query', (yargs) => {
     yargs
+      .option('index', {
+        type: 'string',
+        description: 'Specify the target index.',
+      })
+      .example('es-cli-tool get --index users', 'Executes a GET query on the users index.');
+    yargs
+      .option('file', {
+        type: 'string',
+        alias: 'f',
+        description: 'Use a file as the query to execute.',
+      })
+      .example('es-cli-tool get --file query.json', 'Executes the query in that file.');
+    yargs
       .option('editor', {
         type: 'string',
         choices: [EditorTypes.Vi, EditorTypes.Vim, EditorTypes.Nano, EditorTypes.Code] as Array<EditorTypes>,

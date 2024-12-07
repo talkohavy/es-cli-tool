@@ -4,10 +4,18 @@ import { getAllIndexesNames } from '../../utils/getAllIndexesNames.js';
 import { inquireElasticQuery } from '../../utils/inquires/inquireElasticQuery.js';
 import { inquireIndexName } from '../../utils/inquires/inquireIndexName.js';
 import { logger } from '../../utils/logger/logger.js';
+import { readQueryFromFile } from '../../utils/readQueryFromFile.js';
 import { validateAndTransformQuery } from '../../utils/validateAndTransformQuery.js';
 import { executeGetQuery } from './helpers/executeGetQuery.js';
 
-export async function get() {
+type GetProps = {
+  file: string;
+  index: string;
+};
+
+export async function get(props: GetProps) {
+  const { index, file } = props;
+
   const indexNamesArr = await getAllIndexesNames();
 
   if (!indexNamesArr.length) {
@@ -16,9 +24,15 @@ export async function get() {
     return;
   }
 
-  const selectedIndex = await inquireIndexName(indexNamesArr);
+  const selectedIndex = index ?? (await inquireIndexName(indexNamesArr));
 
-  const elasticQueryStr = await inquireElasticQuery();
+  if (!indexNamesArr.includes(index)) {
+    logger.info(`${COLORS.green}index ${index} doesn't exist...${COLORS.stop}`);
+
+    return;
+  }
+
+  const elasticQueryStr = await getElasticQuery(file);
 
   if (!elasticQueryStr) return;
 
@@ -29,4 +43,12 @@ export async function get() {
   const colorizedResponse = colorizeJson(response);
 
   console.log(colorizedResponse);
+}
+
+async function getElasticQuery(file?: string) {
+  if (file) return readQueryFromFile(file);
+
+  const elasticQueryFromEditor = await inquireElasticQuery();
+
+  return elasticQueryFromEditor;
 }
