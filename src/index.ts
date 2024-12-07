@@ -47,7 +47,22 @@ const yargsInstance = yargs(hideBin(process.argv))
   .command('create-index', 'Create a new index')
   .command('delete-index', 'Delete an existing index')
   .command('clear-all', 'Deletes the cluster. This will delete all your indexes.')
-  .command('import', 'Import data from a file into an index')
+  .command('import', 'Import data from a file into an index', (yargs) => {
+    yargs
+      .option('index', {
+        type: 'string',
+        description: 'Specify the target index.',
+      })
+      .example('es-cli-tool import --index users', 'Imports into the users users index.');
+    yargs
+      .option('file', {
+        type: 'string',
+        alias: 'f',
+        demandOption: true,
+        description: 'Use this file to import data from.',
+      })
+      .example('es-cli-tool import --file data.json', 'Imports data to an index from data.json file.');
+  })
   .command('add', 'Insert a new document to index', (yargs) => {
     yargs
       .option('index', {

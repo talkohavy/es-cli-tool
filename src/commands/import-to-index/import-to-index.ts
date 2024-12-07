@@ -5,7 +5,14 @@ import { inquireIndexName } from '../../utils/inquires/inquireIndexName.js';
 import { logger } from '../../utils/logger/logger.js';
 import { executeImportToIndexQuery } from './helpers/executeImportToIndexQuery.js';
 
-export async function importToIndex() {
+type ImportToIndexProps = {
+  index: string;
+  file: string;
+};
+
+export async function importToIndex(props: ImportToIndexProps) {
+  const { index, file } = props;
+
   const indexNamesArr = await getAllIndexesNames();
 
   if (!indexNamesArr.length) {
@@ -14,9 +21,15 @@ export async function importToIndex() {
     return;
   }
 
-  const selectedIndex = await inquireIndexName(indexNamesArr);
+  const selectedIndex = index ?? (await inquireIndexName(indexNamesArr));
 
-  const response = await executeImportToIndexQuery(selectedIndex);
+  if (!indexNamesArr.includes(selectedIndex)) {
+    logger.info(`${COLORS.green}index ${index} doesn't exist...${COLORS.stop}`);
+
+    return;
+  }
+
+  const response = await executeImportToIndexQuery({ index: selectedIndex, file });
 
   const colorizedResponse = colorizeJson(response);
 
