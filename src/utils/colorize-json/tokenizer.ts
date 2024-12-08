@@ -1,7 +1,25 @@
 export type TokenType =
   | 'Whitespace'
-  | 'Brace'
-  | 'Bracket'
+  | 'OpeningBracket'
+  | 'ClosingBracket'
+  | 'OpeningBrace'
+  | 'ClosingBrace'
+  | 'Colon'
+  | 'Comma'
+  | 'NumberLiteral'
+  | 'StringKey'
+  | 'StringLiteral'
+  | 'BooleanLiteral'
+  | 'NullLiteral';
+
+export type TokenTypeWithLevels =
+  | 'Whitespace'
+  | 'Bracket0'
+  | 'Bracket1'
+  | 'Bracket2'
+  | 'Brace0'
+  | 'Brace1'
+  | 'Brace2'
   | 'Colon'
   | 'Comma'
   | 'NumberLiteral'
@@ -16,14 +34,16 @@ export type TokenDefinition = {
 };
 
 export type Token = {
-  type: TokenType;
+  type: TokenTypeWithLevels;
   value: string;
 };
 
 const tokenTypes: TokenDefinition[] = [
   { regex: /^\s+/, tokenType: 'Whitespace' },
-  { regex: /^[{}]/, tokenType: 'Brace' },
-  { regex: /^[[\]]/, tokenType: 'Bracket' },
+  { regex: /^[{]/, tokenType: 'OpeningBrace' },
+  { regex: /^[}]/, tokenType: 'ClosingBrace' },
+  { regex: /^[[]/, tokenType: 'OpeningBracket' },
+  { regex: /^[\]]/, tokenType: 'ClosingBracket' },
   { regex: /^:/, tokenType: 'Colon' },
   { regex: /^,/, tokenType: 'Comma' },
   { regex: /^-?\d+(?:\.\d+)?(?:e[+-]?\d+)?/i, tokenType: 'NumberLiteral' },
@@ -34,6 +54,8 @@ const tokenTypes: TokenDefinition[] = [
 ];
 
 export function tokenize(input: string): Token[] {
+  let braceLevel = 0;
+  let bracketLevel = 0;
   const tokens: Token[] = [];
   let cursor = 0;
 
@@ -44,8 +66,29 @@ export function tokenize(input: string): Token[] {
       const match = input.slice(cursor).match(tokenType.regex);
 
       if (match) {
+        let replacedType = '';
+        if (tokenType.tokenType === 'OpeningBracket') {
+          replacedType = `Bracket${bracketLevel}`;
+          bracketLevel = (bracketLevel + 1) % 3;
+        }
+
+        if (tokenType.tokenType === 'ClosingBracket') {
+          bracketLevel = (bracketLevel + 2) % 3;
+          replacedType = `Bracket${bracketLevel}`;
+        }
+
+        if (tokenType.tokenType === 'OpeningBrace') {
+          replacedType = `Brace${braceLevel}`;
+          braceLevel = (braceLevel + 1) % 3;
+        }
+
+        if (tokenType.tokenType === 'ClosingBrace') {
+          braceLevel = (braceLevel + 2) % 3;
+          replacedType = `Brace${braceLevel}`;
+        }
+
         tokens.push({
-          type: tokenType.tokenType,
+          type: (replacedType || tokenType.tokenType) as TokenTypeWithLevels,
           value: match[0],
         });
 
