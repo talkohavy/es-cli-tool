@@ -1,0 +1,24 @@
+{
+  "size": 0,
+  "query": {
+    "bool": {
+      "filter": [{ "match": { "process_name": "Alphazap" } }]
+    }
+  },
+  "aggs": {
+    "allEventsCount": {
+      "filter": {
+        "terms": {
+          "event_id": [9, 10, 3]
+        }
+      }
+    },
+    "appCrashEventCount": {
+      "filter": {
+        "term": {
+          "event_id": 9
+        }
+      }
+    }
+  }
+}
