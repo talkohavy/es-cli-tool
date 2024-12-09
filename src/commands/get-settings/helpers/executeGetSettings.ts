@@ -1,11 +1,19 @@
 import { execSync } from 'child_process';
+import { getContext } from '../../../utils/getContext.js';
 import { logger } from '../../../utils/logger/logger.js';
 
 export async function executeGetSettings(index: string) {
   try {
-    const result = execSync(
-      `curl --insecure --silent -u elastic:$ELASTIC_PASSWORD -X GET 'https://localhost:9200/${index}/_settings?pretty'`,
-    ).toString();
+    const context = getContext();
+
+    if (!context) throw new Error('No context found!');
+
+    const { url, flags } = context;
+    const flagsStr = flags.join(' ');
+
+    const requestString = `curl -X GET "${url}/${index}/_settings?pretty" ${flagsStr}`;
+
+    const result = execSync(requestString).toString();
 
     return result;
   } catch (error) {
