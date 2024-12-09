@@ -2,7 +2,7 @@ import { COLORS } from '../../constants/colors.js';
 import { AsyncFunction } from '../../types.js';
 import { colorizeJson } from '../../utils/colorize-json/colorize-json.js';
 import { getAllIndexesNames } from '../../utils/getAllIndexesNames.js';
-import { inquireIndexName } from '../../utils/inquires/inquireIndexName.js';
+import { inquireSelectFromList } from '../../utils/inquires/inquireSelectFromList.js';
 import { logger } from '../../utils/logger/logger.js';
 import { executeImportToIndexQuery } from './helpers/executeImportToIndexQuery.js';
 
@@ -22,7 +22,7 @@ export const importToIndex: AsyncFunction = async (props: ImportToIndexProps) =>
     return;
   }
 
-  const selectedIndex = index ?? (await inquireIndexName(indexNamesArr));
+  const selectedIndex = index ?? (await inquireSelectFromList(indexNamesArr, 'index'));
 
   if (!indexNamesArr.includes(selectedIndex)) {
     logger.info(`${COLORS.green}index ${index} doesn't exist...${COLORS.stop}`);

@@ -1,7 +1,7 @@
 import { COLORS } from '../../constants/colors.js';
 import { colorizeJson } from '../../utils/colorize-json/colorize-json.js';
 import { getAllIndexesNames } from '../../utils/getAllIndexesNames.js';
-import { inquireIndexName } from '../../utils/inquires/inquireIndexName.js';
+import { inquireSelectFromList } from '../../utils/inquires/inquireSelectFromList.js';
 import { logger } from '../../utils/logger/logger.js';
 import { executeDeleteQuery } from './helpers/executeDeleteQuery.js';
 import { inquireDocumentId } from './helpers/inquireDocumentId.js';
@@ -15,7 +15,7 @@ export async function deleteDocument() {
     return;
   }
 
-  const selectedIndex = await inquireIndexName(indexNamesArr);
+  const selectedIndex = await inquireSelectFromList(indexNamesArr, 'index');
 
   const documentId = await inquireDocumentId();
 
