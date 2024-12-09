@@ -16,5 +16,5 @@ export const currentContext: SyncFunction = () => {
 
   logger.info(`${COLORS.green}Current context:${COLORS.stop} ${config.currentContext}`);
   logger.info(`${COLORS.green}URL:${COLORS.stop} ${context.url}`);
-  logger.info(`${COLORS.green}Flags:${COLORS.stop} ${context.flags.join(' ')}`);
+  logger.info(`${COLORS.green}Flags:${COLORS.stop} ${context.flags}`);
 };
