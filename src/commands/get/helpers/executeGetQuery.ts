@@ -1,4 +1,5 @@
 import { execSync } from 'child_process';
+import { getContext } from '../../../utils/getContext.js';
 import { logger } from '../../../utils/logger/logger.js';
 
 type ExecuteAddQueryProps = {
@@ -10,10 +11,17 @@ export async function executeGetQuery(props: ExecuteAddQueryProps) {
   try {
     const { index, query } = props;
 
-    const result = execSync(
-      `curl --insecure --silent -u elastic:$ELASTIC_PASSWORD -X GET "https://localhost:9200/${index}/_search?pretty" -H 'Content-Type: application/json' -d'
-${JSON.stringify(query)}'`,
-    ).toString();
+    const context = getContext();
+
+    if (!context) throw new Error('No context found!');
+
+    const { url, flags } = context;
+    const flagsStr = flags.join(' ');
+    const queryAsStr = JSON.stringify(query);
+
+    const requestString = `curl -X GET "${url}/${index}/_search?pretty" ${flagsStr} -d' ${queryAsStr}'`;
+
+    const result = execSync(requestString).toString();
 
     return result;
   } catch (error) {
