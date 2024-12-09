@@ -73,8 +73,8 @@ const yargsInstance = yargs(hideBin(process.argv))
   .command('get-mapping', "Get an index's mapping", noOperation, getMapping)
   .command('get-settings', "Get an index's settings", noOperation, getSettings)
   .command('update-mapping', "Update an index's mapping", updateMappingBuilder, updateMapping)
-  .command('create-context <name> <url> [flags...]', 'Create a new context', createContextBuilder, createContext)
-  .command('use-context <name>', 'Switch to a specific context', useContextBuilder, UseContext)
+  .command('create-context [name] [url]', 'Create a new context', createContextBuilder, createContext)
+  .command('use-context [name]', 'Switch to a specific context', useContextBuilder, UseContext)
   .command('current-context', 'Show the current context', noOperation, currentContext)
   .options({
     // ---------
