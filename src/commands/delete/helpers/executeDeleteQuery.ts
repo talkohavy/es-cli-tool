@@ -16,9 +16,8 @@ export async function executeDeleteQuery(props: ExecuteAddQueryProps) {
     if (!context) throw new Error('No context found!');
 
     const { url, flags } = context;
-    const flagsStr = flags.join(' ');
 
-    const requestString = `curl -X DELETE "${url}/${index}/_doc/${documentId}?pretty" ${flagsStr}`;
+    const requestString = `curl -X DELETE "${url}/${index}/_doc/${documentId}?pretty" ${flags}`;
 
     const result = execSync(requestString).toString();
 

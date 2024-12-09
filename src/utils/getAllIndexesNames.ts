@@ -10,9 +10,8 @@ export async function getAllIndexesNames() {
     if (!context) throw new Error('No context found!');
 
     const { url, flags } = context;
-    const flagsStr = flags.join(' ');
 
-    const requestString = `curl -X GET "${url}/_cat/indices?h=index" ${flagsStr}`;
+    const requestString = `curl -X GET "${url}/_cat/indices?h=index" ${flags}`;
 
     const indexesNamesStr = execSync(requestString).toString();
 

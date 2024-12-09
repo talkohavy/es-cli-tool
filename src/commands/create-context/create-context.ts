@@ -54,9 +54,7 @@ async function inquireUrl() {
 async function inquireFlags() {
   console.log(`${COLORS.green} ✨  Enter as many flags as you want`);
 
-  const flagsStr = await input({ message: 'Flags:' });
-
-  const flags = flagsStr.split(' ').filter((word) => word.trim());
+  const flags = await input({ message: 'Flags:' });
 
   return flags;
 }

@@ -16,10 +16,9 @@ export async function executeUpdateMappingQuery(props: ExecuteUpdateMappingQuery
     if (!context) throw new Error('No context found!');
 
     const { url, flags } = context;
-    const flagsStr = flags.join(' ');
     const queryAsStr = JSON.stringify(query);
 
-    const requestString = `curl -X PUT "${url}/${index}/_mapping?pretty" ${flagsStr} -d' ${queryAsStr}'`;
+    const requestString = `curl -X PUT "${url}/${index}/_mapping?pretty" ${flags} -d' ${queryAsStr}'`;
 
     const result = execSync(requestString).toString();
 

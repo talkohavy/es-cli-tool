@@ -16,9 +16,8 @@ export async function executeImportToIndexQuery(props: ExecuteImportToIndexQuery
     if (!context) throw new Error('No context found!');
 
     const { url, flags } = context;
-    const flagsStr = flags.join(' ');
 
-    const requestString = `curl -X POST "${url}/${index}/_bulk?pretty" ${flagsStr} --data-binary "@${file}"`;
+    const requestString = `curl -X POST "${url}/${index}/_bulk?pretty" ${flags} --data-binary "@${file}"`;
 
     const result = execSync(requestString).toString();
 

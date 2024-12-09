@@ -1,6 +1,6 @@
 export interface Context {
   url: string;
-  flags: string[];
+  flags: string;
 }
 
 export interface Config {

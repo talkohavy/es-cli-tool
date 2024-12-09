@@ -16,10 +16,9 @@ export async function executeGetQuery(props: ExecuteAddQueryProps) {
     if (!context) throw new Error('No context found!');
 
     const { url, flags } = context;
-    const flagsStr = flags.join(' ');
     const queryAsStr = JSON.stringify(query);
 
-    const requestString = `curl -X GET "${url}/${index}/_search?pretty" ${flagsStr} -d' ${queryAsStr}'`;
+    const requestString = `curl -X GET "${url}/${index}/_search?pretty" ${flags} -d' ${queryAsStr}'`;
 
     const result = execSync(requestString).toString();
 
