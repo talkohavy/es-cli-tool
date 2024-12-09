@@ -21,5 +21,5 @@ export async function clearAll() {
 
   const summaryMessage = `${indexNamesArr.length} indexes deleted successfully!`;
 
-  console.log(COLORS.blue, summaryMessage, COLORS.stop);
+  logger.info(`${COLORS.blue}${summaryMessage}${COLORS.stop}`);
 }
