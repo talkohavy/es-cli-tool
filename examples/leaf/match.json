@@ -1,0 +1,12 @@
+{
+  "query": {
+    "match": {
+      "lastName": {
+        "query": "master",
+        "operator": "or",
+        "minimum_should_match": 1,
+        "fuzziness": 0
+      }
+    }
+  }
+}

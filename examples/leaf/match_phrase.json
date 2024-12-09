@@ -1,0 +1,9 @@
+{
+  "query": {
+    "match_phrase": {
+      "lastName": {
+        "query": "master kohavy"
+      }
+    }
+  }
+}

@@ -1,9 +1,0 @@
-{
-  "query": {
-    "match": {
-      "firstName": {
-        "query": "Sianna"
-      }
-    }
-  }
-}
