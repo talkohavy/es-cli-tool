@@ -1,4 +1,5 @@
 import { execSync } from 'child_process';
+import { getContext } from '../../../utils/getContext.js';
 import { logger } from '../../../utils/logger/logger.js';
 
 type ExecuteImportToIndexQueryProps = {
@@ -10,9 +11,16 @@ export async function executeImportToIndexQuery(props: ExecuteImportToIndexQuery
   try {
     const { index, file } = props;
 
-    const result = execSync(
-      `curl --insecure --silent -u elastic:$ELASTIC_PASSWORD -X POST "https://localhost:9200/${index}/_bulk?pretty" -H "Content-Type: application/json" --data-binary "@${file}"`,
-    ).toString();
+    const context = getContext();
+
+    if (!context) throw new Error('No context found!');
+
+    const { url, flags } = context;
+    const flagsStr = flags.join(' ');
+
+    const requestString = `curl -X POST "${url}/${index}/_bulk?pretty" ${flagsStr} --data-binary "@${file}"`;
+
+    const result = execSync(requestString).toString();
 
     return result;
   } catch (error) {
