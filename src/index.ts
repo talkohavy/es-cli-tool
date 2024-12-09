@@ -3,10 +3,22 @@
 import os from 'os';
 import { hideBin } from 'yargs/helpers';
 import yargs from 'yargs/yargs';
-import { commandMapper } from './commandMapper.js';
+import { addBuilder } from './commands/add/add-builder.js';
+import { add } from './commands/add/add.js';
+import { clearAll } from './commands/clear-all/clear-all.js';
+import { createIndex } from './commands/create-index/create-index.js';
+import { deleteDocument } from './commands/delete/delete.js';
+import { deleteIndex } from './commands/delete-index/delete-index.js';
+import { getBuilder } from './commands/get/get-builder.js';
+import { get } from './commands/get/get.js';
+import { getMapping } from './commands/get-mapping/get-mapping.js';
+import { getSettings } from './commands/get-settings/get-settings.js';
+import { importToIndexBuilder } from './commands/import-to-index/import-to-index-builder.js';
+import { importToIndex } from './commands/import-to-index/import-to-index.js';
+import { updateMappingBuilder } from './commands/update-mapping/update-mapping-builder.js';
+import { updateMapping } from './commands/update-mapping/update-mapping.js';
 import { bigTextEsTool } from './constants/bigTextEsTool.js';
 import { COLORS } from './constants/colors.js';
-import { EditorTypes } from './constants/types.js';
 import { showVersion } from './flags/version.js';
 
 type ArgsV = {
@@ -44,93 +56,16 @@ const yargsInstance = yargs(hideBin(process.argv))
    *
    * Optionally, you can provide a builder object to give hints about the options that your command accepts:
    */
-  .command('create-index', 'Create a new index')
-  .command('delete-index', 'Delete an existing index')
-  .command('clear-all', 'Deletes the cluster. This will delete all your indexes.')
-  .command('import', 'Import data from a file into an index', (yargs) => {
-    yargs
-      .option('index', {
-        type: 'string',
-        description: 'Specify the target index.',
-      })
-      .example('es-cli-tool import --index users', 'Imports into the users users index.');
-    yargs
-      .option('file', {
-        type: 'string',
-        alias: 'f',
-        demandOption: true,
-        description: 'Use this file to import data from.',
-      })
-      .example('es-cli-tool import --file data.json', 'Imports data to an index from data.json file.');
-  })
-  .command('add', 'Insert a new document to index', (yargs) => {
-    yargs
-      .option('index', {
-        type: 'string',
-        description: 'Specify the target index.',
-      })
-      .example('es-cli-tool add --index users', 'Executes an INSERT query on the users index.');
-    yargs
-      .option('file', {
-        type: 'string',
-        alias: 'f',
-        description: 'Use a file as the query to execute.',
-      })
-      .example('es-cli-tool add --file query.json', 'Executes the query in that file.');
-    yargs
-      .option('editor', {
-        type: 'string',
-        choices: [EditorTypes.Vi, EditorTypes.Vim, EditorTypes.Nano, EditorTypes.Code] as Array<EditorTypes>,
-        description: 'Choose the external editor for editing your query.',
-      })
-      .example(
-        'es-cli-tool add --editor vim',
-        'Would open up Vim as editor when you hit enter on the insert message prompt.',
-      );
-  })
-  .command('delete', 'Delete a document by id')
-  .command('get', 'Get document/s by query', (yargs) => {
-    yargs
-      .option('index', {
-        type: 'string',
-        description: 'Specify the target index.',
-      })
-      .example('es-cli-tool get --index users', 'Executes a GET query on the users index.');
-    yargs
-      .option('file', {
-        type: 'string',
-        alias: 'f',
-        description: 'Use a file as the query to execute.',
-      })
-      .example('es-cli-tool get --file query.json', 'Executes the query in that file.');
-    yargs
-      .option('editor', {
-        type: 'string',
-        choices: [EditorTypes.Vi, EditorTypes.Vim, EditorTypes.Nano, EditorTypes.Code] as Array<EditorTypes>,
-        description: 'Choose the external editor for editing your query.',
-      })
-      .example(
-        'es-cli-tool get --editor vim',
-        'Would open up vim as editor when you hit enter on the insert message prompt.',
-      );
-  })
-  .command('get-mapping', "Get an index's mapping")
-  .command('get-settings', "Get an index's settings")
-  .command('update-mapping', "Update an index's mapping", (yargs) => {
-    yargs
-      .option('index', {
-        type: 'string',
-        description: 'Specify the target index.',
-      })
-      .example('es-cli-tool update-mapping --index users', 'Executes a GET query on the users index.');
-    yargs
-      .option('file', {
-        type: 'string',
-        alias: 'f',
-        description: 'Use a file as the query to execute.',
-      })
-      .example('es-cli-tool update-mapping --file mapping.json', 'Executes the query in that file.');
-  })
+  .command('create-index', 'Create a new index', undefined, createIndex)
+  .command('delete-index', 'Delete an existing index', undefined, deleteIndex)
+  .command('clear-all', 'Deletes the cluster. This will delete all your indexes.', undefined, clearAll)
+  .command('import', 'Import data from a file into an index', importToIndexBuilder, importToIndex)
+  .command('add', 'Insert a new document to index', addBuilder, add)
+  .command('delete', 'Delete a document by id', undefined, deleteDocument)
+  .command('get', 'Get document/s by query', getBuilder, get)
+  .command('get-mapping', "Get an index's mapping", undefined, getMapping)
+  .command('get-settings', "Get an index's settings", undefined, getSettings)
+  .command('update-mapping', "Update an index's mapping", updateMappingBuilder, updateMapping)
   .options({
     // ---------
     // Option 1:
@@ -176,24 +111,25 @@ const yargsInstance = yargs(hideBin(process.argv))
   .help(false); // <--- help('help') & help() result in the same behavior.
 
 async function run() {
-  const argv = yargsInstance.parse();
+  try {
+    const argv = yargsInstance.parse();
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const { $0: cliToolName, _: commands, ...flags } = argv as ArgsV;
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const { $0: cliToolName, _: commands, ...flags } = argv as ArgsV;
+    if (flags.version) {
+      await showVersion();
+      process.exit(0);
+    }
 
-  if (flags.version) {
-    await showVersion();
-    process.exit(0);
+    if (flags.help || !commands.length) {
+      const helpMenuAsText = await yargsInstance.getHelp();
+      const helpTextBig = `${bigTextEsTool}${os.EOL}${os.EOL}${helpMenuAsText}`;
+      console.log(helpTextBig);
+      process.exit(0);
+    }
+  } catch (_error) {
+    _error;
   }
-
-  if (flags.help || !commands.length) {
-    const helpMenuAsText = await yargsInstance.getHelp();
-    const helpTextBig = `${bigTextEsTool}${os.EOL}${os.EOL}${helpMenuAsText}`;
-    console.log(helpTextBig);
-    process.exit(0);
-  }
-
-  commandMapper({ commands, flags });
 }
 
 run();

@@ -1,4 +1,5 @@
 import { COLORS } from '../../constants/colors.js';
+import { AsyncFunction } from '../../types.js';
 import { colorizeJson } from '../../utils/colorize-json/colorize-json.js';
 import { getAllIndexesNames } from '../../utils/getAllIndexesNames.js';
 import { getElasticQuery } from '../../utils/getElasticQuery.js';
@@ -12,7 +13,7 @@ type UpdateMappingProps = {
   index: string;
 };
 
-export async function updateMapping(props: UpdateMappingProps) {
+export const updateMapping: AsyncFunction = async (props: UpdateMappingProps) => {
   const { index, file } = props;
 
   const indexNamesArr = await getAllIndexesNames();
@@ -42,4 +43,4 @@ export async function updateMapping(props: UpdateMappingProps) {
   const colorizedResponse = colorizeJson(response);
 
   console.log(colorizedResponse);
-}
+};

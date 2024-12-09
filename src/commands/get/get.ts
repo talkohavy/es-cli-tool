@@ -1,4 +1,5 @@
 import { COLORS } from '../../constants/colors.js';
+import { AsyncFunction } from '../../types.js';
 import { colorizeJson } from '../../utils/colorize-json/colorize-json.js';
 import { getAllIndexesNames } from '../../utils/getAllIndexesNames.js';
 import { getElasticQuery } from '../../utils/getElasticQuery.js';
@@ -12,7 +13,7 @@ type GetProps = {
   index: string;
 };
 
-export async function get(props: GetProps) {
+export const get: AsyncFunction = async (props: GetProps) => {
   const { index, file } = props;
 
   const indexNamesArr = await getAllIndexesNames();
@@ -42,4 +43,4 @@ export async function get(props: GetProps) {
   const colorizedResponse = colorizeJson(response);
 
   console.log(colorizedResponse);
-}
+};

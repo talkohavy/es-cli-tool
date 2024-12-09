@@ -1,4 +1,5 @@
 import { COLORS } from '../../constants/colors.js';
+import { AsyncFunction } from '../../types.js';
 import { colorizeJson } from '../../utils/colorize-json/colorize-json.js';
 import { getAllIndexesNames } from '../../utils/getAllIndexesNames.js';
 import { inquireIndexName } from '../../utils/inquires/inquireIndexName.js';
@@ -10,7 +11,7 @@ type ImportToIndexProps = {
   file: string;
 };
 
-export async function importToIndex(props: ImportToIndexProps) {
+export const importToIndex: AsyncFunction = async (props: ImportToIndexProps) => {
   const { index, file } = props;
 
   const indexNamesArr = await getAllIndexesNames();
@@ -40,4 +41,4 @@ export async function importToIndex(props: ImportToIndexProps) {
   const colorizedResponse = colorizeJson(response);
 
   console.log(colorizedResponse);
-}
+};
