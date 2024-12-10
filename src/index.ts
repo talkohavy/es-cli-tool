@@ -44,7 +44,7 @@ import { bigTextEsTool } from './constants/bigTextEsTool.js';
 import { COLORS } from './constants/colors.js';
 import { showVersion } from './flags/version.js';
 
-const noOperation = () => {};
+const __no_op__: any = () => {};
 
 type ArgsV = {
   $0: any;
@@ -83,16 +83,16 @@ const yargsInstance = yargs(hideBin(process.argv))
    */
   .command(createContextCommandString, createContextDescription, createContextBuilder, createContext)
   .command(useContextCommandString, useContextDescription, useContextBuilder, UseContext)
-  .command(currentContextCommandString, currentContextDescription, noOperation, currentContext)
-  .command(createIndexCommandString, createIndexDescription, noOperation, createIndex)
-  .command(deleteIndexCommandString, deleteIndexDescription, noOperation, deleteIndex)
-  .command(clearAllCommandString, clearAllDescription, noOperation, clearAll)
+  .command(currentContextCommandString, currentContextDescription, __no_op__, currentContext)
+  .command(createIndexCommandString, createIndexDescription, __no_op__, createIndex)
+  .command(deleteIndexCommandString, deleteIndexDescription, __no_op__, deleteIndex)
+  .command(clearAllCommandString, clearAllDescription, __no_op__, clearAll)
   .command(importToIndexCommandString, importToIndexDescription, importToIndexBuilder, importToIndex)
   .command(addCommandString, addDescription, addBuilder, add)
-  .command(deleteDocumentCommandString, deleteDocumentDescription, noOperation, deleteDocument)
+  .command(deleteDocumentCommandString, deleteDocumentDescription, __no_op__, deleteDocument)
   .command(getCommandString, getDescription, getBuilder, get)
-  .command(getMappingCommandString, getMappingDescription, noOperation, getMapping)
-  .command(getSettingsCommandString, getSettingsDescription, noOperation, getSettings)
+  .command(getMappingCommandString, getMappingDescription, __no_op__, getMapping)
+  .command(getSettingsCommandString, getSettingsDescription, __no_op__, getSettings)
   .command(updateMappingCommandString, updateMappingDescription, updateMappingBuilder, updateMapping)
   .options({
     v: {

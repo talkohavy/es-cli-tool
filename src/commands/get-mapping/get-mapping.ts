@@ -1,4 +1,5 @@
 import { COLORS } from '../../constants/colors.js';
+import { AsyncFunction } from '../../types.js';
 import { colorizeJson } from '../../utils/colorize-json/colorize-json.js';
 import { getAllIndexesNames } from '../../utils/getAllIndexesNames.js';
 import { inquireSelectFromList } from '../../utils/inquires/inquireSelectFromList.js';
@@ -13,7 +14,7 @@ type GetMappingProps = {
   color: boolean;
 };
 
-export async function getMapping(props: GetMappingProps) {
+export const getMapping: AsyncFunction = async (props: GetMappingProps) => {
   const { index, color: shouldColorize } = props;
 
   const indexNamesArr = await getAllIndexesNames();
@@ -37,4 +38,4 @@ export async function getMapping(props: GetMappingProps) {
   const response = shouldColorize ? colorizeJson(responseRaw) : responseRaw;
 
   console.log(response);
-}
+};
