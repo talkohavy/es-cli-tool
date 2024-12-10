@@ -18,7 +18,7 @@ export async function executeGetQuery(props: ExecuteAddQueryProps) {
     const { url, flags } = context;
     const queryAsStr = JSON.stringify(query);
 
-    const requestString = `curl -X GET "${url}/${index}/_search?pretty" ${flags} -d' ${queryAsStr}'`;
+    const requestString = `curl -X POST "${url}/${index}/_search?pretty" ${flags} -d' ${queryAsStr}'`;
 
     const result = execSync(requestString).toString();
 
