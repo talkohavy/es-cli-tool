@@ -2,7 +2,7 @@ import { colorizeJson } from '../../utils/colorize-json/colorize-json.js';
 import { logger } from '../../utils/logger/logger.js';
 import { executeCreateIndexQuery } from './helpers/executeCreateIndexQuery.js';
 import { inquireNewIndexName } from './helpers/inquireNewIndexName.js';
-import { validateElasticsearchIndexName } from './helpers/vallidateIndexName.js';
+import { validateElasticsearchIndexName } from './helpers/validateIndexName.js';
 
 export async function createIndex() {
   const selectedIndex = await inquireNewIndexName();
