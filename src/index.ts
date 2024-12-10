@@ -95,9 +95,6 @@ const yargsInstance = yargs(hideBin(process.argv))
   .command(useContextCommandString, useContextDescription, useContextBuilder, UseContext)
   .command(currentContextCommandString, currentContextDescription, noOperation, currentContext)
   .options({
-    // ---------
-    // Option 1:
-    // ---------
     v: {
       alias: 'version',
       type: 'boolean',
@@ -105,18 +102,12 @@ const yargsInstance = yargs(hideBin(process.argv))
       default: false,
       global: false,
     },
-    // ---------
-    // Option 1:
-    // ---------
     h: {
       alias: 'help',
       type: 'boolean',
       description: 'Show help manual',
     },
   })
-  // .example([
-  //   ['$0 --help', 'Show help Menu'],
-  // ])
   .showHelpOnFail(false, 'Specify --help for available options') // default value is true.
   .strict() // <--- any unknown command, or unknown flag, will raise an error.
   .updateStrings({
