@@ -3,25 +3,43 @@
 import os from 'os';
 import { hideBin } from 'yargs/helpers';
 import yargs from 'yargs/yargs';
-import { addBuilder } from './commands/add/add-builder.js';
-import { add } from './commands/add/add.js';
-import { clearAll } from './commands/clear-all/clear-all.js';
-import { createContextBuilder } from './commands/create-context/create-context-builder.js';
-import { createContext } from './commands/create-context/create-context.js';
-import { createIndex } from './commands/create-index/create-index.js';
-import { currentContext } from './commands/current-context/current-context.js';
-import { deleteDocument } from './commands/delete/delete.js';
-import { deleteIndex } from './commands/delete-index/delete-index.js';
-import { getBuilder } from './commands/get/get-builder.js';
-import { get } from './commands/get/get.js';
-import { getMapping } from './commands/get-mapping/get-mapping.js';
-import { getSettings } from './commands/get-settings/get-settings.js';
-import { importToIndexBuilder } from './commands/import-to-index/import-to-index-builder.js';
-import { importToIndex } from './commands/import-to-index/import-to-index.js';
-import { updateMappingBuilder } from './commands/update-mapping/update-mapping-builder.js';
-import { updateMapping } from './commands/update-mapping/update-mapping.js';
-import { useContextBuilder } from './commands/use-context/use-context-builder.js';
-import { UseContext } from './commands/use-context/use-context.js';
+import { add, addBuilder, addCommandString, addDescription } from './commands/add/add.js';
+import { clearAll, clearAllCommandString, clearAllDescription } from './commands/clear-all/clear-all.js';
+import {
+  createContext,
+  createContextBuilder,
+  createContextCommandString,
+  createContextDescription,
+} from './commands/create-context/create-context.js';
+import { createIndex, createIndexCommandString, createIndexDescription } from './commands/create-index/create-index.js';
+import {
+  currentContext,
+  currentContextCommandString,
+  currentContextDescription,
+} from './commands/current-context/current-context.js';
+import { deleteDocument, deleteDocumentCommandString, deleteDocumentDescription } from './commands/delete/delete.js';
+import { deleteIndex, deleteIndexCommandString, deleteIndexDescription } from './commands/delete-index/delete-index.js';
+import { get, getBuilder, getCommandString, getDescription } from './commands/get/get.js';
+import { getMapping, getMappingCommandString, getMappingDescription } from './commands/get-mapping/get-mapping.js';
+import { getSettings, getSettingsCommandString, getSettingsDescription } from './commands/get-settings/get-settings.js';
+import {
+  importToIndex,
+  importToIndexBuilder,
+  importToIndexCommandString,
+  importToIndexDescription,
+} from './commands/import-to-index/import-to-index.js';
+import {
+  updateMapping,
+  updateMappingBuilder,
+  updateMappingCommandString,
+  updateMappingDescription,
+} from './commands/update-mapping/update-mapping.js';
+import {
+  UseContext,
+  useContextBuilder,
+  useContextCommandString,
+  useContextDescription,
+} from './commands/use-context/use-context.js';
 import { bigTextEsTool } from './constants/bigTextEsTool.js';
 import { COLORS } from './constants/colors.js';
 import { showVersion } from './flags/version.js';
@@ -63,19 +81,19 @@ const yargsInstance = yargs(hideBin(process.argv))
    *
    * Optionally, you can provide a builder object to give hints about the options that your command accepts:
    */
-  .command('create-index', 'Create a new index', noOperation, createIndex)
-  .command('delete-index', 'Delete an existing index', noOperation, deleteIndex)
-  .command('clear-all', 'Deletes the cluster. This will delete all your indexes.', noOperation, clearAll)
-  .command('import', 'Import data from a file into an index', importToIndexBuilder, importToIndex)
-  .command('add', 'Insert a new document to index', addBuilder, add)
-  .command('delete', 'Delete a document by id', noOperation, deleteDocument)
-  .command('get', 'Get document/s by query', getBuilder, get)
-  .command('get-mapping', "Get an index's mapping", noOperation, getMapping)
-  .command('get-settings', "Get an index's settings", noOperation, getSettings)
-  .command('update-mapping', "Update an index's mapping", updateMappingBuilder, updateMapping)
-  .command('create-context [name] [url]', 'Create a new context', createContextBuilder, createContext)
-  .command('use-context [name]', 'Switch to a specific context', useContextBuilder, UseContext)
-  .command('current-context', 'Show the current context', noOperation, currentContext)
+  .command(createIndexCommandString, createIndexDescription, noOperation, createIndex)
+  .command(deleteIndexCommandString, deleteIndexDescription, noOperation, deleteIndex)
+  .command(clearAllCommandString, clearAllDescription, noOperation, clearAll)
+  .command(importToIndexCommandString, importToIndexDescription, importToIndexBuilder, importToIndex)
+  .command(addCommandString, addDescription, addBuilder, add)
+  .command(deleteDocumentCommandString, deleteDocumentDescription, noOperation, deleteDocument)
+  .command(getCommandString, getDescription, getBuilder, get)
+  .command(getMappingCommandString, getMappingDescription, noOperation, getMapping)
+  .command(getSettingsCommandString, getSettingsDescription, noOperation, getSettings)
+  .command(updateMappingCommandString, updateMappingDescription, updateMappingBuilder, updateMapping)
+  .command(createContextCommandString, createContextDescription, createContextBuilder, createContext)
+  .command(useContextCommandString, useContextDescription, useContextBuilder, UseContext)
+  .command(currentContextCommandString, currentContextDescription, noOperation, currentContext)
   .options({
     // ---------
     // Option 1:

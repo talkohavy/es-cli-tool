@@ -5,6 +5,9 @@ import { inquireSelectFromList } from '../../utils/inquires/inquireSelectFromLis
 import { logger } from '../../utils/logger/logger.js';
 import { executeGetSettings } from './helpers/executeGetSettings.js';
 
+export const getSettingsCommandString = 'get-settings';
+export const getSettingsDescription = "Get an index's settings";
+
 export async function getSettings() {
   const indexNamesArr = await getAllIndexesNames();
 

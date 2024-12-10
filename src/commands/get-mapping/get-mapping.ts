@@ -5,6 +5,9 @@ import { inquireSelectFromList } from '../../utils/inquires/inquireSelectFromLis
 import { logger } from '../../utils/logger/logger.js';
 import { executeGetMapping } from './helpers/executeGetMapping.js';
 
+export const getMappingCommandString = 'get-mapping';
+export const getMappingDescription = "Get an index's mapping";
+
 export async function getMapping() {
   const indexNamesArr = await getAllIndexesNames();
 

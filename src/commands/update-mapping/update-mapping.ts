@@ -1,3 +1,4 @@
+import { Argv } from 'yargs';
 import { COLORS } from '../../constants/colors.js';
 import { AsyncFunction } from '../../types.js';
 import { colorizeJson } from '../../utils/colorize-json/colorize-json.js';
@@ -7,6 +8,25 @@ import { inquireSelectFromList } from '../../utils/inquires/inquireSelectFromLis
 import { logger } from '../../utils/logger/logger.js';
 import { validateAndTransformQuery } from '../../utils/validateAndTransformQuery.js';
 import { executeUpdateMappingQuery } from './helpers/executeUpdateMappingQuery.js';
+
+export const updateMappingCommandString = 'update-mapping';
+export const updateMappingDescription = "Update an index's mapping";
+
+export const updateMappingBuilder: any = (yargs: Argv) => {
+  yargs
+    .option('index', {
+      type: 'string',
+      description: 'Specify the target index.',
+    })
+    .example('es-cli-tool update-mapping --index users', 'Executes a GET query on the users index.');
+  yargs
+    .option('file', {
+      type: 'string',
+      alias: 'f',
+      description: 'Use a file as the query to execute.',
+    })
+    .example('es-cli-tool update-mapping --file mapping.json', 'Executes the query in that file.');
+};
 
 type UpdateMappingProps = {
   file: string;

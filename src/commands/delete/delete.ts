@@ -6,6 +6,9 @@ import { logger } from '../../utils/logger/logger.js';
 import { executeDeleteQuery } from './helpers/executeDeleteQuery.js';
 import { inquireDocumentId } from './helpers/inquireDocumentId.js';
 
+export const deleteDocumentCommandString = 'delete';
+export const deleteDocumentDescription = 'Delete a document by id';
+
 export async function deleteDocument() {
   const indexNamesArr = await getAllIndexesNames();
 

@@ -1,8 +1,19 @@
+import { Argv } from 'yargs';
 import { loadConfig, saveConfig } from '../../config/config.js';
 import { COLORS } from '../../constants/colors.js';
 import { AsyncFunction } from '../../types.js';
 import { inquireSelectFromList } from '../../utils/inquires/inquireSelectFromList.js';
 import { logger } from '../../utils/logger/logger.js';
+
+export const useContextCommandString = 'use-context [name]';
+export const useContextDescription = 'Switch to a specific context';
+
+export const useContextBuilder: any = (yargs: Argv) => {
+  yargs.positional('name', {
+    describe: 'The name of the context to switch to',
+    type: 'string',
+  });
+};
 
 type UseContextProps = {
   name: string;
