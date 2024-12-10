@@ -114,3 +114,5 @@ If you found a bug, or have a feature request, please open an [issue](https://gi
 ## License
 
 MIT © Tal Kohavy
+
+<!-- --insecure --silent -u elastic:$ELASTIC_PASSWORD -H 'Content-Type: application/json' -->

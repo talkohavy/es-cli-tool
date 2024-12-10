@@ -8,7 +8,15 @@ import { executeGetSettings } from './helpers/executeGetSettings.js';
 export const getSettingsCommandString = 'get-settings';
 export const getSettingsDescription = "Get an index's settings";
 
-export async function getSettings() {
+type GetSettingsProps = {
+  file: string;
+  index: string;
+  color: boolean;
+};
+
+export async function getSettings(props: GetSettingsProps) {
+  const { index, color: shouldColorize } = props;
+
   const indexNamesArr = await getAllIndexesNames();
 
   if (!indexNamesArr.length) {
@@ -17,11 +25,17 @@ export async function getSettings() {
     return;
   }
 
-  const selectedIndex = await inquireSelectFromList(indexNamesArr, 'index');
+  const selectedIndex = index ?? (await inquireSelectFromList(indexNamesArr, 'index'));
 
-  const response = await executeGetSettings(selectedIndex);
+  if (!indexNamesArr.includes(selectedIndex)) {
+    logger.info(`${COLORS.green}index ${index} doesn't exist...${COLORS.stop}`);
 
-  const colorizedResponse = colorizeJson(response);
+    return;
+  }
 
-  console.log(colorizedResponse);
+  const responseRaw = await executeGetSettings(selectedIndex);
+
+  const response = shouldColorize ? colorizeJson(responseRaw) : responseRaw;
+
+  console.log(response);
 }

@@ -81,6 +81,9 @@ const yargsInstance = yargs(hideBin(process.argv))
    *
    * Optionally, you can provide a builder object to give hints about the options that your command accepts:
    */
+  .command(createContextCommandString, createContextDescription, createContextBuilder, createContext)
+  .command(useContextCommandString, useContextDescription, useContextBuilder, UseContext)
+  .command(currentContextCommandString, currentContextDescription, noOperation, currentContext)
   .command(createIndexCommandString, createIndexDescription, noOperation, createIndex)
   .command(deleteIndexCommandString, deleteIndexDescription, noOperation, deleteIndex)
   .command(clearAllCommandString, clearAllDescription, noOperation, clearAll)
@@ -91,9 +94,6 @@ const yargsInstance = yargs(hideBin(process.argv))
   .command(getMappingCommandString, getMappingDescription, noOperation, getMapping)
   .command(getSettingsCommandString, getSettingsDescription, noOperation, getSettings)
   .command(updateMappingCommandString, updateMappingDescription, updateMappingBuilder, updateMapping)
-  .command(createContextCommandString, createContextDescription, createContextBuilder, createContext)
-  .command(useContextCommandString, useContextDescription, useContextBuilder, UseContext)
-  .command(currentContextCommandString, currentContextDescription, noOperation, currentContext)
   .options({
     v: {
       alias: 'version',
@@ -106,6 +106,12 @@ const yargsInstance = yargs(hideBin(process.argv))
       alias: 'help',
       type: 'boolean',
       description: 'Show help manual',
+    },
+    color: {
+      type: 'boolean',
+      default: true,
+      description:
+        'Colorizes the output. Defaults to `true`. Use `--no-color` to negate it - useful when wanting to write the output to a file.',
     },
   })
   .showHelpOnFail(false, 'Specify --help for available options') // default value is true.

@@ -45,10 +45,11 @@ export const addBuilder: any = (yargs: Argv) => {
 type AddProps = {
   file: string;
   index: string;
+  color: boolean;
 };
 
 export const add: AsyncFunction = async (props: AddProps) => {
-  const { index, file } = props;
+  const { index, file, color: shouldColorize } = props;
 
   const indexNamesArr = await getAllIndexesNames();
 
@@ -72,9 +73,9 @@ export const add: AsyncFunction = async (props: AddProps) => {
 
   const elasticQuery = await validateAndTransformQuery(elasticQueryStr);
 
-  const response = await executeAddQuery({ index: selectedIndex, query: elasticQuery });
+  const responseRaw = await executeAddQuery({ index: selectedIndex, query: elasticQuery });
 
-  const colorizedResponse = colorizeJson(response);
+  const response = shouldColorize ? colorizeJson(responseRaw) : responseRaw;
 
-  console.log(colorizedResponse);
+  console.log(response);
 };

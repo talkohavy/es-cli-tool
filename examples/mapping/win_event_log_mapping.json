@@ -61,7 +61,7 @@
       "type": "long"
     },
     "process_name": {
-      "type": "text"
+      "type": "keyword"
     },
     "process_version": {
       "type": "text"

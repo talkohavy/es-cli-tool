@@ -1,0 +1,18 @@
+{
+  "query": {
+    "bool": {
+      "must": [],
+      "must_not": [],
+      "filter": [],
+      "should": []
+    }
+  },
+  "size": 0,
+  "aggs": {
+    "uniqueProcessCount": {
+      "cardinality": {
+        "field": "process_name.keyword"
+      }
+    }
+  }
+}
