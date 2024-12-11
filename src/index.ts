@@ -18,6 +18,12 @@ import {
   currentContextDescription,
 } from './commands/current-context/current-context.js';
 import { deleteDocument, deleteDocumentCommandString, deleteDocumentDescription } from './commands/delete/delete.js';
+import {
+  deleteContext,
+  deleteContextBuilder,
+  deleteContextCommandString,
+  deleteContextDescription,
+} from './commands/delete-context/delete-context.js';
 import { deleteIndex, deleteIndexCommandString, deleteIndexDescription } from './commands/delete-index/delete-index.js';
 import { get, getBuilder, getCommandString, getDescription } from './commands/get/get.js';
 import { getMapping, getMappingCommandString, getMappingDescription } from './commands/get-mapping/get-mapping.js';
@@ -93,6 +99,7 @@ const yargsInstance = yargs(hideBin(process.argv))
   .command(createContextCommandString, createContextDescription, createContextBuilder, errorSilencer(createContext))
   .command(useContextCommandString, useContextDescription, useContextBuilder, errorSilencer(UseContext))
   .command(currentContextCommandString, currentContextDescription, __no_op__, errorSilencer(currentContext))
+  .command(deleteContextCommandString, deleteContextDescription, deleteContextBuilder, errorSilencer(deleteContext))
   .command(createIndexCommandString, createIndexDescription, __no_op__, errorSilencer(createIndex))
   .command(deleteIndexCommandString, deleteIndexDescription, __no_op__, errorSilencer(deleteIndex))
   .command(clearAllCommandString, clearAllDescription, __no_op__, errorSilencer(clearAll))
