@@ -46,9 +46,9 @@ import { showVersion } from './flags/version.js';
 
 const __no_op__: any = () => {};
 function errorSilencer(cb: (props?: any) => any) {
-  return async () => {
+  return async (props: any) => {
     try {
-      await cb();
+      await cb(props);
     } catch (_error) {
       _error;
     }
