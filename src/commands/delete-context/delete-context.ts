@@ -51,5 +51,6 @@ export async function deleteContext(props: UseContextProps) {
 
   logger.info(`${COLORS.green}Context "${selectedContext}" deleted successfully.${COLORS.stop}`, {
     newLineBefore: true,
+    newLineAfter: true,
   });
 }
