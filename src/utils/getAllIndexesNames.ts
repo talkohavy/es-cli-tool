@@ -21,7 +21,6 @@ export async function getAllIndexesNames() {
 
     return indexesNames;
   } catch (error) {
-    console.error(error);
     logger.error('[ES Error] Failed to get indexes names...');
 
     throw error;
