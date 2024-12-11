@@ -8,6 +8,8 @@ export const clearAllCommandString = 'clear-all';
 export const clearAllDescription = 'Deletes the cluster. This will delete all your indexes.';
 
 export async function clearAll() {
+  console.log('');
+
   const answer = await inquireConfirm(`Are you sure? ${COLORS.red}(this will delete ALL your indexes!)${COLORS.stop}`);
 
   if (answer === false) return;
@@ -15,7 +17,7 @@ export async function clearAll() {
   const indexNamesArr = await getAllIndexesNames();
 
   if (!indexNamesArr.length) {
-    logger.info(`${COLORS.green}No indexes found. Nothing deleted.${COLORS.stop}`);
+    logger.info(`${COLORS.green}No indexes found. Nothing deleted.${COLORS.stop}`, { newLineAfter: true });
 
     return;
   }
@@ -24,5 +26,8 @@ export async function clearAll() {
 
   const summaryMessage = `${indexNamesArr.length} indexes deleted successfully!`;
 
-  logger.info(`${COLORS.blue}${summaryMessage}${COLORS.stop}`);
+  logger.info(`${COLORS.blue}${summaryMessage}${COLORS.stop}`, {
+    newLineBefore: true,
+    newLineAfter: true,
+  });
 }
