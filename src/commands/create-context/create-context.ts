@@ -50,7 +50,7 @@ export async function createContext(props: ContextData) {
 
   saveConfig(config);
 
-  logger.info(`${COLORS.green}Context "${newContextName}" created.${COLORS.stop}`);
+  logger.info(`${COLORS.green}Context "${newContextName}" created.${COLORS.stop}`, { newLineBefore: true });
 }
 
 async function inquireNewContextName() {

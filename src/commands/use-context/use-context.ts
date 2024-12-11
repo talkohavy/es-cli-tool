@@ -42,7 +42,9 @@ export async function UseContext(props: UseContextProps) {
   }
 
   if (config.currentContext === selectedContext) {
-    logger.info(`${COLORS.green}Context "${selectedContext}" already selected. Did nothing.${COLORS.stop}`);
+    logger.info(`${COLORS.green}Context "${selectedContext}" already selected. Did nothing.${COLORS.stop}`, {
+      newLineBefore: true,
+    });
 
     process.exit(0);
   }
@@ -51,5 +53,5 @@ export async function UseContext(props: UseContextProps) {
 
   saveConfig(config);
 
-  logger.info(`${COLORS.green}Switched to context "${selectedContext}".${COLORS.stop}`);
+  logger.info(`${COLORS.green}Switched to context "${selectedContext}".${COLORS.stop}`, { newLineBefore: true });
 }
