@@ -44,6 +44,7 @@ export async function UseContext(props: UseContextProps) {
   if (config.currentContext === selectedContext) {
     logger.info(`${COLORS.green}Context "${selectedContext}" already selected. Did nothing.${COLORS.stop}`, {
       newLineBefore: true,
+      newLineAfter: true,
     });
 
     process.exit(0);
