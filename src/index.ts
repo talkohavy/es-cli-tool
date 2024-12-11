@@ -136,24 +136,20 @@ const yargsInstance = yargs(hideBin(process.argv))
   .help(false); // <--- help('help') & help() result in the same behavior.
 
 async function run() {
-  try {
-    const argv = yargsInstance.parse();
+  const argv = yargsInstance.parse();
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const { $0: cliToolName, _: commands, ...flags } = argv as ArgsV;
-    if (flags.version) {
-      await showVersion();
-      process.exit(0);
-    }
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const { $0: cliToolName, _: commands, ...flags } = argv as ArgsV;
+  if (flags.version) {
+    await showVersion();
+    process.exit(0);
+  }
 
-    if (flags.help || !commands.length) {
-      const helpMenuAsText = await yargsInstance.getHelp();
-      const helpTextBig = `${bigTextEsTool}${os.EOL}${os.EOL}${helpMenuAsText}`;
-      console.log(helpTextBig);
-      process.exit(0);
-    }
-  } catch (_error) {
-    _error;
+  if (flags.help || commands?.length === 0) {
+    const helpMenuAsText = await yargsInstance.getHelp();
+    const helpTextBig = `${bigTextEsTool}${os.EOL}${os.EOL}${helpMenuAsText}`;
+    console.log(helpTextBig);
+    process.exit(0);
   }
 }
 
