@@ -17,7 +17,7 @@ const defaultTheme: ColorTheme = {
   StringLiteral: COLORS.green,
   NumberLiteral: COLORS.yellow,
   BooleanLiteral: COLORS.blue,
-  NullLiteral: COLORS.bright,
+  NullLiteral: COLORS.bold,
 };
 
 export type ColorizeOptions = {

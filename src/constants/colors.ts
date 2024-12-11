@@ -4,7 +4,7 @@ const COLORS = {
   black: color(30),
   blink: color(5),
   blue: color(34),
-  bright: color(1),
+  bold: color(1),
   cyan: color(36),
   green: color(32),
   magenta: color(35),

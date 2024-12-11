@@ -14,7 +14,7 @@ type InquireElasticQueryProps = {
 export async function inquireElasticQuery(props?: InquireElasticQueryProps) {
   const { editor } = props ?? {};
 
-  console.log(`${COLORS.green} ✨ Enter your query:${COLORS.stop}`);
+  console.log(`${COLORS.green}${COLORS.bold} ✨ Enter your query:${COLORS.stop}`);
 
   const esQuery = getMessageFromExternalEditor(editor);
 
