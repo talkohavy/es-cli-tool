@@ -1,13 +1,13 @@
 # es-cli-tool
 
 <p align="center">
-  <img src="https://i.ibb.co/8bKXxx3/super-query-logo.png" width="250" alt="lvlup logo" />
+  <img src="https://i.ibb.co/8bKXxx3/super-query-logo.png" width="250" alt="es-cli-tool logo" />
 </p>
 
 A CLI tool to help you query your elasticsearch server _super fast_ 🚀
 
 <p align="center">
-  <img src="https://i.ibb.co/tBM2TYD/es-cli-tool.png" width="1280" alt="es-cli-tool help" />
+  <img src="https://i.ibb.co/vz5BrLm/es-cli-tool-man.png" width="1280" alt="es-cli-tool help" />
 </p>
 
 ## 1. Prerequisites
@@ -92,7 +92,7 @@ es-cli-tool
 And you should see this:
 
 <p align="center">
-  <img src="https://i.ibb.co/tBM2TYD/es-cli-tool.png" width="1280" alt="es-cli-tool help" />
+  <img src="https://i.ibb.co/vz5BrLm/es-cli-tool-man.png" width="1280" alt="es-cli-tool help" />
 </p>
 
 It is recommended to give the tool a shorted alias.
