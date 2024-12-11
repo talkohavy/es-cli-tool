@@ -1,7 +1,6 @@
 import { Argv } from 'yargs';
 import { loadConfig, saveConfig } from '../../config/config.js';
 import { COLORS } from '../../constants/colors.js';
-import { AsyncFunction } from '../../types.js';
 import { inquireSelectFromList } from '../../utils/inquires/inquireSelectFromList.js';
 import { logger } from '../../utils/logger/logger.js';
 
@@ -19,7 +18,7 @@ type UseContextProps = {
   name: string;
 };
 
-export const UseContext: AsyncFunction = async (props: UseContextProps) => {
+export async function UseContext(props: UseContextProps) {
   const { name } = props;
 
   const config = loadConfig();
@@ -53,4 +52,4 @@ export const UseContext: AsyncFunction = async (props: UseContextProps) => {
   saveConfig(config);
 
   logger.info(`${COLORS.green}Switched to context "${selectedContext}".${COLORS.stop}`);
-};
+}

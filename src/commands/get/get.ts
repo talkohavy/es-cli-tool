@@ -1,7 +1,6 @@
 import { Argv } from 'yargs';
 import { COLORS } from '../../constants/colors.js';
 import { EditorTypes } from '../../constants/types.js';
-import { AsyncFunction } from '../../types.js';
 import { colorizeJson } from '../../utils/colorize-json/colorize-json.js';
 import { getAllIndexesNames } from '../../utils/getAllIndexesNames.js';
 import { getElasticQuery } from '../../utils/getElasticQuery.js';
@@ -45,7 +44,7 @@ type GetProps = {
   color: boolean;
 };
 
-export const get: AsyncFunction = async (props: GetProps) => {
+export async function get(props: GetProps) {
   const { index, file, color: shouldColorize } = props;
 
   const indexNamesArr = await getAllIndexesNames();
@@ -75,4 +74,4 @@ export const get: AsyncFunction = async (props: GetProps) => {
   const response = shouldColorize ? colorizeJson(responseRaw) : responseRaw;
 
   console.log(response);
-};
+}

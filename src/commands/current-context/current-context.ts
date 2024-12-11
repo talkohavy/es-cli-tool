@@ -1,12 +1,11 @@
 import { loadConfig } from '../../config/config.js';
 import { COLORS } from '../../constants/colors.js';
-import { SyncFunction } from '../../types.js';
 import { logger } from '../../utils/logger/logger.js';
 
 export const currentContextCommandString = 'current-context';
 export const currentContextDescription = 'Show the current context';
 
-export const currentContext: SyncFunction = () => {
+export function currentContext() {
   const config = loadConfig();
 
   if (!config.currentContext) {
@@ -20,4 +19,4 @@ export const currentContext: SyncFunction = () => {
   logger.info(`${COLORS.green}Current context:${COLORS.stop} ${config.currentContext}`);
   logger.info(`${COLORS.green}URL:${COLORS.stop} ${context.url}`);
   logger.info(`${COLORS.green}Flags:${COLORS.stop} ${context.flags}`);
-};
+}

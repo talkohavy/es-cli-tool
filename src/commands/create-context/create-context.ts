@@ -3,7 +3,6 @@ import { input } from '@inquirer/prompts';
 import { loadConfig, saveConfig } from '../../config/config.js';
 import { Context } from '../../config/types.js';
 import { COLORS } from '../../constants/colors.js';
-import { AsyncFunction } from '../../types.js';
 import { logger } from '../../utils/logger/logger.js';
 
 export const createContextCommandString = 'create-context [name] [url]';
@@ -28,7 +27,7 @@ type ContextData = {
   url: string;
 };
 
-export const createContext: AsyncFunction = async (props: ContextData) => {
+export async function createContext(props: ContextData) {
   const { name, url } = props;
 
   const config = loadConfig();
@@ -52,7 +51,7 @@ export const createContext: AsyncFunction = async (props: ContextData) => {
   saveConfig(config);
 
   logger.info(`${COLORS.green}Context "${newContextName}" created.${COLORS.stop}`);
-};
+}
 
 async function inquireNewContextName() {
   console.log(`${COLORS.green} ✨  Please enter a new context name:`);
