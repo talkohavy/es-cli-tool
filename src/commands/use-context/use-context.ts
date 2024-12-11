@@ -54,5 +54,8 @@ export async function UseContext(props: UseContextProps) {
 
   saveConfig(config);
 
-  logger.info(`${COLORS.green}Switched to context "${selectedContext}".${COLORS.stop}`, { newLineBefore: true });
+  logger.info(`${COLORS.green}Switched to context "${selectedContext}".${COLORS.stop}`, {
+    newLineBefore: true,
+    newLineAfter: true,
+  });
 }
