@@ -45,6 +45,15 @@ import { COLORS } from './constants/colors.js';
 import { showVersion } from './flags/version.js';
 
 const __no_op__: any = () => {};
+function errorSilencer(cb: (props?: any) => any) {
+  return async () => {
+    try {
+      await cb();
+    } catch (_error) {
+      _error;
+    }
+  };
+}
 
 type ArgsV = {
   $0: any;
@@ -81,19 +90,19 @@ const yargsInstance = yargs(hideBin(process.argv))
    *
    * Optionally, you can provide a builder object to give hints about the options that your command accepts:
    */
-  .command(createContextCommandString, createContextDescription, createContextBuilder, createContext)
-  .command(useContextCommandString, useContextDescription, useContextBuilder, UseContext)
-  .command(currentContextCommandString, currentContextDescription, __no_op__, currentContext)
-  .command(createIndexCommandString, createIndexDescription, __no_op__, createIndex)
-  .command(deleteIndexCommandString, deleteIndexDescription, __no_op__, deleteIndex)
-  .command(clearAllCommandString, clearAllDescription, __no_op__, clearAll)
-  .command(importToIndexCommandString, importToIndexDescription, importToIndexBuilder, importToIndex)
-  .command(addCommandString, addDescription, addBuilder, add)
-  .command(deleteDocumentCommandString, deleteDocumentDescription, __no_op__, deleteDocument)
-  .command(getCommandString, getDescription, getBuilder, get)
-  .command(getMappingCommandString, getMappingDescription, __no_op__, getMapping)
-  .command(getSettingsCommandString, getSettingsDescription, __no_op__, getSettings)
-  .command(updateMappingCommandString, updateMappingDescription, updateMappingBuilder, updateMapping)
+  .command(createContextCommandString, createContextDescription, createContextBuilder, errorSilencer(createContext))
+  .command(useContextCommandString, useContextDescription, useContextBuilder, errorSilencer(UseContext))
+  .command(currentContextCommandString, currentContextDescription, __no_op__, errorSilencer(currentContext))
+  .command(createIndexCommandString, createIndexDescription, __no_op__, errorSilencer(createIndex))
+  .command(deleteIndexCommandString, deleteIndexDescription, __no_op__, errorSilencer(deleteIndex))
+  .command(clearAllCommandString, clearAllDescription, __no_op__, errorSilencer(clearAll))
+  .command(importToIndexCommandString, importToIndexDescription, importToIndexBuilder, errorSilencer(importToIndex))
+  .command(addCommandString, addDescription, addBuilder, errorSilencer(add))
+  .command(deleteDocumentCommandString, deleteDocumentDescription, __no_op__, errorSilencer(deleteDocument))
+  .command(getCommandString, getDescription, getBuilder, errorSilencer(get))
+  .command(getMappingCommandString, getMappingDescription, __no_op__, errorSilencer(getMapping))
+  .command(getSettingsCommandString, getSettingsDescription, __no_op__, errorSilencer(getSettings))
+  .command(updateMappingCommandString, updateMappingDescription, updateMappingBuilder, errorSilencer(updateMapping))
   .options({
     v: {
       alias: 'version',
