@@ -37,7 +37,10 @@ export async function importToIndex(props: ImportToIndexProps) {
   const indexNamesArr = await getAllIndexesNames();
 
   if (!indexNamesArr.length) {
-    logger.info(`${COLORS.green}No indexes found. Create one first?${COLORS.stop}`);
+    logger.info(`${COLORS.green}No indexes found. Create one first?${COLORS.stop}`, {
+      newLineBefore: true,
+      newLineAfter: true,
+    });
 
     return;
   }

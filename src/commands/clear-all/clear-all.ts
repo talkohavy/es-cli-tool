@@ -17,7 +17,10 @@ export async function clearAll() {
   const indexNamesArr = await getAllIndexesNames();
 
   if (!indexNamesArr.length) {
-    logger.info(`${COLORS.green}No indexes found. Nothing deleted.${COLORS.stop}`, { newLineAfter: true });
+    logger.info(`${COLORS.green}No indexes found. Nothing deleted.${COLORS.stop}`, {
+      newLineBefore: true,
+      newLineAfter: true,
+    });
 
     return;
   }
