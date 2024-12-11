@@ -54,6 +54,8 @@ export async function createContext(props: ContextData) {
 }
 
 async function inquireNewContextName() {
+  console.log('');
+
   console.log(`${COLORS.green} ✨  Please enter a new context name:`);
 
   const newContextName = await input({ message: 'Context name:' });

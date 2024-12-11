@@ -16,7 +16,7 @@ export function currentContext() {
 
   const context = config.contexts[config.currentContext]!;
 
-  logger.info(`${COLORS.green}Current context:${COLORS.stop} ${config.currentContext}`);
+  logger.info(`${COLORS.green}Current context:${COLORS.stop} ${config.currentContext}`, { newLineBefore: true });
   logger.info(`${COLORS.green}URL:${COLORS.stop} ${context.url}`);
-  logger.info(`${COLORS.green}Flags:${COLORS.stop} ${context.flags}`);
+  logger.info(`${COLORS.green}Flags:${COLORS.stop} ${context.flags}`, { newLineAfter: true });
 }
