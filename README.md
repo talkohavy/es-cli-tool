@@ -143,6 +143,7 @@ alias sq="es-cli-tool"
 ```
 
 Now, by running `sq` you should get the same result as running `es-cli-tool` (don't forget to source the zshrc file afterwards, or simply open a new terminal).
+(The next steps will assume you gave `es-cli-tool` an alias of `sq`)
 
 ### - Step 2: Create your first context
 
@@ -175,18 +176,17 @@ Write:
 
 ### - Step 3: Use the context
 
-Create a new context with:  
-(assuming you gave `es-cli-tool` an alias of `sq`)
+Let's use our newly created context:
 
 ```bash
 sq use-context
 ```
 
-And now select the context you just created, `es8`.
+And now select the name of the context you just created, `es8`.
 
 ### - Step 4: Create an index
 
-Let's create our first index:
+Let's now create our first index:
 
 ```bash
 sq create-index
@@ -263,6 +263,12 @@ where the file's contents would be a pure elasticsearch query, such as:
     "match_all": {}
   }
 }
+```
+
+You can achieve exactly the same result, with a much simpler line:
+
+```bash
+sq get all --index users
 ```
 
 And you should see the following output printed:
