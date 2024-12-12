@@ -1,0 +1,9 @@
+{
+  "query": {
+    "term": {
+      "kwd": {
+        "value": "this is a historical evenT"
+      }
+    }
+  }
+}

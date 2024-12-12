@@ -182,7 +182,7 @@ Let's use our newly created context:
 sq use-context
 ```
 
-And now select the name of the context you just created, `es8`.
+And select the context you just created, `es8`.
 
 ### - Step 4: Create an index
 
@@ -192,7 +192,7 @@ Let's now create our first index:
 sq create-index
 ```
 
-and now give it a name, for example `users`.
+Give it a name, for example `users`.
 
 ### - Step 5: Add the first document
 
