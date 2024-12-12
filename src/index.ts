@@ -34,6 +34,7 @@ import {
   importToIndexCommandString,
   importToIndexDescription,
 } from './commands/import-to-index/import-to-index.js';
+import { update, updateBuilder, updateCommandString, updateDescription } from './commands/update/update.js';
 import {
   updateMapping,
   updateMappingBuilder,
@@ -105,6 +106,7 @@ const yargsInstance = yargs(hideBin(process.argv))
   .command(clearAllCommandString, clearAllDescription, __no_op__, errorSilencer(clearAll))
   .command(importToIndexCommandString, importToIndexDescription, importToIndexBuilder, errorSilencer(importToIndex))
   .command(addCommandString, addDescription, addBuilder, errorSilencer(add))
+  .command(updateCommandString, updateDescription, updateBuilder, errorSilencer(update))
   .command(deleteDocumentCommandString, deleteDocumentDescription, __no_op__, errorSilencer(deleteDocument))
   .command(getCommandString, getDescription, getBuilder, errorSilencer(get))
   .command(getMappingCommandString, getMappingDescription, __no_op__, errorSilencer(getMapping))
