@@ -2,17 +2,34 @@ import { Argv } from 'yargs';
 import { COLORS } from '../../constants/colors.js';
 import { EditorTypes } from '../../constants/types.js';
 import { colorizeJson } from '../../utils/colorize-json/colorize-json.js';
+import { errorSilencer } from '../../utils/errorSilencer.js';
 import { getAllIndexesNames } from '../../utils/getAllIndexesNames.js';
 import { getElasticQuery } from '../../utils/getElasticQuery.js';
 import { inquireSelectFromList } from '../../utils/inquires/inquireSelectFromList.js';
 import { logger } from '../../utils/logger/logger.js';
-import { validateAndTransformQuery } from '../../utils/validateAndTransformQuery.js';
 import { executeGetQuery } from './helpers/executeGetQuery.js';
+
+enum SubCommands {
+  All = 'all',
+}
 
 export const getCommandString = 'get';
 export const getDescription = 'Get document/s by query';
 
 export const getBuilder: any = (yargs: Argv) => {
+  yargs.command(
+    'all [count]',
+    'Get all items',
+    (yargs: Argv) => {
+      yargs.positional('count', {
+        describe: 'Number of items to return',
+        type: 'number',
+        default: 10,
+      });
+    },
+    errorSilencer(get),
+  );
+
   yargs
     .option('index', {
       type: 'string',
@@ -39,13 +56,16 @@ export const getBuilder: any = (yargs: Argv) => {
 };
 
 type GetProps = {
-  file: string;
+  _: Array<string>;
   index: string;
+  file: string;
   color: boolean;
+  count: number;
 };
 
 export async function get(props: GetProps) {
-  const { index, file, color: shouldColorize } = props;
+  const { _: subCommandsArr, index, file, color: shouldColorize, count } = props;
+  const subCommand = subCommandsArr[1] as SubCommands;
 
   const indexNamesArr = await getAllIndexesNames();
 
@@ -66,15 +86,22 @@ export async function get(props: GetProps) {
     return;
   }
 
-  const elasticQueryStr = await getElasticQuery(file);
+  const elasticQuery = subCommand === SubCommands.All ? getMatchAllQuery(count) : await getElasticQuery(file);
 
-  if (!elasticQueryStr) return;
-
-  const elasticQuery = await validateAndTransformQuery(elasticQueryStr);
+  if (!elasticQuery) return;
 
   const responseRaw = await executeGetQuery({ index: selectedIndex, query: elasticQuery });
 
   const response = shouldColorize ? colorizeJson(responseRaw) : responseRaw;
 
   console.log(response);
+}
+
+function getMatchAllQuery(count: number): Record<string, any> {
+  return {
+    size: count,
+    query: {
+      match_all: {},
+    },
+  };
 }

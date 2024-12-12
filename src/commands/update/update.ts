@@ -6,7 +6,6 @@ import { getAllIndexesNames } from '../../utils/getAllIndexesNames.js';
 import { getElasticQuery } from '../../utils/getElasticQuery.js';
 import { inquireSelectFromList } from '../../utils/inquires/inquireSelectFromList.js';
 import { logger } from '../../utils/logger/logger.js';
-import { validateAndTransformQuery } from '../../utils/validateAndTransformQuery.js';
 import { executeUpdateQuery } from './helpers/executeUpdateQuery.js';
 
 export const updateCommandString = 'update';
@@ -74,11 +73,9 @@ export async function update(props: UpdateProps) {
     return;
   }
 
-  const elasticQueryStr = await getElasticQuery(file);
+  const elasticQuery = await getElasticQuery(file);
 
-  if (!elasticQueryStr) return;
-
-  const elasticQuery = await validateAndTransformQuery(elasticQueryStr);
+  if (!elasticQuery) return;
 
   const responseRaw = await executeUpdateQuery({ index: selectedIndex, id, query: elasticQuery });
 

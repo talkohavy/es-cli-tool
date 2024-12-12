@@ -50,17 +50,9 @@ import {
 import { bigTextEsTool } from './constants/bigTextEsTool.js';
 import { COLORS } from './constants/colors.js';
 import { showVersion } from './flags/version.js';
+import { errorSilencer } from './utils/errorSilencer.js';
 
 const __no_op__: any = () => {};
-function errorSilencer(cb: (props?: any) => any) {
-  return async (props: any) => {
-    try {
-      await cb(props);
-    } catch (_error) {
-      _error;
-    }
-  };
-}
 
 type ArgsV = {
   $0: any;

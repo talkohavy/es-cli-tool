@@ -6,7 +6,6 @@ import { getAllIndexesNames } from '../../utils/getAllIndexesNames.js';
 import { getElasticQuery } from '../../utils/getElasticQuery.js';
 import { inquireSelectFromList } from '../../utils/inquires/inquireSelectFromList.js';
 import { logger } from '../../utils/logger/logger.js';
-import { validateAndTransformQuery } from '../../utils/validateAndTransformQuery.js';
 import { executeAddQuery } from './helpers/executeAddQuery.js';
 
 export const addCommandString = 'add';
@@ -69,11 +68,9 @@ export async function add(props: AddProps) {
     return;
   }
 
-  const elasticQueryStr = await getElasticQuery(file);
+  const elasticQuery = await getElasticQuery(file);
 
-  if (!elasticQueryStr) return;
-
-  const elasticQuery = await validateAndTransformQuery(elasticQueryStr);
+  if (!elasticQuery) return;
 
   const responseRaw = await executeAddQuery({ index: selectedIndex, query: elasticQuery });
 

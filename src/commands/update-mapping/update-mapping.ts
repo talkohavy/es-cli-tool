@@ -5,7 +5,6 @@ import { getAllIndexesNames } from '../../utils/getAllIndexesNames.js';
 import { getElasticQuery } from '../../utils/getElasticQuery.js';
 import { inquireSelectFromList } from '../../utils/inquires/inquireSelectFromList.js';
 import { logger } from '../../utils/logger/logger.js';
-import { validateAndTransformQuery } from '../../utils/validateAndTransformQuery.js';
 import { executeUpdateMappingQuery } from './helpers/executeUpdateMappingQuery.js';
 
 export const updateMappingCommandString = 'update-mapping';
@@ -54,11 +53,9 @@ export async function updateMapping(props: UpdateMappingProps) {
     return;
   }
 
-  const elasticQueryStr = await getElasticQuery(file);
+  const elasticQuery = await getElasticQuery(file);
 
-  if (!elasticQueryStr) return;
-
-  const elasticQuery = await validateAndTransformQuery(elasticQueryStr);
+  if (!elasticQuery) return;
 
   const response = await executeUpdateMappingQuery({ index: selectedIndex, query: elasticQuery });
 

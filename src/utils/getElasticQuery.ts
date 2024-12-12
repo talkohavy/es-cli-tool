@@ -1,10 +1,13 @@
 import { inquireElasticQuery } from './inquires/inquireElasticQuery.js';
 import { readQueryFromFile } from './readQueryFromFile.js';
+import { validateAndTransformQuery } from './validateAndTransformQuery.js';
 
 export async function getElasticQuery(file?: string) {
-  if (file) return readQueryFromFile(file);
+  const elasticQueryStr = file ? await readQueryFromFile(file) : await inquireElasticQuery();
 
-  const elasticQueryFromEditor = await inquireElasticQuery();
+  if (!elasticQueryStr) return;
 
-  return elasticQueryFromEditor;
+  const elasticQuery = await validateAndTransformQuery(elasticQueryStr);
+
+  return elasticQuery;
 }
