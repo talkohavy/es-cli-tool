@@ -1,6 +1,6 @@
 {
   "name": "es-cli-tool",
-  "version": "0.0.40",
+  "version": "0.0.41",
   "description": "A way to query your elasticsearch using CLI",
   "private": "true",
   "type": "module",
