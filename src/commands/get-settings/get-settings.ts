@@ -1,3 +1,4 @@
+import { Argv } from 'yargs';
 import { COLORS } from '../../constants/colors.js';
 import { colorizeJson } from '../../utils/colorize-json/colorize-json.js';
 import { getAllIndexesNames } from '../../utils/getAllIndexesNames.js';
@@ -8,9 +9,18 @@ import { executeGetSettings } from './helpers/executeGetSettings.js';
 export const getSettingsCommandString = 'get-settings';
 export const getSettingsDescription = "Get an index's settings";
 
+export const getSettingsBuilder: any = (yargs: Argv) => {
+  yargs
+    .option('index', {
+      type: 'string',
+      description: 'Specify the target index.',
+    })
+    .example('es-cli-tool get-settings --index users', 'Fetches the settings for the users index.');
+};
+
 type GetSettingsProps = {
-  file: string;
   index: string;
+  file: string;
   color: boolean;
 };
 
