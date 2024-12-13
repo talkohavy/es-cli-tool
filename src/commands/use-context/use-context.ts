@@ -18,7 +18,7 @@ type UseContextProps = {
   name: string;
 };
 
-export async function UseContext(props: UseContextProps) {
+export async function useContext(props: UseContextProps) {
   const { name } = props;
 
   const config = loadConfig();

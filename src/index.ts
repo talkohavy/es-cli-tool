@@ -3,61 +3,46 @@
 import os from 'os';
 import { hideBin } from 'yargs/helpers';
 import yargs from 'yargs/yargs';
-import { add, addBuilder, addCommandString, addDescription } from './commands/add/add.js';
-import { clearAll, clearAllCommandString, clearAllDescription } from './commands/clear-all/clear-all.js';
+import { commandMapper } from './commandMapper.js';
+import { addBuilder, addCommandString, addDescription } from './commands/add/add.js';
+import { clearAllCommandString, clearAllDescription } from './commands/clear-all/clear-all.js';
 import {
-  createContext,
   createContextBuilder,
   createContextCommandString,
   createContextDescription,
 } from './commands/create-context/create-context.js';
-import { createIndex, createIndexCommandString, createIndexDescription } from './commands/create-index/create-index.js';
+import { createIndexCommandString, createIndexDescription } from './commands/create-index/create-index.js';
+import { currentContextCommandString, currentContextDescription } from './commands/current-context/current-context.js';
+import { deleteBuilder, deleteDocumentCommandString, deleteDocumentDescription } from './commands/delete/delete.js';
 import {
-  currentContext,
-  currentContextCommandString,
-  currentContextDescription,
-} from './commands/current-context/current-context.js';
-import {
-  deleteBuilder,
-  deleteDocument,
-  deleteDocumentCommandString,
-  deleteDocumentDescription,
-} from './commands/delete/delete.js';
-import {
-  deleteContext,
   deleteContextBuilder,
   deleteContextCommandString,
   deleteContextDescription,
 } from './commands/delete-context/delete-context.js';
-import { deleteIndex, deleteIndexCommandString, deleteIndexDescription } from './commands/delete-index/delete-index.js';
-import { get, getBuilder, getCommandString, getDescription } from './commands/get/get.js';
+import { deleteIndexCommandString, deleteIndexDescription } from './commands/delete-index/delete-index.js';
+import { getBuilder, getCommandString, getDescription } from './commands/get/get.js';
 import {
-  getMapping,
   getMappingBuilder,
   getMappingCommandString,
   getMappingDescription,
 } from './commands/get-mapping/get-mapping.js';
 import {
-  getSettings,
   getSettingsBuilder,
   getSettingsCommandString,
   getSettingsDescription,
 } from './commands/get-settings/get-settings.js';
 import {
-  importToIndex,
   importToIndexBuilder,
   importToIndexCommandString,
   importToIndexDescription,
 } from './commands/import-to-index/import-to-index.js';
-import { update, updateBuilder, updateCommandString, updateDescription } from './commands/update/update.js';
+import { updateBuilder, updateCommandString, updateDescription } from './commands/update/update.js';
 import {
-  updateMapping,
   updateMappingBuilder,
   updateMappingCommandString,
   updateMappingDescription,
 } from './commands/update-mapping/update-mapping.js';
 import {
-  UseContext,
   useContextBuilder,
   useContextCommandString,
   useContextDescription,
@@ -65,7 +50,6 @@ import {
 import { COLORS } from './constants/colors.js';
 import { bigTextEsTool } from './constants/globals.js';
 import { showVersion } from './flags/version.js';
-import { errorSilencer } from './utils/errorSilencer.js';
 
 const __no_op__: any = () => {};
 
@@ -103,22 +87,24 @@ const yargsInstance = yargs(hideBin(process.argv))
    * Use desc to provide a description for each command your application accepts (the values stored in argv._). Set desc to false to create a hidden command. Hidden commands don't show up in the help output and aren't available for completion.
    *
    * Optionally, you can provide a builder object to give hints about the options that your command accepts:
+   *
+   * IMPORTANT! Do NOT use the 4 parameters, which is the handler, since it cancels out the help for sub-commands.
    */
-  .command(createContextCommandString, createContextDescription, createContextBuilder, errorSilencer(createContext))
-  .command(useContextCommandString, useContextDescription, useContextBuilder, errorSilencer(UseContext))
-  .command(currentContextCommandString, currentContextDescription, __no_op__, errorSilencer(currentContext))
-  .command(deleteContextCommandString, deleteContextDescription, deleteContextBuilder, errorSilencer(deleteContext))
-  .command(createIndexCommandString, createIndexDescription, __no_op__, errorSilencer(createIndex))
-  .command(deleteIndexCommandString, deleteIndexDescription, __no_op__, errorSilencer(deleteIndex))
-  .command(clearAllCommandString, clearAllDescription, __no_op__, errorSilencer(clearAll))
-  .command(importToIndexCommandString, importToIndexDescription, importToIndexBuilder, errorSilencer(importToIndex))
-  .command(addCommandString, addDescription, addBuilder, errorSilencer(add))
-  .command(updateCommandString, updateDescription, updateBuilder, errorSilencer(update))
-  .command(deleteDocumentCommandString, deleteDocumentDescription, deleteBuilder, errorSilencer(deleteDocument))
-  .command(getCommandString, getDescription, getBuilder, errorSilencer(get))
-  .command(getMappingCommandString, getMappingDescription, getMappingBuilder, errorSilencer(getMapping))
-  .command(getSettingsCommandString, getSettingsDescription, getSettingsBuilder, errorSilencer(getSettings))
-  .command(updateMappingCommandString, updateMappingDescription, updateMappingBuilder, errorSilencer(updateMapping))
+  .command(createContextCommandString, createContextDescription, createContextBuilder)
+  .command(useContextCommandString, useContextDescription, useContextBuilder)
+  .command(currentContextCommandString, currentContextDescription, __no_op__)
+  .command(deleteContextCommandString, deleteContextDescription, deleteContextBuilder)
+  .command(createIndexCommandString, createIndexDescription, __no_op__)
+  .command(deleteIndexCommandString, deleteIndexDescription, __no_op__)
+  .command(clearAllCommandString, clearAllDescription, __no_op__)
+  .command(importToIndexCommandString, importToIndexDescription, importToIndexBuilder)
+  .command(addCommandString, addDescription, addBuilder)
+  .command(updateCommandString, updateDescription, updateBuilder)
+  .command(deleteDocumentCommandString, deleteDocumentDescription, deleteBuilder)
+  .command(getCommandString, getDescription, getBuilder)
+  .command(getMappingCommandString, getMappingDescription, getMappingBuilder)
+  .command(getSettingsCommandString, getSettingsDescription, getSettingsBuilder)
+  .command(updateMappingCommandString, updateMappingDescription, updateMappingBuilder)
   .options({
     v: {
       alias: 'version',
@@ -176,6 +162,8 @@ async function run() {
     console.log(helpTextBig);
     process.exit(0);
   }
+
+  await commandMapper({ commands, flags });
 }
 
 run();

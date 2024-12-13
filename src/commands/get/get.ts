@@ -2,7 +2,6 @@ import { Argv } from 'yargs';
 import { COLORS } from '../../constants/colors.js';
 import { EditorTypes } from '../../constants/types.js';
 import { colorizeJson } from '../../utils/colorize-json/colorize-json.js';
-import { errorSilencer } from '../../utils/errorSilencer.js';
 import { getAllIndexesNames } from '../../utils/getAllIndexesNames.js';
 import { getElasticQuery } from '../../utils/getElasticQuery.js';
 import { inquireSelectFromList } from '../../utils/inquires/inquireSelectFromList.js';
@@ -17,18 +16,13 @@ export const getCommandString = 'get';
 export const getDescription = 'Get document/s by query';
 
 export const getBuilder: any = (yargs: Argv) => {
-  yargs.command(
-    'all [count]',
-    'Get all items',
-    (yargs: Argv) => {
-      yargs.positional('count', {
-        describe: 'Number of items to return',
-        type: 'number',
-        default: 10,
-      });
-    },
-    errorSilencer(get),
-  );
+  yargs.command('all [count]', 'Get all items', (yargs: Argv) => {
+    yargs.positional('count', {
+      describe: 'Number of items to return',
+      type: 'number',
+      default: 10,
+    });
+  });
 
   yargs
     .option('index', {
@@ -56,7 +50,7 @@ export const getBuilder: any = (yargs: Argv) => {
 };
 
 type GetProps = {
-  _: Array<string>;
+  commands: Array<string>;
   index: string;
   file: string;
   color: boolean;
@@ -64,8 +58,8 @@ type GetProps = {
 };
 
 export async function get(props: GetProps) {
-  const { _: subCommandsArr, index, file, color: shouldColorize, count } = props;
-  const subCommand = subCommandsArr[1] as SubCommands;
+  const { commands, index, file, color: shouldColorize, count } = props;
+  const subCommand = commands[1] as SubCommands;
 
   const indexNamesArr = await getAllIndexesNames();
 
