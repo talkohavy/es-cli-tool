@@ -17,7 +17,12 @@ import {
   currentContextCommandString,
   currentContextDescription,
 } from './commands/current-context/current-context.js';
-import { deleteDocument, deleteDocumentCommandString, deleteDocumentDescription } from './commands/delete/delete.js';
+import {
+  deleteBuilder,
+  deleteDocument,
+  deleteDocumentCommandString,
+  deleteDocumentDescription,
+} from './commands/delete/delete.js';
 import {
   deleteContext,
   deleteContextBuilder,
@@ -99,7 +104,7 @@ const yargsInstance = yargs(hideBin(process.argv))
   .command(importToIndexCommandString, importToIndexDescription, importToIndexBuilder, errorSilencer(importToIndex))
   .command(addCommandString, addDescription, addBuilder, errorSilencer(add))
   .command(updateCommandString, updateDescription, updateBuilder, errorSilencer(update))
-  .command(deleteDocumentCommandString, deleteDocumentDescription, __no_op__, errorSilencer(deleteDocument))
+  .command(deleteDocumentCommandString, deleteDocumentDescription, deleteBuilder, errorSilencer(deleteDocument))
   .command(getCommandString, getDescription, getBuilder, errorSilencer(get))
   .command(getMappingCommandString, getMappingDescription, __no_op__, errorSilencer(getMapping))
   .command(getSettingsCommandString, getSettingsDescription, __no_op__, errorSilencer(getSettings))
