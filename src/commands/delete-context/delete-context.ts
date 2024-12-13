@@ -5,7 +5,7 @@ import { inquireSelectFromList } from '../../utils/inquires/inquireSelectFromLis
 import { logger } from '../../utils/logger/logger.js';
 
 export const deleteContextCommandString = 'delete-context [name]';
-export const deleteContextDescription = 'Delete a specific context';
+export const deleteContextDescription = 'Delete a specific context.';
 
 export const deleteContextBuilder: any = (yargs: Argv) => {
   yargs.positional('name', {

@@ -5,7 +5,7 @@ import { inquireSelectFromList } from '../../utils/inquires/inquireSelectFromLis
 import { logger } from '../../utils/logger/logger.js';
 
 export const useContextCommandString = 'use-context [name]';
-export const useContextDescription = 'Switch to a specific context';
+export const useContextDescription = 'Switch to a specific context.';
 
 export const useContextBuilder: any = (yargs: Argv) => {
   yargs.positional('name', {

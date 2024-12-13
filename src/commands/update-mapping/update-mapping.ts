@@ -8,7 +8,7 @@ import { logger } from '../../utils/logger/logger.js';
 import { executeUpdateMappingQuery } from './helpers/executeUpdateMappingQuery.js';
 
 export const updateMappingCommandString = 'update-mapping';
-export const updateMappingDescription = "Update an index's mapping";
+export const updateMappingDescription = "Update an index's mapping.";
 
 export const updateMappingBuilder: any = (yargs: Argv) => {
   yargs

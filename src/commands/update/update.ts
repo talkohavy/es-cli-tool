@@ -8,7 +8,7 @@ import { logger } from '../../utils/logger/logger.js';
 import { executeUpdateQuery } from './helpers/executeUpdateQuery.js';
 
 export const updateCommandString = 'update';
-export const updateDescription = 'Update an existing document in an index by id';
+export const updateDescription = 'Update an existing document in an index by id.';
 
 export const updateBuilder: any = (yargs: Argv) => {
   yargs

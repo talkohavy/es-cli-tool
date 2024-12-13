@@ -110,19 +110,22 @@ const yargsInstance = yargs(hideBin(process.argv))
       alias: 'version',
       type: 'boolean',
       description: 'Show es-cli-tool version',
-      default: false,
       global: false,
+      default: false,
     },
     h: {
       alias: 'help',
       type: 'boolean',
       description: 'Show help manual',
+      global: true,
+      default: false,
     },
     color: {
       type: 'boolean',
-      default: true,
       description:
         'Colorizes the output. Defaults to `true`. Use `--no-color` to negate it - useful when wanting to write the output to a file.',
+      global: true,
+      default: true,
     },
   })
   .showHelpOnFail(false, 'Specify --help for available options') // default value is true.

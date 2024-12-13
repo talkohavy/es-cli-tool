@@ -6,7 +6,7 @@ import { logger } from '../../utils/logger/logger.js';
 import { executeDeleteIndexQuery } from './helpers/executeDeleteIndexQuery.js';
 
 export const deleteIndexCommandString = 'delete-index';
-export const deleteIndexDescription = 'Delete an existing index';
+export const deleteIndexDescription = 'Delete an existing index.';
 
 export async function deleteIndex() {
   const indexNamesArr = await getAllIndexesNames();

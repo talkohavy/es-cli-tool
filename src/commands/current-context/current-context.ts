@@ -3,7 +3,7 @@ import { COLORS } from '../../constants/colors.js';
 import { logger } from '../../utils/logger/logger.js';
 
 export const currentContextCommandString = 'current-context';
-export const currentContextDescription = 'Show the current context';
+export const currentContextDescription = 'Show the current context.';
 
 export function currentContext() {
   const config = loadConfig();

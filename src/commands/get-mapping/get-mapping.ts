@@ -7,7 +7,7 @@ import { logger } from '../../utils/logger/logger.js';
 import { executeGetMapping } from './helpers/executeGetMapping.js';
 
 export const getMappingCommandString = 'get-mapping';
-export const getMappingDescription = "Get an index's mapping";
+export const getMappingDescription = "Get an index's mapping.";
 
 export const getMappingBuilder: any = (yargs: Argv) => {
   yargs

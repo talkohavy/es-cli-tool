@@ -6,7 +6,7 @@ import { COLORS } from '../../constants/colors.js';
 import { logger } from '../../utils/logger/logger.js';
 
 export const createContextCommandString = 'create-context [name] [url]';
-export const createContextDescription = 'Create a new context';
+export const createContextDescription = 'Create a new context.';
 
 export const createContextBuilder: any = (yargs: Argv) => {
   yargs

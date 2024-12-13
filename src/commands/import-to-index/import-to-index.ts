@@ -7,7 +7,7 @@ import { logger } from '../../utils/logger/logger.js';
 import { executeImportToIndexQuery } from './helpers/executeImportToIndexQuery.js';
 
 export const importToIndexCommandString = 'import';
-export const importToIndexDescription = 'Import data from a file into an index';
+export const importToIndexDescription = 'Import data from a file into an index.';
 
 export const importToIndexBuilder: any = (yargs: Argv) => {
   yargs

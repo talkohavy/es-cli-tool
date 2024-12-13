@@ -1,6 +1,5 @@
 import { Argv } from 'yargs';
 import { COLORS } from '../../constants/colors.js';
-import { EditorTypes } from '../../constants/types.js';
 import { colorizeJson } from '../../utils/colorize-json/colorize-json.js';
 import { getAllIndexesNames } from '../../utils/getAllIndexesNames.js';
 import { getElasticQuery } from '../../utils/getElasticQuery.js';
@@ -9,7 +8,7 @@ import { logger } from '../../utils/logger/logger.js';
 import { executeAddQuery } from './helpers/executeAddQuery.js';
 
 export const addCommandString = 'add';
-export const addDescription = 'Insert a new document to index';
+export const addDescription = 'Insert a new document to index.';
 
 export const addBuilder: any = (yargs: Argv) => {
   yargs
@@ -25,16 +24,6 @@ export const addBuilder: any = (yargs: Argv) => {
       description: 'Use a file as the query to execute.',
     })
     .example('es-cli-tool add --file query.json', 'Executes the query in that file.');
-  yargs
-    .option('editor', {
-      type: 'string',
-      choices: [EditorTypes.Vi, EditorTypes.Vim, EditorTypes.Nano, EditorTypes.Code] as Array<EditorTypes>,
-      description: 'Choose the external editor for editing your query.',
-    })
-    .example(
-      'es-cli-tool add --editor vim',
-      'Would open up Vim as editor when you hit enter on the insert message prompt.',
-    );
 };
 
 // If you're gonna use emojis, use one of these:

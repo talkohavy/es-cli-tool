@@ -8,7 +8,7 @@ import { executeDeleteQuery } from './helpers/executeDeleteQuery.js';
 import { inquireDocumentId } from './helpers/inquireDocumentId.js';
 
 export const deleteDocumentCommandString = 'delete';
-export const deleteDocumentDescription = 'Delete a document by id';
+export const deleteDocumentDescription = 'Delete a document by id.';
 
 export const deleteBuilder: any = (yargs: Argv) => {
   yargs

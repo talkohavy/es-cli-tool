@@ -7,7 +7,7 @@ import { logger } from '../../utils/logger/logger.js';
 import { executeGetSettings } from './helpers/executeGetSettings.js';
 
 export const getSettingsCommandString = 'get-settings';
-export const getSettingsDescription = "Get an index's settings";
+export const getSettingsDescription = "Get an index's settings.";
 
 export const getSettingsBuilder: any = (yargs: Argv) => {
   yargs

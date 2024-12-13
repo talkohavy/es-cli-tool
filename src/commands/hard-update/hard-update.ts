@@ -8,7 +8,7 @@ import { logger } from '../../utils/logger/logger.js';
 import { executeHardUpdateQuery } from './helpers/executeHardUpdateQuery.js';
 
 export const hardUpdateCommandString = 'hard-update';
-export const hardUpdateDescription = 'Overwrite an existing document in an index by id';
+export const hardUpdateDescription = 'Overwrite an existing document in an index by id.';
 
 export const hardUpdateBuilder: any = (yargs: Argv) => {
   yargs
