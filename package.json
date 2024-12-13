@@ -35,6 +35,7 @@
     "dev-import": "npm run build:dev && node dist/index.js import",
     "dev-add": "npm run build:dev && node dist/index.js add",
     "dev-update": "npm run build:dev && node dist/index.js update",
+    "dev-hard-update": "npm run build:dev && node dist/index.js hard-update",
     "dev-delete": "npm run build:dev && node dist/index.js delete",
     "dev-get": "npm run build:dev && node dist/index.js get",
     "dev-get-mapping": "npm run build:dev && node dist/index.js get-mapping",
