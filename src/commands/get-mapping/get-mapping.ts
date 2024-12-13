@@ -1,3 +1,4 @@
+import { Argv } from 'yargs';
 import { COLORS } from '../../constants/colors.js';
 import { colorizeJson } from '../../utils/colorize-json/colorize-json.js';
 import { getAllIndexesNames } from '../../utils/getAllIndexesNames.js';
@@ -7,6 +8,15 @@ import { executeGetMapping } from './helpers/executeGetMapping.js';
 
 export const getMappingCommandString = 'get-mapping';
 export const getMappingDescription = "Get an index's mapping";
+
+export const getMappingBuilder: any = (yargs: Argv) => {
+  yargs
+    .option('index', {
+      type: 'string',
+      description: 'Specify the target index.',
+    })
+    .example('es-cli-tool get-mapping --index users', 'Fetches the mapping for the users index.');
+};
 
 type GetMappingProps = {
   index: string;

@@ -31,7 +31,12 @@ import {
 } from './commands/delete-context/delete-context.js';
 import { deleteIndex, deleteIndexCommandString, deleteIndexDescription } from './commands/delete-index/delete-index.js';
 import { get, getBuilder, getCommandString, getDescription } from './commands/get/get.js';
-import { getMapping, getMappingCommandString, getMappingDescription } from './commands/get-mapping/get-mapping.js';
+import {
+  getMapping,
+  getMappingBuilder,
+  getMappingCommandString,
+  getMappingDescription,
+} from './commands/get-mapping/get-mapping.js';
 import { getSettings, getSettingsCommandString, getSettingsDescription } from './commands/get-settings/get-settings.js';
 import {
   importToIndex,
@@ -106,7 +111,7 @@ const yargsInstance = yargs(hideBin(process.argv))
   .command(updateCommandString, updateDescription, updateBuilder, errorSilencer(update))
   .command(deleteDocumentCommandString, deleteDocumentDescription, deleteBuilder, errorSilencer(deleteDocument))
   .command(getCommandString, getDescription, getBuilder, errorSilencer(get))
-  .command(getMappingCommandString, getMappingDescription, __no_op__, errorSilencer(getMapping))
+  .command(getMappingCommandString, getMappingDescription, getMappingBuilder, errorSilencer(getMapping))
   .command(getSettingsCommandString, getSettingsDescription, __no_op__, errorSilencer(getSettings))
   .command(updateMappingCommandString, updateMappingDescription, updateMappingBuilder, errorSilencer(updateMapping))
   .options({
