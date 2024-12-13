@@ -47,8 +47,8 @@ import {
   useContextCommandString,
   useContextDescription,
 } from './commands/use-context/use-context.js';
-import { bigTextEsTool } from './constants/bigTextEsTool.js';
 import { COLORS } from './constants/colors.js';
+import { bigTextEsTool } from './constants/globals.js';
 import { showVersion } from './flags/version.js';
 import { errorSilencer } from './utils/errorSilencer.js';
 
