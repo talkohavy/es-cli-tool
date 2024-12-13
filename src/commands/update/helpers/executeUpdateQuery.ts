@@ -19,14 +19,14 @@ export async function executeUpdateQuery(props: ExecuteUpdateQueryProps) {
     const { url, flags } = context;
     const queryAsStr = JSON.stringify(query);
 
-    const requestString = `curl -X PUT "${url}/${index}/_doc/${id}?pretty" ${flags} -d' ${queryAsStr}'`;
+    const requestString = `curl -X POST "${url}/${index}/_update/${id}?pretty" ${flags} -d' ${queryAsStr}'`;
 
     const result = execSync(requestString).toString();
 
     return result;
   } catch (error) {
     console.error(error);
-    logger.error('[ES Error] Failed to execute PUT query...');
+    logger.error('[ES Error] Failed to execute soft update query...');
 
     throw error;
   }
