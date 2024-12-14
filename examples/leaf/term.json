@@ -1,8 +1,8 @@
 {
   "query": {
     "term": {
-      "kwd": {
-        "value": "this is a historical evenT"
+      "dateField": {
+        "value": 585111111111
       }
     }
   }
