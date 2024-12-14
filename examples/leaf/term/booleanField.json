@@ -1,0 +1,9 @@
+{
+  "query": {
+    "term": {
+      "booleanField": {
+        "value": false
+      }
+    }
+  }
+}
