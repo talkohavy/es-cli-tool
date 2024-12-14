@@ -1,0 +1,8 @@
+{
+  "booleanField": true,
+  "numberField": 12,
+  "dateField": "600000111222",
+  "keywordField": "my hero",
+  "textField": "let it be",
+  "textAndKeywordField": "friends forever will stay by your side"
+}
