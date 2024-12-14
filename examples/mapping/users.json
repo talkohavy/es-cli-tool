@@ -1,0 +1,28 @@
+{
+  "properties": {
+    "booleanField": {
+      "type": "boolean"
+    },
+    "numberField": {
+      "type": "long"
+    },
+    "dateField": {
+      "type": "date"
+    },
+    "keywordField": {
+      "type": "keyword"
+    },
+    "textField": {
+      "type": "text"
+    },
+    "textAndKeywordField": {
+      "type": "text",
+      "fields": {
+        "keyword": {
+          "type": "keyword",
+          "ignore_above": 256
+        }
+      }
+    }
+  }
+}
