@@ -21,7 +21,10 @@ export async function getAllIndexesNames() {
 
     return indexesNames;
   } catch (error) {
-    logger.error('[ES Error] Failed to get indexes names...');
+    logger.error('[ES Error] Failed to get indexes names...', {
+      newLineBefore: true,
+      newLineAfter: true,
+    });
 
     throw error;
   }
