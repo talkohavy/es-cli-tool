@@ -1,10 +1,10 @@
 {"index": {}}
-{ "booleanField": true, "numberField": 8, "dateField": 585111111111, "keywordField":"Tal Kohavy", "textField": "this is a great example", "textAndKeywordField": "well this is fun stuff" }
+{ "booleanField": true, "numberField": 8, "dateField": 585111111111, "keywordField":"Tal Kohavy", "textField": "this is a great example", "textAndKeywordField": "this is a great example" }
 {"index": {}}
-{ "booleanField": true, "numberField": 10, "dateField":"1988-07-17T02:51:51.111Z" , "keywordField":"Maria Pavlov", "textField": "this example is beyond great", "textAndKeywordField": "i'm glad we did this" }
+{ "booleanField": true, "numberField": 10, "dateField":"1988-07-17T02:51:51.111Z" , "keywordField":"Maria Pavlov", "textField": "this example is beyond great", "textAndKeywordField": "this example is beyond great" }
 {"index": {}}
-{ "booleanField": false, "numberField": 2, "dateField":"187508288" , "keywordField":"Daniel Kohavy", "textField": "how great this is?", "textAndKeywordField": "we should do it again sometime" }
+{ "booleanField": false, "numberField": 2, "dateField":"187508288" , "keywordField":"Daniel Kohavy", "textField": "i like swords?", "textAndKeywordField": "i like swords?" }
 {"index": {}}
-{ "booleanField": false, "numberField": 7, "dateField":"276940521", "keywordField":"Lucky Love", "textField": "I LIKE SWORDS", "textAndKeywordField": "i liked pirates of the Caribbean" }
+{ "booleanField": false, "numberField": 7, "dateField":"276940521", "keywordField":"Lucky Love", "textField": "I LIKE SWORDS", "textAndKeywordField": "I LIKE SWORDS" }
 {"index": {}}
-{ "booleanField": true, "numberField": 5, "dateField":"57142483", "keywordField":"Alin Baby", "textField": "you are my life", "textAndKeywordField": "you are my life" }
+{ "booleanField": true, "numberField": 5, "dateField":"57142483", "keywordField":"Alin Baby", "textField": "i like swords", "textAndKeywordField": "i like swords" }
