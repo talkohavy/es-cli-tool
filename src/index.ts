@@ -59,6 +59,7 @@ type ArgsV = {
 } & Record<string, string | number | boolean>;
 
 const yargsInstance = yargs(hideBin(process.argv))
+  .completion()
   /**
    * @description
    * Set the name of your script ($0). Default is the base filename executed by node (process.argv[1] or process.argv[0] for built electron apps)
