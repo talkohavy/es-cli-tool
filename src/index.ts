@@ -19,7 +19,11 @@ import {
   deleteContextCommandString,
   deleteContextDescription,
 } from './commands/delete-context/delete-context.js';
-import { deleteIndexCommandString, deleteIndexDescription } from './commands/delete-index/delete-index.js';
+import {
+  deleteIndexBuilder,
+  deleteIndexCommandString,
+  deleteIndexDescription,
+} from './commands/delete-index/delete-index.js';
 import { getBuilder, getCommandString, getDescription } from './commands/get/get.js';
 import {
   getMappingBuilder,
@@ -96,7 +100,7 @@ const yargsInstance = yargs(hideBin(process.argv))
   .command(currentContextCommandString, currentContextDescription, __no_op__)
   .command(deleteContextCommandString, deleteContextDescription, deleteContextBuilder)
   .command(createIndexCommandString, createIndexDescription, __no_op__)
-  .command(deleteIndexCommandString, deleteIndexDescription, __no_op__)
+  .command(deleteIndexCommandString, deleteIndexDescription, deleteIndexBuilder)
   .command(clearAllCommandString, clearAllDescription, __no_op__)
   .command(importToIndexCommandString, importToIndexDescription, importToIndexBuilder)
   .command(addCommandString, addDescription, addBuilder)
