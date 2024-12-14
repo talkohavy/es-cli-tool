@@ -1,0 +1,9 @@
+{
+  "query": {
+    "term": {
+      "textAndKeywordField": {
+        "value": "Joey"
+      }
+    }
+  }
+}
