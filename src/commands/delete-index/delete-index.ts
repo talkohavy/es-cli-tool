@@ -18,7 +18,7 @@ export const deleteIndexBuilder: any = (yargs: Argv) => {
     })
     .example('es-cli-tool delete-index --index users', 'Deletes the users index.');
   yargs
-    .option('--sure', {
+    .option('sure', {
       alias: 'y',
       type: 'boolean',
       description: 'auto-pass the "are you sure" inquire.',
