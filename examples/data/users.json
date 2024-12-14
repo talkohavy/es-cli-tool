@@ -1,5 +1,5 @@
 {"index": {}}
-{ "booleanField": true, "numberField": 8, "dateField": 585111111111, "keywordField":"Joey Tribbiani", "textField": "Joey Tribbiani", "textAndKeywordField": "Joey Tribbiani" }
+{ "booleanField": true, "numberField": 8, "dateField": 585111111111, "keywordField":"Joey", "textField": "Joey", "textAndKeywordField": "Joey" }
 {"index": {}}
 { "booleanField": true, "numberField": 10, "dateField":"1988-07-17T02:51:51.111Z" , "keywordField":"Rachel Green-Geller", "textField": "Rachel Green-Geller", "textAndKeywordField": "Rachel Green-Geller" }
 {"index": {}}
