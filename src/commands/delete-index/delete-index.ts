@@ -1,3 +1,4 @@
+import { Argv } from 'yargs';
 import { COLORS } from '../../constants/colors.js';
 import { colorizeJson } from '../../utils/colorize-json/colorize-json.js';
 import { getAllIndexesNames } from '../../utils/getAllIndexesNames.js';
@@ -8,7 +9,23 @@ import { executeDeleteIndexQuery } from './helpers/executeDeleteIndexQuery.js';
 export const deleteIndexCommandString = 'delete-index';
 export const deleteIndexDescription = 'Delete an existing index.';
 
-export async function deleteIndex() {
+export const deleteIndexBuilder: any = (yargs: Argv) => {
+  yargs
+    .option('index', {
+      type: 'string',
+      description: 'Specify the target index.',
+    })
+    .example('es-cli-tool delete-index --index users', 'Deletes the users index.');
+};
+
+type DeleteIndexProps = {
+  index: string;
+  color: boolean;
+};
+
+export async function deleteIndex(props: DeleteIndexProps) {
+  const { index, color: shouldColorize } = props;
+
   const indexNamesArr = await getAllIndexesNames();
 
   if (!indexNamesArr.length) {
@@ -20,11 +37,17 @@ export async function deleteIndex() {
     return;
   }
 
-  const selectedIndex = await inquireSelectFromList(indexNamesArr, 'index');
+  const selectedIndex = index ?? (await inquireSelectFromList(indexNamesArr, 'index'));
 
-  const response = await executeDeleteIndexQuery(selectedIndex);
+  if (!indexNamesArr.includes(selectedIndex)) {
+    logger.info(`${COLORS.green}index ${index} doesn't exist...${COLORS.stop}`);
 
-  const colorizedResponse = colorizeJson(response);
+    return;
+  }
 
-  console.log(colorizedResponse);
+  const responseRaw = await executeDeleteIndexQuery(selectedIndex);
+
+  const response = shouldColorize ? colorizeJson(responseRaw) : responseRaw;
+
+  console.log(response);
 }
