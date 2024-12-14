@@ -58,11 +58,8 @@
   "license": "MIT",
   "dependencies": {
     "@inquirer/prompts": "^5.3.8",
-    "console-table-printer": "^2.12.1",
     "external-editor": "^3.1.0",
     "glob": "^11.0.0",
-    "gray-matter": "^4.0.3",
-    "human-id": "^4.1.1",
     "yargs": "^17.7.2"
   },
   "devDependencies": {
