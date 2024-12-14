@@ -6,7 +6,10 @@
   "type": "module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
-  "keywords": ["elasticsearch", "CLI"],
+  "keywords": [
+    "elasticsearch",
+    "CLI"
+  ],
   "bin": {
     "es-cli-tool": "index.js"
   },
@@ -59,7 +62,6 @@
   "dependencies": {
     "@inquirer/prompts": "^5.3.8",
     "external-editor": "^3.1.0",
-    "glob": "^11.0.0",
     "yargs": "^17.7.2"
   },
   "devDependencies": {
