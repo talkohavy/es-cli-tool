@@ -1,5 +1,5 @@
 {"index": {}}
-{ "booleanField": true, "numberField": 8, "dateField": "585111111111", "keywordField":"Tal Kohavy", "textField": "this is a great example", "textAndKeywordField": "well this is fun stuff" }
+{ "booleanField": true, "numberField": 8, "dateField": 585111111111, "keywordField":"Tal Kohavy", "textField": "this is a great example", "textAndKeywordField": "well this is fun stuff" }
 {"index": {}}
 { "booleanField": true, "numberField": 10, "dateField":"1988-07-17T02:51:51.111Z" , "keywordField":"Maria Pavlov", "textField": "this example is beyond great", "textAndKeywordField": "i'm glad we did this" }
 {"index": {}}
