@@ -214,3 +214,35 @@ How many document/s would return?
 .
 
 (Answer: 0. Why? Because this is a trick question. The ".keyword" is on the wrong section. It should be on the `fieldName`).
+
+---
+
+## Question 7: `term` & `date`
+
+You have this query:
+
+```json
+{
+  "query": {
+    "term": {
+      "dateField": 585111111111
+    }
+  }
+}
+```
+
+And these documents:
+
+1. Monica has "dateField" : "585111111111"
+2. Joey has "dateField" : 585111111111
+3. Rachel has "dateField" : "1988-07-17T02:51:51.111Z"
+
+What document/s would return?
+
+.
+.
+.
+.
+.
+
+(Answer: All 3 of them.).
