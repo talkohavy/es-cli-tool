@@ -10,7 +10,9 @@ export const clearAllDescription = 'Deletes the cluster. This will delete all yo
 export async function clearAll() {
   console.log('');
 
-  const answer = await inquireConfirm(`Are you sure? ${COLORS.red}(this will delete ALL your indexes!)${COLORS.stop}`);
+  const answer = await inquireConfirm({
+    alternativeMessage: `Are you sure? ${COLORS.red}(this will delete ALL your indexes!)${COLORS.stop}`,
+  });
 
   if (answer === false) return;
 
