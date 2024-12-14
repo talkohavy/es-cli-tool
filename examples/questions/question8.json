@@ -1,0 +1,7 @@
+{
+  "query": {
+    "term": {
+      "numberField": 5
+    }
+  }
+}

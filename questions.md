@@ -246,3 +246,35 @@ What document/s would return?
 .
 
 (Answer: All 3 of them.).
+
+---
+
+## Question 8: `term` & `number`
+
+You have this query:
+
+```json
+{
+  "query": {
+    "term": {
+      "numberField": {
+        "value":"5"
+      }
+    }
+  }
+}
+```
+
+And these documents:
+
+1. Two documents with value of 5 for "numberField"
+
+What document/s would return?
+
+.
+.
+.
+.
+.
+
+(Answer: Both of them.).
