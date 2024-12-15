@@ -1,6 +1,6 @@
 import { execSync } from 'child_process';
-import { getContext } from '../../../utils/getContext.js';
-import { logger } from '../../../utils/logger/logger.js';
+import { getContext } from '../../../common/utils/getContext.js';
+import { logger } from '../../../common/utils/logger/logger.js';
 
 export async function executeDeleteIndexQuery(index: string) {
   try {

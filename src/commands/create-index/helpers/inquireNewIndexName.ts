@@ -1,5 +1,5 @@
 import { input } from '@inquirer/prompts';
-import { COLORS } from '../../../constants/colors.js';
+import { COLORS } from '../../../common/constants/colors.js';
 
 export async function inquireNewIndexName() {
   console.log('');

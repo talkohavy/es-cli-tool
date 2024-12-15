@@ -115,7 +115,7 @@ function updateVersionTemplates() {
   const packageJson = JSON.parse(fs.readFileSync('./package.json').toString());
   const { version } = packageJson;
 
-  const showVersionFuncPath = path.resolve(process.cwd(), 'dist', 'flags', 'version.js');
+  const showVersionFuncPath = path.resolve(process.cwd(), 'dist', 'common', 'utils', 'showVersion.js');
   const showVersionFuncContent = fs.readFileSync(showVersionFuncPath, 'utf-8');
   const updatedShowVersionFuncContent = showVersionFuncContent.replace('{{version}}', version);
   fs.writeFileSync(showVersionFuncPath, updatedShowVersionFuncContent);

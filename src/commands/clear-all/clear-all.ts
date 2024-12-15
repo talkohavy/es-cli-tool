@@ -1,7 +1,7 @@
-import { COLORS } from '../../constants/colors.js';
-import { getAllIndexesNames } from '../../utils/getAllIndexesNames.js';
-import { inquireConfirm } from '../../utils/inquires/inquireConfirm.js';
-import { logger } from '../../utils/logger/logger.js';
+import { COLORS } from '../../common/constants/colors.js';
+import { getAllIndexesNames } from '../../common/utils/getAllIndexesNames.js';
+import { inquireConfirm } from '../../common/utils/inquires/inquireConfirm.js';
+import { logger } from '../../common/utils/logger/logger.js';
 import { executeDeleteIndexQuery } from '../delete-index/helpers/executeDeleteIndexQuery.js';
 
 export const clearAllCommandString = 'clear-all';

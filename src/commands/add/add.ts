@@ -1,10 +1,10 @@
 import { Argv } from 'yargs';
-import { COLORS } from '../../constants/colors.js';
-import { colorizeJson } from '../../utils/colorize-json/colorize-json.js';
-import { getAllIndexesNames } from '../../utils/getAllIndexesNames.js';
-import { getElasticQuery } from '../../utils/getElasticQuery.js';
-import { inquireSelectFromList } from '../../utils/inquires/inquireSelectFromList.js';
-import { logger } from '../../utils/logger/logger.js';
+import { COLORS } from '../../common/constants/colors.js';
+import { colorizeJson } from '../../common/utils/colorize-json/colorize-json.js';
+import { getAllIndexesNames } from '../../common/utils/getAllIndexesNames.js';
+import { getElasticQuery } from '../../common/utils/getElasticQuery.js';
+import { inquireSelectFromList } from '../../common/utils/inquires/inquireSelectFromList.js';
+import { logger } from '../../common/utils/logger/logger.js';
 import { executeAddQuery } from './helpers/executeAddQuery.js';
 
 export const addCommandString = 'add';

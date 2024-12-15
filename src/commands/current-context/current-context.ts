@@ -1,6 +1,6 @@
+import { COLORS } from '../../common/constants/colors.js';
+import { logger } from '../../common/utils/logger/logger.js';
 import { loadConfig } from '../../config/config.js';
-import { COLORS } from '../../constants/colors.js';
-import { logger } from '../../utils/logger/logger.js';
 
 export const currentContextCommandString = 'current-context';
 export const currentContextDescription = 'Show the current context.';

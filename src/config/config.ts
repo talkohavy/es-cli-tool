@@ -1,6 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-import { CONFIG_PATH } from '../constants/globals.js';
+import { CONFIG_PATH } from '../common/constants/globals.js';
 import { Config } from './types.js';
 
 export function loadConfig(): Config {

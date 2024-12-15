@@ -1,9 +1,9 @@
 import { Argv } from 'yargs';
 import { input } from '@inquirer/prompts';
+import { COLORS } from '../../common/constants/colors.js';
+import { logger } from '../../common/utils/logger/logger.js';
 import { loadConfig, saveConfig } from '../../config/config.js';
 import { Context } from '../../config/types.js';
-import { COLORS } from '../../constants/colors.js';
-import { logger } from '../../utils/logger/logger.js';
 
 export const createContextCommandString = 'create-context [name] [url]';
 export const createContextDescription = 'Create a new context.';
