@@ -9,7 +9,10 @@ export function currentContext() {
   const config = loadConfig();
 
   if (!config.currentContext) {
-    logger.info(`${COLORS.green}No context is currently set.${COLORS.stop}`);
+    logger.info(`${COLORS.green}No context is currently set.${COLORS.stop}`, {
+      newLineBefore: true,
+      newLineAfter: true,
+    });
 
     process.exit(0);
   }
