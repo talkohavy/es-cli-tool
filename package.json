@@ -6,10 +6,7 @@
   "type": "module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
-  "keywords": [
-    "elasticsearch",
-    "CLI"
-  ],
+  "keywords": ["elasticsearch", "CLI"],
   "bin": {
     "es-cli-tool": "index.js"
   },

@@ -13,7 +13,7 @@ import { importToIndex } from './commands/import-to-index/import-to-index.js';
 import { update } from './commands/update/update.js';
 import { updateMapping } from './commands/update-mapping/update-mapping.js';
 import { useContext } from './commands/use-context/use-context.js';
-import { Commands } from './constants/types.js';
+import { Commands } from './common/constants/types.js';
 
 const COMMAND_MAPPER = {
   [Commands.Add]: add,

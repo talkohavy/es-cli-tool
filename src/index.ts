@@ -51,9 +51,9 @@ import {
   useContextCommandString,
   useContextDescription,
 } from './commands/use-context/use-context.js';
-import { COLORS } from './constants/colors.js';
-import { bigTextEsTool } from './constants/globals.js';
-import { showVersion } from './flags/version.js';
+import { COLORS } from './common/constants/colors.js';
+import { bigTextEsTool } from './common/constants/globals.js';
+import { showVersion } from './common/utils/showVersion.js';
 
 const __no_op__: any = () => {};
 

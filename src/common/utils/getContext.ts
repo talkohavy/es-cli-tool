@@ -1,4 +1,4 @@
-import { loadConfig } from '../config/config.js';
+import { loadConfig } from '../../config/config.js';
 import { logger } from './logger/logger.js';
 
 export function getContext() {

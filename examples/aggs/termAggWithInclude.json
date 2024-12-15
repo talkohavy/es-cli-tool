@@ -1,0 +1,12 @@
+{
+  "size": 0,
+  "aggs": {
+    "appCrashCount": {
+      "terms": {
+        "field": "firstName.keyword",
+        "size": 3,
+        "include": ["Sianna", "Rene"]
+      }
+    }
+  }
+}
