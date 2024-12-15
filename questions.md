@@ -64,6 +64,8 @@ And these documents:
 
 What document/s would be returned?
 
+Before we answer question 2, let's move on to question 3.
+
 .
 .
 .
@@ -107,7 +109,7 @@ What document/s would be returned?
 .
 .
 
-(Answer: 3. Why? `term` + `textField` takes the field's value, lowercases it, and then checks the provided value against it. The provided value stays AS-IS! Which means that if it contains an uppercase letter, there's a 0 percent chance for a match).
+(Answer: 3 documents overall. Documents 2, 3 ad 4. But not 6. Why? `term` + `textField` takes the field's value, lowercases it, and then checks the provided value against it. The provided value stays AS-IS! Which means that if it contains an uppercase letter, there's a 0 percent chance for a match).
 
 ---
 
@@ -155,7 +157,7 @@ You have this query:
 ```json
 {
   "query": {
-    "term.keyword": {
+    "term": {
       "textAndKeywordField": {
         "value": "Joey.keyword" // before that, ask about "Joey"
       }
