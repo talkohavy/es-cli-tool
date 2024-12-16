@@ -1,4 +1,4 @@
-# lvlup
+# es-cli-tool
 
 ## 0.0.2
 
