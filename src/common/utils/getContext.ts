@@ -10,7 +10,7 @@ export function getContext() {
       newLineAfter: true,
     });
 
-    process.exit(1);
+    process.exit(0);
   }
 
   return config.contexts[config.currentContext];
