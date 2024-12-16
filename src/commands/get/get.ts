@@ -11,8 +11,8 @@ enum SubCommands {
   All = 'all',
 }
 
-export const getDescription = 'Get documents from a certain index by a certain query.';
 export const getCommandString = 'get';
+export const getDescription = 'Get documents from a certain index by a certain query.';
 
 export const getBuilder: any = (yargs: Argv) => {
   yargs.command(

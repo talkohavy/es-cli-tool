@@ -26,7 +26,10 @@ export async function useContext(props: UseContextProps) {
   const contextsList = config?.contexts ? Object.keys(config.contexts) : [];
 
   if (contextsList.length === 0) {
-    logger.info(`${COLORS.green}You have 0 contexts. Create one?${COLORS.stop}`);
+    logger.info(`${COLORS.green}You have 0 contexts. Create one?${COLORS.stop}`, {
+      newLineBefore: true,
+      newLineAfter: true,
+    });
 
     process.exit(0);
   }
