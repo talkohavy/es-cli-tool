@@ -16,7 +16,7 @@ export async function inquireConfirm(props?: InquireConfirmProps) {
 
   const shouldMoveForward = await confirm({
     message: `✨ ${alternativeMessage ?? 'Are you sure?'}`,
-    default: isSure,
+    default: !!isSure,
     theme: { style: { defaultAnswer: () => `${COLORS.black}(y/n) › ${COLORS.blue}${isSure ? 'true' : 'false'}` } },
   });
 
