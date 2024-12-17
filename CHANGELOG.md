@@ -1,5 +1,11 @@
 # es-cli-tool
 
+## 0.0.55
+
+### Patch Changes
+
+- Package is now using `esbuild` as its bundler. 50% less bundle-size.
+
 ## 0.0.54
 
 ### Patch Changes
