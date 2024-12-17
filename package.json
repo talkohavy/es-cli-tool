@@ -5,15 +5,14 @@
   "private": "true",
   "type": "module",
   "main": "dist/index.js",
-  "types": "dist/index.d.ts",
   "keywords": ["elasticsearch", "CLI"],
   "bin": {
     "es-cli-tool": "index.js"
   },
   "exports": {
     ".": {
-      "default": "./dist/index.js",
-      "types": "./dist/index.d.js"
+      "types": "./dist/index.d.js",
+      "default": "./dist/index.js"
     }
   },
   "scripts": {
