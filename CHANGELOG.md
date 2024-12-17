@@ -1,5 +1,11 @@
 # es-cli-tool
 
+## 0.0.56
+
+### Patch Changes
+
+- Removed devDependencies key from package.json.
+
 ## 0.0.55
 
 ### Patch Changes
