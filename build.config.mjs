@@ -15,6 +15,7 @@ import * as esbuild from 'esbuild';
  *   publishConfig: {
  *     access: string
  *   },
+ *   devDependencies?: Record<string, string>,
  * }} PackageJson
  */
 
@@ -129,27 +130,24 @@ function manipulatePackageJsonFile() {
 
   const packageJsonPath = path.resolve(ROOT_PROJECT, outDirName, 'package.json');
 
-  // Step 1: get the original package.json file
+  // Step: get the original package.json file
   /** @type {PackageJson} */
   const packageJson = JSON.parse(fs.readFileSync(packageJsonPath).toString());
 
-  // Step 2: Remove all scripts
-  delete packageJson.scripts;
-  console.log(`  • ${blueColor}deleted${stopColor} "scripts" key`);
-
-  // Step 3: Change from private to public
-  delete packageJson.private;
-  packageJson.publishConfig.access = 'public';
-  console.log(`  • ${blueColor}changed${stopColor} from private to public`);
-  console.log(`  • ${blueColor}changed${stopColor} publishConfig access to public`);
-
-  // Step 4: Change type module to commonjs
   if (isProd) {
     packageJson.type = 'commonjs';
     console.log(`  • ${blueColor}changed${stopColor} from module to commonjs`);
   }
 
-  // Step 5: create new package.json file in the output folder
+  delete packageJson.private;
+  delete packageJson.scripts;
+  delete packageJson.devDependencies;
+  packageJson.publishConfig.access = 'public';
   fs.writeFileSync(packageJsonPath, JSON.stringify(packageJson));
+
+  console.log(`  • ${blueColor}changed${stopColor} from private to public`);
+  console.log(`  • ${blueColor}deleted${stopColor} "scripts" key`);
+  console.log(`  • ${blueColor}deleted${stopColor} "devDependencies" key`);
+  console.log(`  • ${blueColor}changed${stopColor} publishConfig access to public`);
   console.log(`  • ${blueColor}package.json${stopColor} file written successfully!`);
 }
