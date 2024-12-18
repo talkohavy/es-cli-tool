@@ -54,7 +54,7 @@ export async function deleteIndex(props: DeleteIndexProps) {
     return;
   }
 
-  const shouldDelete = isSure ?? (await inquireConfirm());
+  const shouldDelete = isSure ?? (await inquireConfirm({ message: 'Are you sure?' }));
 
   if (!shouldDelete) return;
 

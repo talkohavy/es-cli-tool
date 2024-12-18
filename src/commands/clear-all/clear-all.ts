@@ -11,7 +11,7 @@ export async function clearAll() {
   console.log('');
 
   const answer = await inquireConfirm({
-    alternativeMessage: `Are you sure? ${COLORS.red}(this will delete ALL your indexes!)${COLORS.stop}`,
+    message: `Are you sure? ${COLORS.red}(this will delete ALL your indexes!)${COLORS.stop}`,
   });
 
   if (answer === false) return;

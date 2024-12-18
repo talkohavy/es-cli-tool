@@ -2,25 +2,28 @@ import { confirm } from '@inquirer/prompts';
 import { COLORS } from '../../constants/colors.js';
 
 type InquireConfirmProps = {
-  alternativeMessage?: string;
+  message: string;
   /**
    * @default false
    */
-  isSure?: boolean;
+  initialIsTrue?: boolean;
 };
 
-export async function inquireConfirm(props?: InquireConfirmProps) {
-  const { isSure, alternativeMessage } = (props ?? {}) as InquireConfirmProps;
+export async function inquireConfirm(props: InquireConfirmProps) {
+  const { message, initialIsTrue } = props;
 
   console.log('');
 
-  const shouldMoveForward = await confirm({
-    message: `✨ ${alternativeMessage ?? 'Are you sure?'}`,
-    default: !!isSure,
-    theme: { style: { defaultAnswer: () => `${COLORS.black}(y/n) › ${COLORS.blue}${isSure ? 'true' : 'false'}` } },
+  const isTrue = await confirm({
+    message,
+    default: !!initialIsTrue,
+    theme: {
+      prefix: '✨',
+      style: { defaultAnswer: () => `${COLORS.black}(y/n) › ${COLORS.blue}${initialIsTrue ? 'true' : 'false'}` },
+    },
   });
 
   console.log('');
 
-  return shouldMoveForward;
+  return isTrue;
 }
