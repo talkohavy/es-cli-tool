@@ -52,7 +52,7 @@ import {
   useContextDescription,
 } from './commands/use-context/use-context.js';
 import { COLORS } from './common/constants/colors.js';
-import { bigTextEsTool } from './common/constants/globals.js';
+import { toolNameBigText } from './common/constants/globals.js';
 import { showVersion } from './common/utils/showVersion.js';
 
 const __no_op__: any = () => {};
@@ -124,7 +124,7 @@ async function run() {
 
   if (flags.help || commands?.length === 0) {
     const helpMenuAsText = await yargsInstance.getHelp();
-    const helpTextBig = `${bigTextEsTool}${os.EOL}${os.EOL}${helpMenuAsText}`;
+    const helpTextBig = `${toolNameBigText}${os.EOL}${os.EOL}${helpMenuAsText}`;
     console.log(helpTextBig);
     process.exit(0);
   }

@@ -1,6 +1,6 @@
 import { CreateFileError, ExternalEditor, LaunchEditorError, ReadFileError, RemoveFileError } from 'external-editor';
 import { COLORS } from '../../constants/colors.js';
-import { ES_TOOL_NAME } from '../../constants/globals.js';
+import { CLI_TOOL_NAME } from '../../constants/globals.js';
 import { EditorTypes } from '../../constants/types.js';
 import { logger } from '../logger/logger.js';
 import { useVsCodeAsEditor } from '../useVsCodeAsEditor.js';
@@ -27,7 +27,7 @@ function getMessageFromExternalEditor(editor: string = 'code') {
   try {
     const externalEditor = new ExternalEditor(externalEditorTemplate, {
       postfix: '.json',
-      prefix: `${ES_TOOL_NAME}-`,
+      prefix: `${CLI_TOOL_NAME}-`,
     });
 
     if (editor === EditorTypes.Code) useVsCodeAsEditor(externalEditor);
