@@ -1,7 +1,7 @@
 import { CreateFileError, ExternalEditor, LaunchEditorError, ReadFileError, RemoveFileError } from 'external-editor';
 import { COLORS } from '../../constants/colors.js';
 import { CLI_TOOL_NAME } from '../../constants/globals.js';
-import { EditorTypes } from '../../constants/types.js';
+import { EditorTypes } from '../../types.js';
 import { logger } from '../logger/logger.js';
 import { useVsCodeAsEditor } from '../useVsCodeAsEditor.js';
 
