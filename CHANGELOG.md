@@ -1,5 +1,11 @@
 # es-cli-tool
 
+## 0.0.57
+
+### Patch Changes
+
+- Renamed 2 global variables: CLI_TOOL_NAME & toolNameBigText.
+
 ## 0.0.56
 
 ### Patch Changes
