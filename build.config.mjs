@@ -130,14 +130,13 @@ function manipulatePackageJsonFile() {
   const packageJson = JSON.parse(fs.readFileSync(packageJsonPath).toString());
 
   packageJson.type = 'commonjs';
-  console.log(`  • ${blueColor}changed${stopColor} from module to commonjs`);
-
   delete packageJson.private;
   delete packageJson.scripts;
   delete packageJson.devDependencies;
   packageJson.publishConfig.access = 'public';
   fs.writeFileSync(packageJsonPath, JSON.stringify(packageJson));
 
+  console.log(`  • ${blueColor}changed${stopColor} from module to commonjs`);
   console.log(`  • ${blueColor}changed${stopColor} from private to public`);
   console.log(`  • ${blueColor}deleted${stopColor} "scripts" key`);
   console.log(`  • ${blueColor}deleted${stopColor} "devDependencies" key`);
