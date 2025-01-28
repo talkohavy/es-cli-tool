@@ -1,5 +1,11 @@
 # es-cli-tool
 
+## 0.0.58
+
+### Patch Changes
+
+- Updated the README.md file. Override password, and stop using network.
+
 ## 0.0.57
 
 ### Patch Changes
