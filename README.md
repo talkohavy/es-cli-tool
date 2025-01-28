@@ -22,44 +22,33 @@ If you already have a running elasticsearch server you can skip to the [Getting 
 
 \* **ElasticSearch With Docker** \*
 
-### - Step 1: create a docker network
-
-First create a docker network:
-
-```bash
-docker network create elastic
-```
-
-### - Step 2: run elasticsearch server for the first time
+### - Step 1: run elasticsearch server for the first time
 
 Run elasticsearch server and expose it to the host:
 
 ```bash
-docker run --name es01 --net elastic -p 9200:9200 -it -m 1GB docker.elastic.co/elasticsearch/elasticsearch:8.16.1
+docker run --name es01 -p 9200:9200 -e ELASTIC_PASSWORD="your_password_here" -it -m 1GB docker.elastic.co/elasticsearch/elasticsearch:8.16.1
 ```
 
 A little bit about the flags:
 
 - We're giving our container the name "es01".
-- We're using the network "elastic", which we just created.
 - The -m flag is here to set a limit for the memory of the container.
 - Notice that the version of the elasticsearch image is 8.16.1, which could be out-of-date at the time you're watching this (it is currently the latest).
 
-### - Step 3: store password in an environment variable called `ELASTIC_PASSWORD`
-
-The command you ran above gave a password.
+### - Step 2: store password in an environment variable called `ELASTIC_PASSWORD`
 
 In **MacOS**, put the following line:
 
 ```bash
-export ELASTIC_PASSWORD="your_password"
+export ELASTIC_PASSWORD="your_password_here"
 ```
 
 in either one of `.bashrc` or `.zshrc`.
 
 In **Windows**, create an environment variable named `ELASTIC_PASSWORD` and give it the password as value.
 
-### - Step 4: Test Connectivity
+### - Step 3: Test Connectivity
 
 Before trying out the tool, let's test the connectivity with raw `curl`:
 
@@ -70,7 +59,7 @@ curl --insecure -u elastic:$ELASTIC_PASSWORD https://localhost:9200
 The important parts to note here are:
 
 - I'm using version `8.16.1` of elasticsearch. Different image versions would require different flags & protocols.
-- using the `--insecure` flag is a must
+- It is required to use the `--insecure` flag.
 - It is required to use the `https` protocol.
 - It is required to use basic authentication. I had the password stored in an ENV variable called `ELASTIC_PASSWORD`, though you can put it directly in the command, it's just not recommended.
 
