@@ -47,11 +47,14 @@ export async function createContext(props: ContextData) {
   const newContext: Context = { url: esUrl, flags };
 
   config.contexts[newContextName] = newContext;
+  config.currentContext = newContextName;
 
   saveConfig(config);
 
   logger.info(`${COLORS.green}Context "${newContextName}" created.${COLORS.stop}`, {
     newLineBefore: true,
+  });
+  logger.info(`${COLORS.green}Switched to context "${newContextName}".${COLORS.stop}`, {
     newLineAfter: true,
   });
 }
