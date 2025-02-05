@@ -1,5 +1,12 @@
 # es-cli-tool
 
+## 0.0.59
+
+### Patch Changes
+
+- Upon creating a new context, also switch to it.
+- When calling use-context, also display the name (just the name) of the current context which is selected.
+
 ## 0.0.58
 
 ### Patch Changes
