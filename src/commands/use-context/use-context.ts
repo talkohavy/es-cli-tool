@@ -34,6 +34,8 @@ export async function useContext(props: UseContextProps) {
     process.exit(0);
   }
 
+  logger.info(`${COLORS.green}Current context:${COLORS.stop} ${config.currentContext}`, { newLineBefore: true });
+
   const selectedContext = name ?? (await inquireSelectFromList(contextsList, 'context'));
 
   const isAlreadyExists = config.contexts[selectedContext];
