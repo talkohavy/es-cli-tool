@@ -13,8 +13,8 @@ export function validateElasticsearchIndexName(indexName: string) {
     return { isValid: false, reason: "Index name cannot be empty or start with '.' unless explicitly allowed." };
   }
 
-  if (/^(\+|-)/.test(indexName)) {
-    return { isValid: false, reason: "Index name cannot start with '+' or '-'." };
+  if (/^(\+|-|_)/.test(indexName)) {
+    return { isValid: false, reason: "Index name cannot start with '+', '-' or '_'." };
   }
 
   // Check for valid characters and lowercase
