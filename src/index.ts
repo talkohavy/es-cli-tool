@@ -11,7 +11,11 @@ import {
   createContextCommandString,
   createContextDescription,
 } from './commands/create-context/create-context.js';
-import { createIndexCommandString, createIndexDescription } from './commands/create-index/create-index.js';
+import {
+  createIndexBuilder,
+  createIndexCommandString,
+  createIndexDescription,
+} from './commands/create-index/create-index.js';
 import { currentContextCommandString, currentContextDescription } from './commands/current-context/current-context.js';
 import { deleteBuilder, deleteDocumentCommandString, deleteDocumentDescription } from './commands/delete/delete.js';
 import {
@@ -66,7 +70,7 @@ const yargsInstance = yargs(hideBin(process.argv))
   .command(useContextCommandString, useContextDescription, useContextBuilder)
   .command(currentContextCommandString, currentContextDescription, __no_op__)
   .command(deleteContextCommandString, deleteContextDescription, deleteContextBuilder)
-  .command(createIndexCommandString, createIndexDescription, __no_op__)
+  .command(createIndexCommandString, createIndexDescription, createIndexBuilder)
   .command(deleteIndexCommandString, deleteIndexDescription, deleteIndexBuilder)
   .command(clearAllCommandString, clearAllDescription, __no_op__)
   .command(importToIndexCommandString, importToIndexDescription, importToIndexBuilder)
