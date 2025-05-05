@@ -1,5 +1,12 @@
 # es-cli-tool
 
+## 0.0.61
+
+### Patch Changes
+
+- Turns out you can't have an index start with _.
+- The `create-index` now support an --index flag.
+
 ## 0.0.60
 
 ### Patch Changes
