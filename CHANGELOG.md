@@ -1,5 +1,11 @@
 # es-cli-tool
 
+## 0.0.60
+
+### Patch Changes
+
+- Index name can now start with _.
+
 ## 0.0.59
 
 ### Patch Changes
