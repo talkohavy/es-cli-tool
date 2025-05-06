@@ -1,4 +1,4 @@
-import { execSync } from 'child_process';
+import { writeFileSync } from 'fs';
 import { MAX_SIZE } from '../../../common/constants/globals.js';
 import { getMatchAllQuery } from '../../../common/utils/getMatchAllQuery.js';
 import { logger } from '../../../common/utils/logger/logger.js';
@@ -19,7 +19,12 @@ export async function executeExportToFileQuery(props: ExecuteExportToFileQueryPr
   const resultToStore = getResponse.hits.hits.map((hit: any) => hit._source);
   const fileContent = JSON.stringify(resultToStore);
 
-  execSync(`echo '${fileContent}' > ${filePath}`, { stdio: 'inherit' });
+  try {
+    // Replace execSync with writeFileSync to handle large content
+    writeFileSync(filePath, fileContent, 'utf8');
+  } catch (error) {
+    console.error(error);
+  }
 
   logger.info(`Data exported to ${filePath}`, {
     newLineBefore: true,

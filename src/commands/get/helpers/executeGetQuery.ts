@@ -20,12 +20,16 @@ export async function executeGetQuery(props: ExecuteAddQueryProps) {
 
     const requestString = `curl -X POST "${url}/${index}/_search?pretty" ${flags} -d' ${queryAsStr}'`;
 
-    const result = execSync(requestString).toString();
+    const result = execSync(requestString, { maxBuffer: 100 * 1024 * 1024 }).toString();
 
     return result;
   } catch (error) {
     console.error(error);
     logger.error('[ES Error] Failed to execute GET query...');
+
+    if (error instanceof Error && error.message.includes('stdout maxBuffer')) {
+      logger.error('[ES Error] Response exceeded buffer size. Try reducing the query size or write directly to file.');
+    }
 
     throw error;
   }
