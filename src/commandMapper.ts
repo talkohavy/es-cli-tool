@@ -6,6 +6,7 @@ import { currentContext } from './commands/current-context/current-context.js';
 import { deleteDocument } from './commands/delete/delete.js';
 import { deleteContext } from './commands/delete-context/delete-context.js';
 import { deleteIndex } from './commands/delete-index/delete-index.js';
+import { exportFromIndex } from './commands/export-from-index/export-from-index.js';
 import { get } from './commands/get/get.js';
 import { getMapping } from './commands/get-mapping/get-mapping.js';
 import { getSettings } from './commands/get-settings/get-settings.js';
@@ -31,6 +32,7 @@ const COMMAND_MAPPER = {
   [Commands.UpdateDocument]: update,
   [Commands.UpdateMapping]: updateMapping,
   [Commands.UseContext]: useContext,
+  [Commands.Export]: exportFromIndex,
 };
 
 type commandMapperProps = {

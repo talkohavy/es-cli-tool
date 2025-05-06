@@ -28,6 +28,11 @@ import {
   deleteIndexCommandString,
   deleteIndexDescription,
 } from './commands/delete-index/delete-index.js';
+import {
+  exportFromIndexBuilder,
+  exportFromIndexCommandString,
+  exportFromIndexDescription,
+} from './commands/export-from-index/export-from-index.js';
 import { getBuilder, getCommandString, getDescription } from './commands/get/get.js';
 import {
   getMappingBuilder,
@@ -74,6 +79,7 @@ const yargsInstance = yargs(hideBin(process.argv))
   .command(deleteIndexCommandString, deleteIndexDescription, deleteIndexBuilder)
   .command(clearAllCommandString, clearAllDescription, __no_op__)
   .command(importToIndexCommandString, importToIndexDescription, importToIndexBuilder)
+  .command(exportFromIndexCommandString, exportFromIndexDescription, exportFromIndexBuilder)
   .command(addCommandString, addDescription, addBuilder)
   .command(updateCommandString, updateDescription, updateBuilder)
   .command(deleteDocumentCommandString, deleteDocumentDescription, deleteBuilder)

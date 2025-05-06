@@ -15,6 +15,7 @@ export enum Commands {
   UpdateDocument = 'update',
   UpdateMapping = 'update-mapping',
   UseContext = 'use-context',
+  Export = 'export',
 }
 
 export enum EditorTypes {

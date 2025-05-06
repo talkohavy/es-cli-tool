@@ -3,6 +3,7 @@ import { COLORS } from '../../common/constants/colors.js';
 import { colorizeJson } from '../../common/utils/colorize-json/colorize-json.js';
 import { getAllIndexesNames } from '../../common/utils/getAllIndexesNames.js';
 import { getElasticQuery } from '../../common/utils/getElasticQuery.js';
+import { getMatchAllQuery } from '../../common/utils/getMatchAllQuery.js';
 import { inquireSelectFromList } from '../../common/utils/inquires/inquireSelectFromList.js';
 import { logger } from '../../common/utils/logger/logger.js';
 import { executeGetQuery } from './helpers/executeGetQuery.js';
@@ -44,14 +45,14 @@ export const getBuilder: any = (yargs: Argv) => {
 
 type GetProps = {
   commands: Array<string>;
-  index: string;
-  file: string;
-  color: boolean;
-  count: number;
+  index?: string;
+  file?: string;
+  count?: number;
+  color?: boolean;
 };
 
 export async function get(props: GetProps) {
-  const { commands, index, file, color: shouldColorize, count } = props;
+  const { commands, index, file, color: shouldColorize, count = 10 } = props;
   const subCommand = commands[1] as SubCommands;
 
   const indexNamesArr = await getAllIndexesNames();
@@ -82,13 +83,4 @@ export async function get(props: GetProps) {
   const response = shouldColorize ? colorizeJson(responseRaw) : responseRaw;
 
   console.log(response);
-}
-
-function getMatchAllQuery(count: number): Record<string, any> {
-  return {
-    size: count,
-    query: {
-      match_all: {},
-    },
-  };
 }
