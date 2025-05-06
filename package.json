@@ -40,7 +40,8 @@
     "dev-get-mapping": "node dist/index.js get-mapping",
     "dev-get-settings": "node dist/index.js get-settings",
     "dev-update-mapping": "node dist/index.js update-mapping",
-    "dev-export": "node dist/index.js export"
+    "dev-export": "node dist/index.js export",
+    "dev-index-list": "node dist/index.js index-list"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",

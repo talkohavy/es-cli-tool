@@ -11,6 +11,7 @@ import { get } from './commands/get/get.js';
 import { getMapping } from './commands/get-mapping/get-mapping.js';
 import { getSettings } from './commands/get-settings/get-settings.js';
 import { importToIndex } from './commands/import-to-index/import-to-index.js';
+import { indexList } from './commands/index-list/index-list.js';
 import { update } from './commands/update/update.js';
 import { updateMapping } from './commands/update-mapping/update-mapping.js';
 import { useContext } from './commands/use-context/use-context.js';
@@ -29,6 +30,7 @@ const COMMAND_MAPPER = {
   [Commands.GetMapping]: getMapping,
   [Commands.GetSettings]: getSettings,
   [Commands.ImportToIndex]: importToIndex,
+  [Commands.IndexList]: indexList,
   [Commands.UpdateDocument]: update,
   [Commands.UpdateMapping]: updateMapping,
   [Commands.UseContext]: useContext,

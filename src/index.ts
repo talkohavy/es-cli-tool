@@ -49,6 +49,7 @@ import {
   importToIndexCommandString,
   importToIndexDescription,
 } from './commands/import-to-index/import-to-index.js';
+import { indexListCommandString, indexListDescription } from './commands/index-list/index-list.js';
 import { updateBuilder, updateCommandString, updateDescription } from './commands/update/update.js';
 import {
   updateMappingBuilder,
@@ -87,6 +88,7 @@ const yargsInstance = yargs(hideBin(process.argv))
   .command(getMappingCommandString, getMappingDescription, getMappingBuilder)
   .command(getSettingsCommandString, getSettingsDescription, getSettingsBuilder)
   .command(updateMappingCommandString, updateMappingDescription, updateMappingBuilder)
+  .command(indexListCommandString, indexListDescription, __no_op__)
   .options({
     v: {
       alias: 'version',

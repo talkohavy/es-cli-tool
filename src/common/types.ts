@@ -12,6 +12,7 @@ export enum Commands {
   Get = 'get',
   GetMapping = 'get-mapping',
   GetSettings = 'get-settings',
+  IndexList = 'index-list',
   UpdateDocument = 'update',
   UpdateMapping = 'update-mapping',
   UseContext = 'use-context',
