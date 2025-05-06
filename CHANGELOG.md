@@ -1,5 +1,11 @@
 # es-cli-tool
 
+## 1.0.2
+
+### Patch Changes
+
+- Import now uses a regular json file, and uses createTemporaryBulkFile to convert it into a nulk file. If transformation fails, it uses the original file.
+
 ## 1.0.1
 
 ### Patch Changes
