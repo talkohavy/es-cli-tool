@@ -1,5 +1,11 @@
 # es-cli-tool
 
+## 1.0.1
+
+### Patch Changes
+
+- Export data & also Get commands can now handle large datasets.
+
 ## 1.0.0
 
 ### Major Changes
