@@ -1,5 +1,11 @@
 # es-cli-tool
 
+## 1.0.3
+
+### Patch Changes
+
+- Added a new command: `index-list`. It lists all indexed in your database.
+
 ## 1.0.2
 
 ### Patch Changes
