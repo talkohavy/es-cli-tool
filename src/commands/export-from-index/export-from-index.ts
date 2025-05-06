@@ -3,7 +3,7 @@ import { COLORS } from '../../common/constants/colors.js';
 import { getAllIndexesNames } from '../../common/utils/getAllIndexesNames.js';
 import { inquireSelectFromList } from '../../common/utils/inquires/inquireSelectFromList.js';
 import { logger } from '../../common/utils/logger/logger.js';
-import { executeExportToFileQuery } from './helpers/executeImportToIndexQuery.js';
+import { executeExportToFileQuery } from './helpers/executeExportToFileQuery.js';
 
 const ALL_INDEXES = 'all';
 
