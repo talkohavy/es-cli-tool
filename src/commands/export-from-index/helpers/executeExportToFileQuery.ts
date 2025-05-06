@@ -20,7 +20,6 @@ export async function executeExportToFileQuery(props: ExecuteExportToFileQueryPr
   const fileContent = JSON.stringify(resultToStore);
 
   try {
-    // Replace execSync with writeFileSync to handle large content
     writeFileSync(filePath, fileContent, 'utf8');
   } catch (error) {
     console.error(error);
