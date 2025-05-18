@@ -6,6 +6,7 @@ import { inquireSelectFromList } from '../../common/utils/inquires/inquireSelect
 import { logger } from '../../common/utils/logger/logger.js';
 import { executeDeleteQuery } from './helpers/executeDeleteQuery.js';
 import { inquireDocumentId } from './helpers/inquireDocumentId.js';
+import { prepareDeleteQuery } from './helpers/prepareDeleteQuery.js';
 
 export const deleteDocumentCommandString = 'delete';
 export const deleteDocumentDescription = 'Delete a document by id.';
@@ -29,10 +30,11 @@ export const deleteBuilder: any = (yargs: Argv) => {
 type DeleteDocumentProps = {
   index?: string;
   id?: string;
+  curl?: boolean;
 };
 
 export async function deleteDocument(props: DeleteDocumentProps) {
-  const { index, id } = props;
+  const { index, id, curl: shouldGetCurl } = props;
 
   const indexNamesArr = await getAllIndexesNames();
 
@@ -57,7 +59,13 @@ export async function deleteDocument(props: DeleteDocumentProps) {
 
   if (!documentId) return;
 
-  const response = await executeDeleteQuery({ index: selectedIndex, documentId });
+  const preparedQuery = await prepareDeleteQuery({ index: selectedIndex, documentId });
+
+  if (shouldGetCurl) {
+    return console.log('\n', preparedQuery, '\n');
+  }
+
+  const response = await executeDeleteQuery(preparedQuery);
 
   const colorizedResponse = colorizeJson(response);
 

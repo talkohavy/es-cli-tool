@@ -1,30 +1,14 @@
 import { execSync } from 'child_process';
-import { getContext } from '../../../common/utils/getContext.js';
 import { logger } from '../../../common/utils/logger/logger.js';
 
-type ExecuteAddQueryProps = {
-  index: string;
-  documentId: string;
-};
-
-export async function executeDeleteQuery(props: ExecuteAddQueryProps) {
+export async function executeDeleteQuery(preparedQuery: string) {
   try {
-    const { index, documentId } = props;
-
-    const context = getContext();
-
-    if (!context) throw new Error('No context found!');
-
-    const { url, flags } = context;
-
-    const requestString = `curl -X DELETE "${url}/${index}/_doc/${documentId}?pretty" ${flags}`;
-
-    const result = execSync(requestString).toString();
+    const result = execSync(preparedQuery).toString();
 
     return result;
   } catch (error) {
     console.error(error);
-    logger.error(`[ES Error] Failed to delete document with id of ${props.documentId} from index ${props.index}...`);
+    logger.error('[ES Error] Failed to execute delete document query...');
 
     throw error;
   }
