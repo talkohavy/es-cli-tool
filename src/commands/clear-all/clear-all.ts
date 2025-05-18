@@ -3,11 +3,18 @@ import { getAllIndexesNames } from '../../common/utils/getAllIndexesNames.js';
 import { inquireConfirm } from '../../common/utils/inquires/inquireConfirm.js';
 import { logger } from '../../common/utils/logger/logger.js';
 import { executeDeleteIndexQuery } from '../delete-index/helpers/executeDeleteIndexQuery.js';
+import { prepareDeleteIndexQuery } from '../delete-index/helpers/prepareDeleteIndexQuery.js';
 
 export const clearAllCommandString = 'clear-all';
 export const clearAllDescription = 'Deletes the cluster. This will delete all your indexes.';
 
-export async function clearAll() {
+type ClearAllProps = {
+  curl: boolean;
+};
+
+export async function clearAll(props: ClearAllProps) {
+  const { curl: shouldGetCurl } = props;
+
   console.log('');
 
   const answer = await inquireConfirm({
@@ -27,7 +34,17 @@ export async function clearAll() {
     return;
   }
 
-  indexNamesArr.forEach(executeDeleteIndexQuery);
+  indexNamesArr.forEach((indexName) => {
+    const preparedQuery = prepareDeleteIndexQuery(indexName);
+
+    if (shouldGetCurl) {
+      return console.log('\n', preparedQuery, '\n');
+    }
+
+    executeDeleteIndexQuery(preparedQuery);
+  });
+
+  if (shouldGetCurl) return;
 
   const summaryMessage = `${indexNamesArr.length} indexes deleted successfully!`;
 
