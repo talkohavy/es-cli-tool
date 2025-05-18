@@ -1,5 +1,11 @@
 # es-cli-tool
 
+## 1.0.6
+
+### Patch Changes
+
+- Another version 2.
+
 ## 1.0.4
 
 ### Patch Changes
