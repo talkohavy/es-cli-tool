@@ -1,5 +1,11 @@
 # es-cli-tool
 
+## 1.0.4
+
+### Patch Changes
+
+- Can now print the query.
+
 ## 1.0.3
 
 ### Patch Changes
