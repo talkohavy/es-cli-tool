@@ -5,6 +5,7 @@ import { getAllIndexesNames } from '../../common/utils/getAllIndexesNames.js';
 import { inquireSelectFromList } from '../../common/utils/inquires/inquireSelectFromList.js';
 import { logger } from '../../common/utils/logger/logger.js';
 import { executeGetMapping } from './helpers/executeGetMapping.js';
+import { prepareGetMapping } from './helpers/prepareGetMapping.js';
 
 export const getMappingCommandString = 'get-mapping';
 export const getMappingDescription = "Get an index's mapping.";
@@ -21,10 +22,11 @@ export const getMappingBuilder: any = (yargs: Argv) => {
 type GetMappingProps = {
   index: string;
   color: boolean;
+  curl: boolean;
 };
 
 export async function getMapping(props: GetMappingProps) {
-  const { index, color: shouldColorize } = props;
+  const { index, color: shouldColorize, curl: shouldGetCurl } = props;
 
   const indexNamesArr = await getAllIndexesNames();
 
@@ -45,7 +47,13 @@ export async function getMapping(props: GetMappingProps) {
     return;
   }
 
-  const responseRaw = await executeGetMapping(selectedIndex);
+  const preparedQuery = await prepareGetMapping(selectedIndex);
+
+  if (shouldGetCurl) {
+    return console.log('\n', preparedQuery, '\n');
+  }
+
+  const responseRaw = await executeGetMapping(preparedQuery);
 
   const response = shouldColorize ? colorizeJson(responseRaw) : responseRaw;
 
