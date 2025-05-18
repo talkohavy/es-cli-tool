@@ -6,6 +6,7 @@ import { getElasticQuery } from '../../common/utils/getElasticQuery.js';
 import { inquireSelectFromList } from '../../common/utils/inquires/inquireSelectFromList.js';
 import { logger } from '../../common/utils/logger/logger.js';
 import { executeAddQuery } from './helpers/executeAddQuery.js';
+import { prepareAddQuery } from './helpers/prepareAddQuery.js';
 
 export const addCommandString = 'add';
 export const addDescription = 'Insert a new document to index.';
@@ -33,10 +34,11 @@ type AddProps = {
   file: string;
   index: string;
   color: boolean;
+  curl: boolean;
 };
 
 export async function add(props: AddProps) {
-  const { index, file, color: shouldColorize } = props;
+  const { index, file, color: shouldColorize, curl: shouldGetCurl } = props;
 
   const indexNamesArr = await getAllIndexesNames();
 
@@ -61,7 +63,13 @@ export async function add(props: AddProps) {
 
   if (!elasticQuery) return;
 
-  const responseRaw = await executeAddQuery({ index: selectedIndex, query: elasticQuery });
+  const preparedQuery = await prepareAddQuery({ index: selectedIndex, query: elasticQuery });
+
+  if (shouldGetCurl) {
+    return console.log('\n', preparedQuery, '\n');
+  }
+
+  const responseRaw = await executeAddQuery(preparedQuery);
 
   const response = shouldColorize ? colorizeJson(responseRaw) : responseRaw;
 

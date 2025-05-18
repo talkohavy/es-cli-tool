@@ -85,6 +85,7 @@ export async function get(props: GetProps) {
   if (shouldGetCurl) {
     return console.log('\n', preparedQuery, '\n');
   }
+
   const responseRaw = await executeGetQuery(preparedQuery);
 
   const response = shouldColorize ? colorizeJson(responseRaw) : responseRaw;
