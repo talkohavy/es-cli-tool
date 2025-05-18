@@ -6,6 +6,7 @@ import { getElasticQuery } from '../../common/utils/getElasticQuery.js';
 import { inquireSelectFromList } from '../../common/utils/inquires/inquireSelectFromList.js';
 import { logger } from '../../common/utils/logger/logger.js';
 import { executeHardUpdateQuery } from './helpers/executeHardUpdateQuery.js';
+import { prepareHardUpdateQuery } from './helpers/prepareHardUpdateQuery.js';
 
 export const hardUpdateCommandString = 'hard-update';
 export const hardUpdateDescription = 'Overwrite an existing document in an index by id.';
@@ -41,10 +42,11 @@ type UpdateProps = {
   index: string;
   file: string;
   color: boolean;
+  curl: boolean;
 };
 
 export async function update(props: UpdateProps) {
-  const { id, index, file, color: shouldColorize } = props;
+  const { id, index, file, color: shouldColorize, curl: shouldGetCurl } = props;
 
   const indexNamesArr = await getAllIndexesNames();
 
@@ -69,7 +71,13 @@ export async function update(props: UpdateProps) {
 
   if (!elasticQuery) return;
 
-  const responseRaw = await executeHardUpdateQuery({ index: selectedIndex, id, query: elasticQuery });
+  const preparedQuery = await prepareHardUpdateQuery({ index: selectedIndex, id, query: elasticQuery });
+
+  if (shouldGetCurl) {
+    return console.log('\n', preparedQuery, '\n');
+  }
+
+  const responseRaw = await executeHardUpdateQuery(preparedQuery);
 
   const response = shouldColorize ? colorizeJson(responseRaw) : responseRaw;
 
