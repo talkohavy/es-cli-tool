@@ -3,6 +3,7 @@ import { MAX_SIZE } from '../../../common/constants/globals.js';
 import { getMatchAllQuery } from '../../../common/utils/getMatchAllQuery.js';
 import { logger } from '../../../common/utils/logger/logger.js';
 import { executeGetQuery } from '../../get/helpers/executeGetQuery.js';
+import { prepareGetQuery } from '../../get/helpers/prepareGetQuery.js';
 
 type ExecuteExportToFileQueryProps = {
   index: string;
@@ -13,7 +14,8 @@ export async function executeExportToFileQuery(props: ExecuteExportToFileQueryPr
   const { index, file: filePath } = props;
 
   const query = getMatchAllQuery(MAX_SIZE);
-  const getResponseRaw = await executeGetQuery({ index, query });
+  const preparedQuery = await prepareGetQuery({ index, query });
+  const getResponseRaw = await executeGetQuery(preparedQuery);
   const getResponse = JSON.parse(getResponseRaw);
 
   const resultToStore = getResponse.hits.hits.map((hit: any) => hit._source);
