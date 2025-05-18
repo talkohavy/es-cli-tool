@@ -6,6 +6,7 @@ import { getElasticQuery } from '../../common/utils/getElasticQuery.js';
 import { inquireSelectFromList } from '../../common/utils/inquires/inquireSelectFromList.js';
 import { logger } from '../../common/utils/logger/logger.js';
 import { executeUpdateQuery } from './helpers/executeUpdateQuery.js';
+import { prepareUpdateQuery } from './helpers/prepareUpdateQuery.js';
 
 export const updateCommandString = 'update';
 export const updateDescription = 'Update an existing document in an index by id.';
@@ -38,10 +39,11 @@ type UpdateProps = {
   index: string;
   file: string;
   color: boolean;
+  curl: boolean;
 };
 
 export async function update(props: UpdateProps) {
-  const { id, index, file, color: shouldColorize } = props;
+  const { id, index, file, color: shouldColorize, curl: shouldGetCurl } = props;
 
   const indexNamesArr = await getAllIndexesNames();
 
@@ -66,7 +68,13 @@ export async function update(props: UpdateProps) {
 
   if (!elasticQuery) return;
 
-  const responseRaw = await executeUpdateQuery({ index: selectedIndex, id, query: elasticQuery });
+  const preparedQuery = await prepareUpdateQuery({ index: selectedIndex, id, query: elasticQuery });
+
+  if (shouldGetCurl) {
+    return console.log('\n', preparedQuery, '\n');
+  }
+
+  const responseRaw = await executeUpdateQuery(preparedQuery);
 
   const response = shouldColorize ? colorizeJson(responseRaw) : responseRaw;
 
