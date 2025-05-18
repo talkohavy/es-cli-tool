@@ -6,6 +6,7 @@ import { getElasticQuery } from '../../common/utils/getElasticQuery.js';
 import { inquireSelectFromList } from '../../common/utils/inquires/inquireSelectFromList.js';
 import { logger } from '../../common/utils/logger/logger.js';
 import { executeUpdateMappingQuery } from './helpers/executeUpdateMappingQuery.js';
+import { prepareUpdateMappingQuery } from './helpers/prepareUpdateMappingQuery.js';
 
 export const updateMappingCommandString = 'update-mapping';
 export const updateMappingDescription = "Update an index's mapping.";
@@ -29,10 +30,11 @@ export const updateMappingBuilder: any = (yargs: Argv) => {
 type UpdateMappingProps = {
   file: string;
   index: string;
+  curl: boolean;
 };
 
 export async function updateMapping(props: UpdateMappingProps) {
-  const { index, file } = props;
+  const { index, file, curl: shouldGetCurl } = props;
 
   const indexNamesArr = await getAllIndexesNames();
 
@@ -57,7 +59,13 @@ export async function updateMapping(props: UpdateMappingProps) {
 
   if (!elasticQuery) return;
 
-  const response = await executeUpdateMappingQuery({ index: selectedIndex, query: elasticQuery });
+  const preparedQuery = await prepareUpdateMappingQuery({ index: selectedIndex, query: elasticQuery });
+
+  if (shouldGetCurl) {
+    return console.log('\n', preparedQuery, '\n');
+  }
+
+  const response = await executeUpdateMappingQuery(preparedQuery);
 
   const colorizedResponse = colorizeJson(response);
 
