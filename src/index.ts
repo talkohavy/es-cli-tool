@@ -104,6 +104,13 @@ const yargsInstance = yargs(hideBin(process.argv))
       global: true,
       default: false,
     },
+    c: {
+      alias: 'curl',
+      type: 'boolean',
+      description: "Print a curl command, don't execute it.",
+      global: true,
+      default: false,
+    },
     color: {
       type: 'boolean',
       description:

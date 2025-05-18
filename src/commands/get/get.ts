@@ -7,6 +7,7 @@ import { getMatchAllQuery } from '../../common/utils/getMatchAllQuery.js';
 import { inquireSelectFromList } from '../../common/utils/inquires/inquireSelectFromList.js';
 import { logger } from '../../common/utils/logger/logger.js';
 import { executeGetQuery } from './helpers/executeGetQuery.js';
+import { prepareGetQuery } from './helpers/prepareGetQuery.js';
 
 enum SubCommands {
   All = 'all',
@@ -49,10 +50,11 @@ type GetProps = {
   file?: string;
   count?: number;
   color?: boolean;
+  curl?: boolean;
 };
 
 export async function get(props: GetProps) {
-  const { commands, index, file, color: shouldColorize, count = 10 } = props;
+  const { commands, index, file, color: shouldColorize, count = 10, curl: shouldGetCurl } = props;
   const subCommand = commands[1] as SubCommands;
 
   const indexNamesArr = await getAllIndexesNames();
@@ -78,7 +80,12 @@ export async function get(props: GetProps) {
 
   if (!elasticQuery) return;
 
-  const responseRaw = await executeGetQuery({ index: selectedIndex, query: elasticQuery });
+  const preparedQuery = await prepareGetQuery({ index: selectedIndex, query: elasticQuery });
+
+  if (shouldGetCurl) {
+    return console.log('\n', preparedQuery, '\n');
+  }
+  const responseRaw = await executeGetQuery(preparedQuery);
 
   const response = shouldColorize ? colorizeJson(responseRaw) : responseRaw;
 
