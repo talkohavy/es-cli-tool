@@ -1,11 +1,24 @@
 import { COLORS } from '../../common/constants/colors.js';
 import { getAllIndexesNames } from '../../common/utils/getAllIndexesNames.js';
 import { logger } from '../../common/utils/logger/logger.js';
+import { prepareGetAllIndexesNamesQuery } from '../../common/utils/prepareGetAllIndexesNamesQuery.js';
 
 export const indexListCommandString = 'index-list';
 export const indexListDescription = 'List all available indexes.';
 
-export async function indexList() {
+type IndexListProps = {
+  curl: boolean;
+};
+
+export async function indexList(props: IndexListProps) {
+  const { curl: shouldGetCurl } = props;
+
+  const preparedQuery = prepareGetAllIndexesNamesQuery();
+
+  if (shouldGetCurl) {
+    return console.log('\n', preparedQuery, '\n');
+  }
+
   const indexNamesArr = await getAllIndexesNames();
 
   if (!indexNamesArr.length) {

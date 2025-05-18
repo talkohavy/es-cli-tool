@@ -1,19 +1,13 @@
 import { execSync } from 'child_process';
 import os from 'os';
-import { getContext } from './getContext.js';
 import { logger } from './logger/logger.js';
+import { prepareGetAllIndexesNamesQuery } from './prepareGetAllIndexesNamesQuery.js';
 
 export async function getAllIndexesNames() {
   try {
-    const context = getContext();
+    const preparedQuery = prepareGetAllIndexesNamesQuery();
 
-    if (!context) throw new Error('No context found!');
-
-    const { url, flags } = context;
-
-    const requestString = `curl -X GET "${url}/_cat/indices?h=index" ${flags}`;
-
-    const indexesNamesStr = execSync(requestString).toString();
+    const indexesNamesStr = execSync(preparedQuery).toString();
 
     const indexesNames = indexesNamesStr.split(os.EOL);
 
