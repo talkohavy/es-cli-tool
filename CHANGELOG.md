@@ -1,5 +1,11 @@
 # es-cli-tool
 
+## 1.0.7
+
+### Patch Changes
+
+- BUGFIX: export command fixed.
+
 ## 1.0.6
 
 ### Patch Changes
