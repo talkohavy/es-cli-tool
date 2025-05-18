@@ -5,6 +5,7 @@ import { getAllIndexesNames } from '../../common/utils/getAllIndexesNames.js';
 import { inquireSelectFromList } from '../../common/utils/inquires/inquireSelectFromList.js';
 import { logger } from '../../common/utils/logger/logger.js';
 import { executeImportToIndexQuery } from './helpers/executeImportToIndexQuery.js';
+import { prepareImportToIndexQuery } from './helpers/prepareImportToIndexQuery.js';
 
 export const importToIndexCommandString = 'import';
 export const importToIndexDescription = 'Import data from a file into an index.';
@@ -29,10 +30,11 @@ export const importToIndexBuilder: any = (yargs: Argv) => {
 type ImportToIndexProps = {
   index: string;
   file: string;
+  curl: boolean;
 };
 
 export async function importToIndex(props: ImportToIndexProps) {
-  const { index, file } = props;
+  const { index, file, curl: shouldGetCurl } = props;
 
   const indexNamesArr = await getAllIndexesNames();
 
@@ -59,7 +61,13 @@ export async function importToIndex(props: ImportToIndexProps) {
     return;
   }
 
-  const response = await executeImportToIndexQuery({ index: selectedIndex, file });
+  const preparedQuery = await prepareImportToIndexQuery(selectedIndex);
+
+  if (shouldGetCurl) {
+    return console.log('\n', preparedQuery, '\n');
+  }
+
+  const response = await executeImportToIndexQuery({ preparedQuery, file });
 
   const colorizedResponse = colorizeJson(response);
 

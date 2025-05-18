@@ -2,46 +2,36 @@ import { execSync } from 'child_process';
 import fs from 'fs';
 import os from 'os';
 import path from 'path';
-import { getContext } from '../../../common/utils/getContext.js';
 import { logger } from '../../../common/utils/logger/logger.js';
 
 type ExecuteImportToIndexQueryProps = {
-  index: string;
+  preparedQuery: string;
   file: string;
 };
 
 export async function executeImportToIndexQuery(props: ExecuteImportToIndexQueryProps) {
   try {
-    const { index, file } = props;
-    let fileToUse = file;
-    const tempFile = null;
-
-    const context = getContext();
-
-    if (!context) throw new Error('No context found!');
-
-    const { url, flags } = context;
+    const { preparedQuery, file } = props;
+    let filename = null;
 
     try {
-      const tempFile = createTemporaryBulkFile(file);
+      filename = createTemporaryBulkFile(file);
 
-      fileToUse = tempFile;
-      logger.info(`Created temporary bulk import file at: ${tempFile}`);
+      logger.info(`Created temporary bulk import file at: ${filename}`);
     } catch (err: any) {
-      logger.warn(`Failed to parse or transform JSON file: ${err.message}`);
-      logger.warn('Continue with original file if transformation fails');
+      throw new Error(`Failed to parse or transform JSON file: ${err.message}`);
     }
 
-    const requestString = `curl -X POST "${url}/${index}/_bulk?pretty" ${flags} --data-binary "@${fileToUse}"`;
+    const updatedPreparedQuery = preparedQuery.replace(/__FILE_NAME__/g, filename);
 
-    const result = execSync(requestString).toString();
+    const result = execSync(updatedPreparedQuery).toString();
 
-    if (tempFile && fs.existsSync(tempFile)) cleanupTempFile(tempFile);
+    if (filename && fs.existsSync(filename)) cleanupTempFile(filename);
 
     return result;
   } catch (error) {
     console.error(error);
-    logger.error(`[ES Error] Failed to populate index ${props.index}...`);
+    logger.error('[ES Error] Failed to populate index...');
 
     throw error;
   }
