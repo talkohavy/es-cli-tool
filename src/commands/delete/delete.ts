@@ -3,7 +3,7 @@ import { COLORS } from '../../common/constants/colors.js';
 import { colorizeJson } from '../../common/utils/colorize-json/colorize-json.js';
 import { getAllIndexesNames } from '../../common/utils/getAllIndexesNames.js';
 import { inquireSelectFromList } from '../../common/utils/inquires/inquireSelectFromList.js';
-import { logger } from '../../common/utils/logger/logger.js';
+import { logger } from '../../lib/logger/logger.js';
 import { executeDeleteQuery } from './helpers/executeDeleteQuery.js';
 import { inquireDocumentId } from './helpers/inquireDocumentId.js';
 import { prepareDeleteQuery } from './helpers/prepareDeleteQuery.js';

@@ -5,7 +5,7 @@ import { getAllIndexesNames } from '../../common/utils/getAllIndexesNames.js';
 import { getElasticQuery } from '../../common/utils/getElasticQuery.js';
 import { getMatchAllQuery } from '../../common/utils/getMatchAllQuery.js';
 import { inquireSelectFromList } from '../../common/utils/inquires/inquireSelectFromList.js';
-import { logger } from '../../common/utils/logger/logger.js';
+import { logger } from '../../lib/logger/logger.js';
 import { executeGetQuery } from './helpers/executeGetQuery.js';
 import { prepareGetQuery } from './helpers/prepareGetQuery.js';
 

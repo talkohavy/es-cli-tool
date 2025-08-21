@@ -1,6 +1,6 @@
 import { Argv } from 'yargs';
 import { colorizeJson } from '../../common/utils/colorize-json/colorize-json.js';
-import { logger } from '../../common/utils/logger/logger.js';
+import { logger } from '../../lib/logger/logger.js';
 import { executeCreateIndexQuery } from './helpers/executeCreateIndexQuery.js';
 import { inquireNewIndexName } from './helpers/inquireNewIndexName.js';
 import { validateElasticsearchIndexName } from './helpers/validateIndexName.js';

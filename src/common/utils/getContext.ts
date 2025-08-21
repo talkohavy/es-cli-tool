@@ -1,5 +1,5 @@
 import { loadConfig } from '../../config/config.js';
-import { logger } from './logger/logger.js';
+import { logger } from '../../lib/logger/logger.js';
 
 export function getContext() {
   const config = loadConfig();

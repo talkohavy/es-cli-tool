@@ -1,7 +1,7 @@
 import { COLORS } from '../../common/constants/colors.js';
 import { getAllIndexesNames } from '../../common/utils/getAllIndexesNames.js';
 import { inquireConfirm } from '../../common/utils/inquires/inquireConfirm.js';
-import { logger } from '../../common/utils/logger/logger.js';
+import { logger } from '../../lib/logger/logger.js';
 import { executeDeleteIndexQuery } from '../delete-index/helpers/executeDeleteIndexQuery.js';
 import { prepareDeleteIndexQuery } from '../delete-index/helpers/prepareDeleteIndexQuery.js';
 

@@ -1,6 +1,6 @@
 import fs from 'fs/promises';
 import path from 'path';
-import { logger } from './logger/logger.js';
+import { logger } from '../../lib/logger/logger.js';
 
 export async function readQueryFromFile(file: string) {
   try {

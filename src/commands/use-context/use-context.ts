@@ -1,7 +1,7 @@
 import { Argv } from 'yargs';
 import { COLORS } from '../../common/constants/colors.js';
 import { inquireSelectFromList } from '../../common/utils/inquires/inquireSelectFromList.js';
-import { logger } from '../../common/utils/logger/logger.js';
+import { logger } from '../../lib/logger/logger.js';
 import { loadConfig, saveConfig } from '../../config/config.js';
 
 export const useContextCommandString = 'use-context [name]';

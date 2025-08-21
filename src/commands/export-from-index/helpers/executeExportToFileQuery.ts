@@ -1,7 +1,7 @@
 import { writeFileSync } from 'fs';
 import { MAX_SIZE } from '../../../common/constants/globals.js';
 import { getMatchAllQuery } from '../../../common/utils/getMatchAllQuery.js';
-import { logger } from '../../../common/utils/logger/logger.js';
+import { logger } from '../../../lib/logger/logger.js';
 import { executeGetQuery } from '../../get/helpers/executeGetQuery.js';
 import { prepareGetQuery } from '../../get/helpers/prepareGetQuery.js';
 

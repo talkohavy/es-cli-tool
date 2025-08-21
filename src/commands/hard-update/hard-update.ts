@@ -4,7 +4,7 @@ import { colorizeJson } from '../../common/utils/colorize-json/colorize-json.js'
 import { getAllIndexesNames } from '../../common/utils/getAllIndexesNames.js';
 import { getElasticQuery } from '../../common/utils/getElasticQuery.js';
 import { inquireSelectFromList } from '../../common/utils/inquires/inquireSelectFromList.js';
-import { logger } from '../../common/utils/logger/logger.js';
+import { logger } from '../../lib/logger/logger.js';
 import { executeHardUpdateQuery } from './helpers/executeHardUpdateQuery.js';
 import { prepareHardUpdateQuery } from './helpers/prepareHardUpdateQuery.js';
 

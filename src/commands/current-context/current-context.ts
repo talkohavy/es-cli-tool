@@ -1,5 +1,5 @@
 import { COLORS } from '../../common/constants/colors.js';
-import { logger } from '../../common/utils/logger/logger.js';
+import { logger } from '../../lib/logger/logger.js';
 import { loadConfig } from '../../config/config.js';
 
 export const currentContextCommandString = 'current-context';

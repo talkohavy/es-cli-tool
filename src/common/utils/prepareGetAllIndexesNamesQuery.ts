@@ -1,5 +1,5 @@
 import { getContext } from './getContext.js';
-import { logger } from './logger/logger.js';
+import { logger } from '../../lib/logger/logger.js';
 
 export function prepareGetAllIndexesNamesQuery() {
   try {

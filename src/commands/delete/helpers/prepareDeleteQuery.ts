@@ -1,5 +1,5 @@
 import { getContext } from '../../../common/utils/getContext.js';
-import { logger } from '../../../common/utils/logger/logger.js';
+import { logger } from '../../../lib/logger/logger.js';
 
 type PrepareAddQueryProps = {
   index: string;

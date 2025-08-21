@@ -2,7 +2,7 @@ import { execSync } from 'child_process';
 import fs from 'fs';
 import os from 'os';
 import path from 'path';
-import { logger } from '../../../common/utils/logger/logger.js';
+import { logger } from '../../../lib/logger/logger.js';
 
 type ExecuteImportToIndexQueryProps = {
   preparedQuery: string;

@@ -4,7 +4,7 @@ import { colorizeJson } from '../../common/utils/colorize-json/colorize-json.js'
 import { getAllIndexesNames } from '../../common/utils/getAllIndexesNames.js';
 import { inquireConfirm } from '../../common/utils/inquires/inquireConfirm.js';
 import { inquireSelectFromList } from '../../common/utils/inquires/inquireSelectFromList.js';
-import { logger } from '../../common/utils/logger/logger.js';
+import { logger } from '../../lib/logger/logger.js';
 import { executeDeleteIndexQuery } from './helpers/executeDeleteIndexQuery.js';
 
 export const deleteIndexCommandString = 'delete-index';
