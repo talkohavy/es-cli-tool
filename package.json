@@ -5,7 +5,10 @@
   "private": "true",
   "type": "module",
   "main": "dist/index.js",
-  "keywords": ["elasticsearch", "CLI"],
+  "keywords": [
+    "elasticsearch",
+    "CLI"
+  ],
   "bin": {
     "es-cli-tool": "index.js"
   },
@@ -63,13 +66,17 @@
     "yargs": "^17.7.2"
   },
   "devDependencies": {
+    "@eslint/js": "^9.34.0",
     "@types/node": "^22.3.0",
     "@types/yargs": "^17.0.33",
     "esbuild": "^0.24.0",
-    "eslint": "^8.57.0",
-    "eslint-plugin-ezlint": "^1.2.0",
+    "eslint": "^9.34.0",
+    "eslint-plugin-perfectionist": "^4.15.0",
+    "eslint-plugin-react-compiler": "19.1.0-rc.2",
+    "globals": "^16.3.0",
     "husky": "^9.0.11",
     "prettier": "^3.2.5",
-    "typescript": "^5.4.5"
+    "typescript": "^5.9.2",
+    "typescript-eslint": "^8.40.0"
   }
 }
