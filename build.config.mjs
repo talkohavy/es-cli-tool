@@ -141,6 +141,8 @@ function updateVersionTemplates(outDirName) {
   const showVersionFuncContent = fs.readFileSync(showVersionFuncPath, 'utf-8');
   const updatedShowVersionFuncContent = showVersionFuncContent.replace('{{version}}', version);
   fs.writeFileSync(showVersionFuncPath, updatedShowVersionFuncContent);
+
+  console.log('');
 }
 
 /**
