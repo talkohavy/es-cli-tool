@@ -44,7 +44,8 @@
     "dev-get-settings": "node dist/index.js get-settings",
     "dev-update-mapping": "node dist/index.js update-mapping",
     "dev-export": "node dist/index.js export",
-    "dev-index-list": "node dist/index.js index-list"
+    "dev-index-list": "node dist/index.js index-list",
+    "install-as-cli": "npm install -g ./dist"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",
