@@ -3,19 +3,19 @@
   "version": "1.0.7",
   "description": "A way to query your elasticsearch using CLI",
   "private": "true",
-  "type": "module",
-  "main": "dist/index.js",
-  "keywords": [
-    "elasticsearch",
-    "CLI"
-  ],
+  "main": "only-the-path-in-bin-matters-in-cli.js",
+  "keywords": ["elasticsearch", "CLI"],
   "bin": {
     "es-cli-tool": "index.js"
   },
   "exports": {
     ".": {
-      "types": "./dist/index.d.js",
-      "default": "./dist/index.js"
+      "import": {
+        "default": "./only-the-path-in-bin-matters-in-cli.js"
+      },
+      "require": {
+        "default": "./only-the-path-in-bin-matters-in-cli.js"
+      }
     }
   },
   "scripts": {
