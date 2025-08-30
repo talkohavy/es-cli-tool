@@ -17,7 +17,6 @@ import {
   createIndexDescription,
 } from './commands/create-index/create-index.js';
 import { currentContextCommandString, currentContextDescription } from './commands/current-context/current-context.js';
-import { deleteBuilder, deleteDocumentCommandString, deleteDocumentDescription } from './commands/delete/delete.js';
 import {
   deleteContextBuilder,
   deleteContextCommandString,
@@ -28,12 +27,12 @@ import {
   deleteIndexCommandString,
   deleteIndexDescription,
 } from './commands/delete-index/delete-index.js';
+import { deleteBuilder, deleteDocumentCommandString, deleteDocumentDescription } from './commands/delete/delete.js';
 import {
   exportFromIndexBuilder,
   exportFromIndexCommandString,
   exportFromIndexDescription,
 } from './commands/export-from-index/export-from-index.js';
-import { getBuilder, getCommandString, getDescription } from './commands/get/get.js';
 import {
   getMappingBuilder,
   getMappingCommandString,
@@ -44,18 +43,19 @@ import {
   getSettingsCommandString,
   getSettingsDescription,
 } from './commands/get-settings/get-settings.js';
+import { getBuilder, getCommandString, getDescription } from './commands/get/get.js';
 import {
   importToIndexBuilder,
   importToIndexCommandString,
   importToIndexDescription,
 } from './commands/import-to-index/import-to-index.js';
 import { indexListCommandString, indexListDescription } from './commands/index-list/index-list.js';
-import { updateBuilder, updateCommandString, updateDescription } from './commands/update/update.js';
 import {
   updateMappingBuilder,
   updateMappingCommandString,
   updateMappingDescription,
 } from './commands/update-mapping/update-mapping.js';
+import { updateBuilder, updateCommandString, updateDescription } from './commands/update/update.js';
 import {
   useContextBuilder,
   useContextCommandString,
